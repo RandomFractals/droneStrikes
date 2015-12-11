@@ -28,3 +28,21 @@ function Hit(hitData) {
 	this.target = hitData.target;
 	this.names = hitData.names;
 }
+
+Hit.prototype.dateString = function() {
+	return Hit.months[this.date.getMonth()] + ' ' +
+		('0' + this.date.getDate()).slice(-2) + ' ' + //'/' + 
+		this.date.getFullYear();
+}
+
+Hit.dateTimeString = function(date) {
+	return Hit.months[date.getMonth()] + ' ' +
+		('0' + date.getDate()).slice(-2) + ' ' + //'/' + 
+		//('0' + (date.getMonth() + 1)).slice(-2) + //'/' + 
+		date.getFullYear() + ' ' + 
+		('0' + date.getHours()).slice(-2) + ':' + 
+		('0' + date.getMinutes()).slice(-2);
+}
+
+
+Hit.months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];

@@ -1,0 +1,27 @@
+.container {
+ clear: both;	
+ padding: 0px;
+}
+
+.map, .graph {
+	background-color: #eee;
+	border: solid 1px #AACFE4;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px #ccc;	
+	font-family: 'Droid Sans Mono', courier;
+	margin: 10px;	
+	overflow: hidden;
+}
+
+.map, .data {
+	min-height: 320px;
+}
+
+.graph {
+	height: 180px;
+}
+
+.note, .label {
+	font-size: .6em;	
+	color: #333;
+}
