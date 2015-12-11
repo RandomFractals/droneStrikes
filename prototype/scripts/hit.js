@@ -12,9 +12,8 @@ function Hit(hitData) {
 	this.articles = hitData.articles;
 
 	// hit location
+	this.latitude = hitData.lat;	
 	this.longitude = hitData.lon;
-	this.latitude = hitData.lat;
-	this.longLat = {hitData.lon, hitData.lat};
 	this.town = hitData.town;
 	this.location = hitData.location;
 	
