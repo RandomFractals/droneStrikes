@@ -2,12 +2,18 @@ var map;
 var droneStrikes = new DroneStrikes();
 
 $(function() {
-		
-	map = L.map('map').setView([29.0, 41.0], 3); // middle east lat/long + zoom
+	
+	// create leaflet map
+	map = L.map('map');
 	//map.locate({setView: true, maxZoom: 4}); // for geo-loc based on ip later
+	resetMapView();
+	
+	// create map tiles
 	var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
 	//var tiles = new L.StamenTileLayer('watercolor');
 	map.addLayer(tiles);	
+	
+	// create markers
 	var markers = new L.MarkerClusterGroup();
 	var markerList = [];
 	
@@ -16,7 +22,6 @@ $(function() {
 	$.get(dataUrl).done(loadData).fail(dataLoadError);
 	
 	function loadData(hitData) {
-		//console.log(hitData.strike);		
 		droneStrikes.addHits(hitData.strike);		
 		console.log(droneStrikes.logStats());
 		
@@ -31,12 +36,7 @@ $(function() {
 		}		
 		map.addLayer(markers);
 		
-		// update strikes stats display
-		$('#dataMessage').text(
-			droneStrikes.hitList.length + ' strikes since ' + 
-			droneStrikes.startTime.getMonth() + '/' +
-			droneStrikes.startTime.getDate() + '/' +
-			droneStrikes.startTime.getFullYear() );
+		showStats();
 	}
 	
 	function dataLoadError() {
@@ -47,19 +47,30 @@ $(function() {
 	
 });
 
+function resetMapView() {
+	map.setView([29.0, 41.0], 3); // middle east lat/long + zoom	
+}
+
+function showStats() {
+	$('#dataMessage').text(
+		droneStrikes.hitList.length + ' strikes since ' + 
+		droneStrikes.startTime.getMonth() + '/' +
+		droneStrikes.startTime.getDate() + '/' +
+		droneStrikes.startTime.getFullYear() );	
+}
 
 function showHits() {
 	showMap(true);
 	$('#hitMapLink').addClass('selected');
-	$('#heatMapLink').removeClass('selected');	
-
-	// todo: reset map view and zoom	
+	$('#heatMapLink').removeClass('selected');
+	resetMapView();
 }
 	
 function showHeatMap() {
 	showMap(true);
 	$('#hitMapLink').removeClass('selected');	
 	$('#heatMapLink').addClass('selected');
+	resetMapView();
 	
 	// todo: show heatmap instead of clustered hit markers
 }
