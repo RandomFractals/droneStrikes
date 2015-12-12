@@ -20,7 +20,7 @@ function HitStats() {
 
 
 /**
-* Updates hit stats summary day for every hit.
+* Updates hit stats summary data for every hit.
 */
 HitStats.prototype.updateStats = function(hit) {
 	this.minKills += hit.minKills;

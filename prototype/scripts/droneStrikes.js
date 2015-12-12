@@ -41,7 +41,7 @@ function DroneStrikes() {
 		}
 		
 		// update unique hit days count
-		this.stats.uniqueHitDays = Object.keys(_hitDateMap()).length;
+		this.stats.uniqueHitDays = Object.keys(_hitDateMap).length;
 		
 		return _hitDateMap;
 	}
@@ -68,8 +68,7 @@ DroneStrikes.prototype.addHits = function(strikesData) {
 		}
 		
 		// add it to the hit list
-		this.hitList.push(hit);
-		
+		this.hitList.push(hit);		
 		this.stats.updateStats(hit);
 	
 	}	// end of data parse for loop
@@ -77,7 +76,7 @@ DroneStrikes.prototype.addHits = function(strikesData) {
 	// sort by time
 	this.hitList.sort(function (a, b) {return a.time - b.time});
 	
-	return this.hitDateMap;
+	return this.hitDateMap();
 }
 
 
