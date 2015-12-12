@@ -50,9 +50,9 @@ Hit.prototype.toHtml = function() {
 		'<span class="green">' + this.children  + '</span>|' +
 		'<span class="blue">' + this.civilians + '</span>|' +
 		'<span class="red">' + this.target + '</span>' + */
-		'<a href="' + this.link + '" target="_blank">' +
+		'<a class="storyLink" href="' + this.link + '" target="_blank">' +
 		this.narrative +
-		'</a><br />' + this.summary;
+		'</a><br /><br />' + this.summary;
 	
 	return html;
 }

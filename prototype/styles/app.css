@@ -26,6 +26,10 @@
 	color: #333;
 }
 
+.storyLink {
+	font-size: 1.2em;
+}
+
 /* color coding styles */
 .red {
 	color: #f00;
