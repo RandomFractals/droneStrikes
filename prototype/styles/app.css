@@ -1,3 +1,4 @@
+/* data vis container styles */
 .container {
  clear: both;	
  padding: 0px;
@@ -21,6 +22,8 @@
 	height: 180px;
 }
 
+
+/* app text elements + link styles */
 .note, .label {
 	font-size: .6em;	
 	color: #333;
@@ -30,7 +33,8 @@
 	font-size: 1.2em;
 }
 
-/* color coding styles */
+
+/* data color coding styles */
 .red {
 	color: #f00;
 }
