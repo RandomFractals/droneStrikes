@@ -24,7 +24,7 @@ function Hit(hitData) {
 	this.civilians = hitData.civilians;
 	this.children = hitData.children;	
 	this.injuries = hitData.injuries;
-	this.target = hitData.target;
+	this.targets = hitData.target;
 	this.names = hitData.names;
 }
 
@@ -48,7 +48,7 @@ Hit.dateTimeString = function(date) {
 Hit.prototype.toHtml = function() {
 	var html = '<div class="stats-bar">' +
 		this.dateString() + 
-		new HitBars(new HitStats(this)).toHtml() +
+		new HitBars(this).toHtml() +
 		'</div>' + // </stats bar>
 		'<br /><a class="storyLink" href="' + this.link + '" target="_blank">' +
 		this.narrative +
