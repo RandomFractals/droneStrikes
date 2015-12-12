@@ -23,7 +23,7 @@ $(function() {
 	
 	function loadData(hitData) {
 		droneStrikes.addHits(hitData.strike);		
-		console.log(droneStrikes.logStats());
+		console.log(droneStrikes.stats.logStats());
 		
 		// add map markers
 		var marker;
@@ -57,9 +57,9 @@ function resetMapView() {
 function showStats() {
 	$('#dataMessage').text(
 		droneStrikes.hitList.length + ' strikes since ' + 
-		droneStrikes.startTime.getMonth() + '/' +
-		droneStrikes.startTime.getDate() + '/' +
-		droneStrikes.startTime.getFullYear() );	
+		droneStrikes.stats.startTime.getMonth() + '/' +
+		droneStrikes.stats.startTime.getDate() + '/' +
+		droneStrikes.stats.startTime.getFullYear() );	
 }
 
 function showHitMap() {

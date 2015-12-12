@@ -5,9 +5,7 @@ function DroneStrikes() {
 	
 	// hits
 	this.hitList = [];
-	this.stats; 
-	this.startTime = new Date(); // now
-	this.endTime = new Date(0);	// 01/01/1970	
+	this.stats = new HitStats();
 		
 	// hits date map for data vis
 	var _hitDateMap;	
@@ -42,6 +40,9 @@ function DroneStrikes() {
 			hitDateList.push(hit);
 		}
 		
+		// update unique hit days count
+		this.stats.uniqueHitDays = Object.keys(_hitDateMap()).length;
+		
 		return _hitDateMap;
 	}
 	
@@ -59,16 +60,26 @@ DroneStrikes.prototype.addHits = function(strikesData) {
 		hit = new Hit(strikesData[i]);
 		
 		// update hit history start and end time
-		if (this.startTime > hit.date) {
-			this.startTime = hit.date;
+		if (this.stats.startTime > hit.date) {
+			this.stats.startTime = hit.date;
 		}
-		else if (this.endTime < hit.date) {
-			this.endTime = hit.date;
+		else if (this.stats.endTime < hit.date) {
+			this.stats.endTime = hit.date;
 		}
 		
 		// add it to the hit list
 		this.hitList.push(hit);
-	}
+		
+		// update hit stats
+		this.stats.minKills += hit.minKills;
+		this.stats.maxKills += hit.maxKills;
+		this.stats.civilians += hit.civilians;
+		this.stats.children += hit.children;
+		this.stats.injuries += hit.injuries;
+		this.stats.target += hit.target;
+		this.stats.names.push(hit.names);
+
+	}	// end of data parse for loop
 
 	// sort by time
 	this.hitList.sort(function (a, b) {return a.time - b.time});
@@ -134,16 +145,4 @@ DroneStrikes.prototype.hitDateMapString = function() {
 		dateMapString += '\n';
 	}
 	return dateMapString;
-}
-
-
-/**
-* Drone strikes stats logging.
-*/
-DroneStrikes.prototype.logStats = function () {
-	// log search history stats
-	console.log('first strike: ' + this.startTime.toString());
-	console.log('last strike: ' + this.endTime.toString());
-	console.log('hits date map length: ' + 
-		Object.keys(this.hitDateMap()).length);
 }
