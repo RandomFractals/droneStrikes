@@ -25,3 +25,18 @@
 	font-size: .6em;	
 	color: #333;
 }
+
+/* color coding styles */
+.red {
+	color: #f00;
+}
+
+.green {
+	color: #0c0;
+}
+
+.blue {
+	color: #06f;
+}
+
+
