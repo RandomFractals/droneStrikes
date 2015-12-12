@@ -27,11 +27,11 @@ $(function() {
 		
 		// add map markers
 		var marker;
+		var hit;
 		for (var i=0; i<droneStrikes.hitList.length; i++) {
-			marker = L.marker([
-				droneStrikes.hitList[i].latitude,
-				droneStrikes.hitList[i].longitude
-			]);
+			hit = droneStrikes.hitList[i];
+			marker = L.marker([hit.latitude, hit.longitude]);
+			marker.bindPopup(hit.toHtml());
 			markers.addLayer(marker);
 		}		
 		map.addLayer(markers);

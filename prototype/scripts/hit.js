@@ -28,6 +28,8 @@ function Hit(hitData) {
 	this.names = hitData.names;
 }
 
+Hit.months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
 Hit.prototype.dateString = function() {
 	return Hit.months[this.date.getMonth()] + ' ' +
 		('0' + this.date.getDate()).slice(-2) + ' ' + //'/' + 
@@ -43,5 +45,8 @@ Hit.dateTimeString = function(date) {
 		('0' + date.getMinutes()).slice(-2);
 }
 
-
-Hit.months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+Hit.prototype.toHtml = function() {
+	var html = this.dateString() + ' - ' + this.narrative;
+	
+	return html;
+}
