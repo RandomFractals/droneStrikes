@@ -46,7 +46,10 @@ Hit.dateTimeString = function(date) {
 }
 
 Hit.prototype.toHtml = function() {
-	var html = this.dateString() + ' - ' + this.narrative;
+	var html = this.dateString() + ' - ' + 
+		'<a href="' + this.link + '" target="_blank">' +
+		this.narrative +
+		'</a>';
 	
 	return html;
 }
