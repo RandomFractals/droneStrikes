@@ -1,6 +1,20 @@
-var map;
+/**
+* Drone strikes data vis app js,
+* main app view contrroller
+* for this simple single page data vis.
+*/
+
+// leaflet map container
+var map; 
+
+// main view data model
 var droneStrikes = new DroneStrikes();
 
+
+/**
+* Creates leaflet map on document ready,
+* gets and displays drone strikes data.
+*/
 $(function() {
 	
 	// create leaflet map
@@ -10,10 +24,10 @@ $(function() {
 	
 	// create map tiles
 	var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
-	//var tiles = new L.StamenTileLayer('watercolor');
+	//var tiles = new L.StamenTileLayer('watercolor'); // experimental for later
 	map.addLayer(tiles);	
 	
-	// create markers
+	// create marker cluster group and list
 	var markers = new L.MarkerClusterGroup();
 	var markerList = [];
 	
@@ -21,11 +35,14 @@ $(function() {
 	var dataUrl = 'http://api.dronestre.am/data';
 	$.get(dataUrl).done(loadData).fail(dataLoadError);
 	
+	/**
+	* Data load event handler.
+	*/
 	function loadData(hitData) {
 		droneStrikes.addHits(hitData.strike);		
 		console.log(droneStrikes.stats.logStats());
 		
-		// add map markers
+		// add data point map markers
 		var marker;
 		var hit;
 		var points = [];
@@ -37,11 +54,18 @@ $(function() {
 			points.push([hit.latitude, hit.longitude]);
 		}		
 		map.addLayer(markers);
+		
+		// create heatmap strictly for visual effect
 		var heatMap = L.heatLayer(points);
 		map.addLayer(heatMap);
+		
+		// show drone strikes stats
 		showStats();
 	}
 	
+	/**
+	* Logs and displays a message about failed data load.
+	*/
 	function dataLoadError() {
 		console.log('data load error');
 		// show data load error msg
@@ -50,10 +74,29 @@ $(function() {
 	
 });
 
+
+/**
+* Resets map view centered on middle east.
+*/
 function resetMapView() {
 	map.setView([29.0, 41.0], 3); // middle east lat/long + zoom	
 }
 
+
+/** 
+* Displays map view and resets it.
+*/
+function showHitMap() {
+	showMap(true);
+	$('#mapLink').addClass('selected');
+	resetMapView();
+}
+	
+
+/**
+* Displays drone strikes stats
+* in map view data message/title bar.
+*/
 function showStats() {
 	$('#dataMessage').text(
 		droneStrikes.hitList.length + ' strikes since ' + 
@@ -62,18 +105,20 @@ function showStats() {
 		droneStrikes.stats.startTime.getFullYear() );	
 }
 
-function showHitMap() {
-	showMap(true);
-	$('#mapLink').addClass('selected');
-	resetMapView();
-}
-	
+
+/**
+* Hides map view and display tabular drone strikes data.
+*/
 function showData() {
 	showMap(false);
 	
 	// todo: show data table for the data feed
 }
 
+
+/**
+* Toggles map and data view and menu links display.
+*/
 function showMap(display) {
 	if (display) {
 		// show map
