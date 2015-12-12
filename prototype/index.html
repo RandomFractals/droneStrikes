@@ -19,11 +19,9 @@
 	<div id="toolbar">
 		<h1>US drone strikes</h1>
 	</div>
-	
+	<!-- page content -->
 	<div id="content">	
-	
-		<div class="card">
-		
+		<div class="card">		
 			<!-- app card title section -->
 			<div class="card-title">
 				<div class="left">
@@ -35,9 +33,8 @@
 						title="http://www.dronestre.am">dronestre.am</a>				
 				</div>
 			</div>
-			
+			<!-- main app card view -->
 			<div class="card-content">
-
 				<!-- map/data section -->
 				<div id="dataMapContainer" class="container">
 					<div class="title-bar">
@@ -46,13 +43,15 @@
 						</span>
 						<ul id="mapMenuList" class="menu right">
 							<li>
-								<a id="mapLink" title="Droke Strikes Hits" 
+								<a id="mapLink" 
+									title="Droke Strikes Hits" 
 									class="selected"
 									onclick="showHitMap()"
 									href="#">map</a>
 							</li>
 							<li>
-								<a id="dataLink" title="Droke Strikes Data"
+								<a id="dataLink" 
+									title="Droke Strikes Data"
 									onclick="showData()"
 									href="#">data</a>
 							</li>
@@ -65,7 +64,6 @@
 						[drone strikes table data]
 					</div>
 				</div>
-			
 				<!-- graphs section -->
 				<div id="graphContainer" class="container">
 					<div class="title-bar">
@@ -82,14 +80,12 @@
 						[stacked bars and line graph of drone strikes over time (years, months, days)]
 					</div>				
 				</div>
-			
-			</div> <!-- card content -->
+			</div> <!-- card-content -->
 		</div> <!-- card -->
-	</div> <!-- content container -->
-	
+	</div> <!-- page content -->	
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
 	<script type="text/javascript" src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
-	<!--
+	<!-- stamen leaflet tiles js include for artistic experiment with watercolor map view later
 	<script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js"></script>	
 	-->
 	<script type="text/javascript" 
