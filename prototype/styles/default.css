@@ -16,7 +16,6 @@ body {
 	width: 100%;
 }
 
-
 #content {
 	background: whiteSmoke;	
 	border-radius: 5px;
@@ -25,6 +24,10 @@ body {
 	margin-top: 80px;
 	padding: 20px;
 }
+
+
+/* todo: add sticky footer later */
+
 
 /* header styles */
 h1 {
@@ -43,7 +46,8 @@ h1 a {
 	text-decoration: none
 }
 
-/* card/title styles */
+
+/* card/containers styles */
 .card-title {
 	font-size: 1.5em;
 }
@@ -75,6 +79,7 @@ h1 a {
 	display: block;
 }
 
+
 /* seciton title/msg bar styles */
 .title-bar {
 	height: 50px;
@@ -88,6 +93,7 @@ h1 a {
 	margin: 10px;
 	width: 80%;
 }
+
 
 /* menu link styles */
 a {
