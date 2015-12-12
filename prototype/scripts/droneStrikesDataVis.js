@@ -4,11 +4,11 @@ $(function() {
 	
 	var map = L.map('map').setView([29.0, 41.0], 3); // middle east lat/long + zoom
 	//map.locate({setView: true, maxZoom: 4}); // for geo-loc based on ip later
-	
-	// osm map
-	var mapLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
-	//var mapLayer = new L.StamenTileLayer('watercolor');
-	map.addLayer(mapLayer);
+	var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
+	//var tiles = new L.StamenTileLayer('watercolor');
+	map.addLayer(tiles);	
+	var markers = new L.MarkerClusterGroup();
+	var markerList = [];
 	
 	// get data
 	var dataUrl = 'http://api.dronestre.am/data';
@@ -20,11 +20,15 @@ $(function() {
 		console.log(droneStrikes.logStats());
 		
 		// add map markers
+		var marker;
 		for (var i=0; i<droneStrikes.hitList.length; i++) {
-			L.marker([droneStrikes.hitList[i].latitude,
-					droneStrikes.hitList[i].longitude
-				]).addTo(map);
-		}
+			marker = L.marker([
+				droneStrikes.hitList[i].latitude,
+				droneStrikes.hitList[i].longitude
+			]);
+			markers.addLayer(marker);
+		}		
+		map.addLayer(markers);
 		
 		// update strikes stats display
 		$('#dataMessage').text(

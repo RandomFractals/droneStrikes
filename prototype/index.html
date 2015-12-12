@@ -2,10 +2,15 @@
 <html>
 <head>
 	<meta charset='utf-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>US Drone Strikes Data Vis</title>
 	<link rel="stylesheet" href="styles/default.css">
 	<link rel="stylesheet" href="styles/app.css">
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css" />	
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css" />			
 	<link rel="stylesheet" type="text/css" 
 		href="https://fonts.googleapis.com/css?family=Maven+Pro|Muli|Droid+Sans+Mono|Istok+Web">
 </head>
@@ -79,6 +84,8 @@
 	<!--
 	<script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js"></script>	
 	-->
+	<script type="text/javascript" 
+	src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js"></script>	
 	<script type="text/javascript" src="scripts/hit.js"></script>
 	<script type="text/javascript" src="scripts/droneStrikes.js"></script>	
 	<script type="text/javascript" src="scripts/droneStrikesDataVis.js"></script>
