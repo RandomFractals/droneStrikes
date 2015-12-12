@@ -49,7 +49,6 @@ $(function() {
 
 
 function showHits() {
-	console.log('showHits');
 	showMap(true);
 	$('#hitMapLink').addClass('selected');
 	$('#heatMapLink').removeClass('selected');	
@@ -58,7 +57,6 @@ function showHits() {
 }
 	
 function showHeatMap() {
-	console.log('showHeatMap');		
 	showMap(true);
 	$('#hitMapLink').removeClass('selected');	
 	$('#heatMapLink').addClass('selected');
@@ -67,7 +65,6 @@ function showHeatMap() {
 }
 	
 function showData() {
-	console.log('showData');			
 	showMap(false);
 	
 	// todo: show data table for the data feed
