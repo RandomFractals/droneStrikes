@@ -70,15 +70,8 @@ DroneStrikes.prototype.addHits = function(strikesData) {
 		// add it to the hit list
 		this.hitList.push(hit);
 		
-		// update hit stats
-		this.stats.minKills += hit.minKills;
-		this.stats.maxKills += hit.maxKills;
-		this.stats.civilians += hit.civilians;
-		this.stats.children += hit.children;
-		this.stats.injuries += hit.injuries;
-		this.stats.target += hit.target;
-		this.stats.names.push(hit.names);
-
+		this.stats.updateStats(hit);
+	
 	}	// end of data parse for loop
 
 	// sort by time

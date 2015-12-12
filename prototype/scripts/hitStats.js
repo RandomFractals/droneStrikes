@@ -1,3 +1,7 @@
+/**
+* Hit stats summary data for display 
+* of all kills and casualties.
+*/
 function HitStats() {
 
 	this.startTime = new Date(); // now
@@ -10,8 +14,22 @@ function HitStats() {
 	this.civilians = 0;
 	this.children = 0;
 	this.injuries = 0;
-	this.target = 0;
+	this.targets = [];
 	this.names = [];
+}
+
+
+/**
+* Updates hit stats summary day for every hit.
+*/
+HitStats.prototype.updateStats = function(hit) {
+	this.minKills += hit.minKills;
+	this.maxKills += hit.maxKills;
+	this.civilians += hit.civilians;
+	this.children += hit.children;
+	this.injuries += hit.injuries;
+	this.targets.push(hit.target);
+	this.names.push(hit.names);	
 }
 
 
@@ -23,4 +41,11 @@ HitStats.prototype.logStats = function () {
 	console.log('first strike: ' + this.startTime.toString());
 	console.log('last strike: ' + this.endTime.toString());
 	console.log('unique hit days: ' + this.uniqueHitDays); 
+	console.log('min kills: ' + this.minKills);
+	console.log('max kills: ' + this.maxKills);	
+	console.log('civilians: ' + this.civilians);	
+	console.log('children: ' + this.children);	
+	console.log('injuries: ' + this.injuries);	
+	console.log('targets: ' + this.targets.length);
+	console.log('names: ' + this.names);
 }
