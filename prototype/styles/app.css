@@ -47,4 +47,8 @@
 	color: #06f;
 }
 
+/* stats bar styles */
+.stats-bar {
+	display: inline;
+}
 

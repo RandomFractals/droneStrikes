@@ -2,13 +2,14 @@
 * Hit stats summary data for display 
 * of all kills and casualties.
 */
-function HitStats() {
+function HitStats(hitData) {
 
+	// some base date metrics
 	this.startTime = new Date(); // now
 	this.endTime = new Date(0);	// 01/01/1970	
 	this.uniqueHitDays = 0;
 
-	// hit stats
+	// hit stats init
 	this.minKills = 0;
 	this.maxKills = 0;
 	this.civilians = 0;
@@ -16,6 +17,10 @@ function HitStats() {
 	this.injuries = 0;
 	this.targets = [];
 	this.names = [];
+	
+	if (hitData !== null && hitData !== undefined) {
+		this.updateStats(hitData);
+	}
 }
 
 
