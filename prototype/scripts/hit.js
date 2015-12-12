@@ -48,8 +48,8 @@ Hit.dateTimeString = function(date) {
 Hit.prototype.toHtml = function() {
 	var html = '<div class="stats-bar">' +
 		this.dateString() + 
-		new HitBars(this).toHtml() +
-		'</div>' + // </stats bar>
+		//new HitBars(this).toHtml() +
+		//'</div>' + // </stats bar>
 		'<br /><a class="storyLink" href="' + this.link + '" target="_blank">' +
 		this.narrative +
 		'</a><br /><br />' + 
