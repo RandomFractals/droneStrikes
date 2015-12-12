@@ -46,15 +46,10 @@
 						</span>
 						<ul id="mapMenuList" class="menu right">
 							<li>
-								<a id="hitMapLink" title="Droke Strikes Hits" 
+								<a id="mapLink" title="Droke Strikes Hits" 
 									class="selected"
-									onclick="showHits()"
+									onclick="showHitMap()"
 									href="#">hits</a>
-							</li>
-							<li>
-								<a id="heatMapLink" title="Droke Strikes Heatmap"
-									onclick="showHeatMap()"
-									href="#">heatmap</a>
 							</li>
 							<li>
 								<a id="dataLink" title="Droke Strikes Data"
@@ -99,6 +94,8 @@
 	-->
 	<script type="text/javascript" 
 	src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js"></script>	
+	<script type="text/javascript" 
+	src="http://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"></script>	
 	<script type="text/javascript" src="scripts/hit.js"></script>
 	<script type="text/javascript" src="scripts/droneStrikes.js"></script>	
 	<script type="text/javascript" src="scripts/droneStrikesDataVis.js"></script>

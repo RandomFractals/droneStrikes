@@ -28,14 +28,17 @@ $(function() {
 		// add map markers
 		var marker;
 		var hit;
+		var points = [];
 		for (var i=0; i<droneStrikes.hitList.length; i++) {
 			hit = droneStrikes.hitList[i];
 			marker = L.marker([hit.latitude, hit.longitude]);
 			marker.bindPopup(hit.toHtml());
 			markers.addLayer(marker);
+			points.push([hit.latitude, hit.longitude]);
 		}		
 		map.addLayer(markers);
-		
+		var heatMap = L.heatLayer(points);
+		map.addLayer(heatMap);
 		showStats();
 	}
 	
@@ -59,20 +62,10 @@ function showStats() {
 		droneStrikes.startTime.getFullYear() );	
 }
 
-function showHits() {
+function showHitMap() {
 	showMap(true);
-	$('#hitMapLink').addClass('selected');
-	$('#heatMapLink').removeClass('selected');
+	$('#mapLink').addClass('selected');
 	resetMapView();
-}
-	
-function showHeatMap() {
-	showMap(true);
-	$('#hitMapLink').removeClass('selected');	
-	$('#heatMapLink').addClass('selected');
-	resetMapView();
-	
-	// todo: show heatmap instead of clustered hit markers
 }
 	
 function showData() {
@@ -91,8 +84,7 @@ function showMap(display) {
 	} else {
 		// hide map
 		$('#map').removeClass('show').addClass('hide');
-		$('#hitMapLink').removeClass('selected');
-		$('#heatMapLink').removeClass('selected')
+		$('#mapLink').removeClass('selected');
 		// show data table
 		$('#data').addClass('show');		
 		$('#dataLink').addClass('selected');
