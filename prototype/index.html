@@ -45,9 +45,22 @@
 							Loading drone strikes data...
 						</span>
 						<ul id="mapMenuList" class="menu right">
-							<li><a href="#" title="Droke Strikes Hits" class="selected">hits</a></li>
-							<li><a href="#" title="Droke Strikes Heatmap">heatmap</a></li>
-							<li><a href="#" title="Droke Strikes Data">data</a></li>
+							<li>
+								<a id="hitMapLink" title="Droke Strikes Hits" 
+									class="selected"
+									onclick="showHits()"
+									href="#">hits</a>
+							</li>
+							<li>
+								<a id="heatMapLink" title="Droke Strikes Heatmap"
+									onclick="showHeatMap()"
+									href="#">heatmap</a>
+							</li>
+							<li>
+								<a id="dataLink" title="Droke Strikes Data"
+									onclick="showData()"
+									href="#">data</a>
+							</li>
 						</ul>
 					</div>
 					<div id="map" class="map container">

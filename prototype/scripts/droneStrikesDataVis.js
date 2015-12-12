@@ -1,8 +1,9 @@
-$(function() {
+var map;
+var droneStrikes = new DroneStrikes();
 
-	var droneStrikes = new DroneStrikes();
-	
-	var map = L.map('map').setView([29.0, 41.0], 3); // middle east lat/long + zoom
+$(function() {
+		
+	map = L.map('map').setView([29.0, 41.0], 3); // middle east lat/long + zoom
 	//map.locate({setView: true, maxZoom: 4}); // for geo-loc based on ip later
 	var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
 	//var tiles = new L.StamenTileLayer('watercolor');
@@ -43,4 +44,49 @@ $(function() {
 		// show data load error msg
 		$('#dataMessage').text('Failed to load drone strikes data. Check data source site.');
 	}
+	
 });
+
+
+function showHits() {
+	console.log('showHits');
+	showMap(true);
+	$('#hitMapLink').addClass('selected');
+	$('#heatMapLink').removeClass('selected');	
+
+	// todo: reset map view and zoom	
+}
+	
+function showHeatMap() {
+	console.log('showHeatMap');		
+	showMap(true);
+	$('#hitMapLink').removeClass('selected');	
+	$('#heatMapLink').addClass('selected');
+	
+	// todo: show heatmap instead of clustered hit markers
+}
+	
+function showData() {
+	console.log('showData');			
+	showMap(false);
+	
+	// todo: show data table for the data feed
+}
+
+function showMap(display) {
+	if (display) {
+		// show map
+		$('#map').removeClass('hide').addClass('show');	
+		// hide data table
+		$('#data').removeClass('show').addClass('hide');
+		$('#dataLink').removeClass('selected');		
+	} else {
+		// hide map
+		$('#map').removeClass('show').addClass('hide');
+		$('#hitMapLink').removeClass('selected');
+		$('#heatMapLink').removeClass('selected')
+		// show data table
+		$('#data').addClass('show');		
+		$('#dataLink').addClass('selected');
+	}
+}
