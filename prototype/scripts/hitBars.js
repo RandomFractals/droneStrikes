@@ -24,5 +24,7 @@ HitBars.prototype.toHtml = function () {
 	 10 * this.hitData.targets.length + 'px">' + 
 	 this.hitData.targets.length + ' bad guy(s)</div>';
 	 
+	hitBarsHtml += '</div>';
+	
 	return hitBarsHtml;
 }

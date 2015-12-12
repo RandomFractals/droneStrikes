@@ -34,6 +34,18 @@
 }
 
 
+/* stats bar styles */
+
+.stats-bar, .hits {
+	display: inline;
+	width: 100%;
+}
+
+.bar {
+	width: 5px;;
+}
+
+
 /* data color coding styles */
 .red {
 	color: #f00;
@@ -45,10 +57,5 @@
 
 .blue {
 	color: #06f;
-}
-
-/* stats bar styles */
-.stats-bar {
-	display: inline;
 }
 
