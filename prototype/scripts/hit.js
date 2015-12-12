@@ -46,13 +46,13 @@ Hit.dateTimeString = function(date) {
 }
 
 Hit.prototype.toHtml = function() {
-	var html = this.dateString() + ' - ' + /*
+	var html = this.dateString() + '<br />' + /*
 		'<span class="green">' + this.children  + '</span>|' +
 		'<span class="blue">' + this.civilians + '</span>|' +
 		'<span class="red">' + this.target + '</span>' + */
 		'<a href="' + this.link + '" target="_blank">' +
 		this.narrative +
-		'</a>';
+		'</a><br />' + this.summary;
 	
 	return html;
 }
