@@ -5,8 +5,8 @@ function HitGraph(hitList, windowWidth) {
 	// init data table display
 	
 	var margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = windowWidth - margin.left - margin.right,
-    height = 180 - margin.top - margin.bottom;
+    width = windowWidth - margin.left - margin.right - 120, // page margin
+    height = 160 - margin.top - margin.bottom;
 
 	var x = d3.time.scale()
     .range([0, width]);

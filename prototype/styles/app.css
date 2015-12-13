@@ -25,6 +25,7 @@
 
 .graph {
 	height: 180px;
+	overflow-x: auto;
 }
 
 
