@@ -32,19 +32,20 @@ HitMap.prototype.showHits = function (hitList) {
 	// add data point map markers
 	var marker;
 	var hit;
-	var points = [];
+	var heatPoints = [];
 	for (var i=0; i < hitList.length; i++) {
 		hit = hitList[i];
 		marker = L.marker([hit.latitude, hit.longitude]);
 		marker.bindPopup(hit.toHtml());
 		this.markers.addLayer(marker);
 		this.markerList.push(marker);
-		points.push([hit.latitude, hit.longitude]);
+		heatPoints.push([hit.latitude, hit.longitude, 1.0]); // intensity
 	}		
 	this.map.addLayer(this.markers);
 		
 	// create heatmap strictly for visual effect
-	var heatMap = L.heatLayer(points);
+	var heatMap = L.heatLayer(heatPoints, 
+		{minOpacity: 0.3, radius: 30});
 	this.map.addLayer(heatMap);	
 	
 	this.resetMapView();
