@@ -44,6 +44,7 @@
 .stats-bar, .hits {
 	display: inline;
 	width: 100%;
+	font-size: .8em;
 }
 
 .bar {
