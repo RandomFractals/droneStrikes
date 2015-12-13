@@ -132,7 +132,7 @@ function showData() {
 				'</td></tr>';
 		}				
 		console.log(dataHtml);
-		$('dataTableBody').html(dataHtml);
+		$('#dataTableBody').html(dataHtml);
 	}
 	loadTableData = false;
 }
