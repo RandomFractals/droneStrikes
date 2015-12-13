@@ -27,5 +27,5 @@ function HitDataTable(dataTableContainer, hitList) {
 	}				
 	
 	dataTableContainer.html(dataHtml);	
-	console.log(dataHtml);
+	//console.log(dataHtml);
 }
