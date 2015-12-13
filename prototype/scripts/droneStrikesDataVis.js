@@ -75,6 +75,15 @@ function showStats() {
 }
 
 
+/**
+* Zooms map to the specified hit location.
+*/
+function zoomToHit(hitNumber) {
+	toggleMapDisplay(true); // show map
+	map.zoomToHit(hitNumber);
+}
+
+
 /** 
 * Displays map view.
 */

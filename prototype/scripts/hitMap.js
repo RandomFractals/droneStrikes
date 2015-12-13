@@ -38,6 +38,7 @@ HitMap.prototype.showHits = function (hitList) {
 		marker = L.marker([hit.latitude, hit.longitude]);
 		marker.bindPopup(hit.toHtml());
 		this.markers.addLayer(marker);
+		this.markerList.push(marker);
 		points.push([hit.latitude, hit.longitude]);
 	}		
 	this.map.addLayer(this.markers);
@@ -47,4 +48,22 @@ HitMap.prototype.showHits = function (hitList) {
 	this.map.addLayer(heatMap);	
 	
 	this.resetMapView();
+}
+
+
+/**
+* Zooms map to the specified hit marker.
+*/
+HitMap.prototype.zoomToHit = function(hitNumber) {
+	console.log('zoom to hit #: ' + hitNumber);
+	
+	// get hit marker
+	var marker = this.markerList[hitNumber];
+	console.log('hit location: ' + marker.getLatLng());
+	
+	// zoom to hit location
+	this.markers.zoomToShowLayer(marker, function (){} ); // on zoom
+	
+	// show popup
+	marker.openPopup();
 }

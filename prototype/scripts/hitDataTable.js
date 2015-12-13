@@ -7,12 +7,19 @@ function HitDataTable(dataTableContainer, hitList) {
 	var hit;
 	for (var i = hitList.length-1; i >= 0; i--) {
 		hit = hitList[i];
-		dataHtml += '<tr><td>' +	
-			hit.dateString() + '<br />' +
-			new HitBars(hit).toHtml(true) + // vertical
-			'</td><td><a href="' + hit.link + '" target="_blank">' +
-				hit.narrative +
-			'</a>';
+		dataHtml += '<tr><td>' +
+				'<a href="#" onclick="zoomToHit(' + 
+					(hit.hitNumber-1) + ')">' + hit.hitNumber + 
+				'</a>' +
+			'</td>' + 
+			'<td>' +	
+				hit.dateString() + '<br />' +
+				new HitBars(hit).toHtml(true) + // vertical
+			'</td>' + 
+			'<td>' +
+				'<a href="' + hit.link + '" target="_blank">' +
+					hit.narrative +
+				'</a>';
 		if ( hit.summary.length > 0 ) {
 			dataHtml += '<br /><br />' + hit.summary;
 		}
