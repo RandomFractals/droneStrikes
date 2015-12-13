@@ -123,6 +123,7 @@ function showData() {
 		for (var i=droneStrikes.hitList.length-1; i>= 0; i--) {
 			hit = droneStrikes.hitList[i];
 			dataHtml += '<tr><td>' +	hit.dateString() +
+				new HitBars(hit).toHtml() +
 				'</td><td><a href="' + hit.link + '" target="_blank">' +
 					hit.narrative +
 				'</a>';
