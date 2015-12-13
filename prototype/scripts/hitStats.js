@@ -51,7 +51,11 @@ function HitStats(hitData) {
 			return 0;
 		}
 			
-		number = parseInt(dirtyData);
+		//console.log(dirtyData);
+		var minMax = dirtyData.split('-');
+		//console.log(minMax);
+		
+		number = parseInt(minMax[0]); // use min known for all stats
 		if ( isNaN(number) ) {
 			// log and reset
 			console.log('NaN: "' + dirtyData + '"');
