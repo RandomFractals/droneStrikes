@@ -7,9 +7,10 @@
 // map view
 var map; 
 
-// data table view
+// data table view vars
 var dataTable;
 var dataScrollPosition = 0;
+var selectedHitRow = -1;
 
 // main view data model
 var droneStrikes = new DroneStrikes();
@@ -79,7 +80,19 @@ function showStats() {
 * Zooms map to the specified hit location.
 */
 function zoomToHit(hitNumber) {
-	toggleMapDisplay(true); // show map
+	if (selectedHitRow > 0) {
+		// clear last hit row click highlight
+		$('#dataTable tr').eq(selectedHitRow).removeClass('selectedRow');
+	}
+	
+	// update selected hit row
+	selectedHitRow = droneStrikes.hitList.length - hitNumber;
+	$('#dataTable tr').eq(selectedHitRow).addClass('selectedRow');
+	
+	// show map
+	toggleMapDisplay(true);
+	
+	// zoom to hit location
 	map.zoomToHit(hitNumber);
 }
 
