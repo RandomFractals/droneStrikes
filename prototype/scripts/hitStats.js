@@ -22,48 +22,6 @@ function HitStats(hitData) {
 	if (hitData !== null && hitData !== undefined) {
 		this.updateStats(hitData);
 	}
-	
-	/** 
-	* Quick and dirty data cleansing.
-	*/
-	this.toNumber = function(dirtyData) {
-		var number = 0; 
-		
-		// could be done better, 
-		// but ideally data feed should have only nubmer data
-		dirtyData = dirtyData.replace('Possibly', '')
-			.replace("'Many' (", '')
-			.replace('named)', '')
-			.replace('Unknown', '')
-			.replace('Yes, according to one source.')
-			.replace('At least', '')
-			.replace('Possible', '')
-			.replace('Yes', '')
-			.replace('-Mar', '')
-			.replace("Some'", '')
-			.replace('Some', '')
-			.replace('Dozens', '')
-			.replace('Several', '')
-			.replace('undefined', '')
-			.replace('?', '');
-			
-		dirtyData = dirtyData.trim();
-		if (dirtyData.length <= 0) {
-			return 0;
-		}
-			
-		//console.log(dirtyData);
-		var minMax = dirtyData.split('-');
-		//console.log(minMax);
-		
-		number = parseInt(minMax[0]); // use min known for all stats
-		if ( isNaN(number) ) {
-			// log and reset
-			console.log('NaN: "' + dirtyData + '"');
-			number = 0;			
-		}
-		return number;
-	}
 }
 
 
@@ -73,9 +31,9 @@ function HitStats(hitData) {
 HitStats.prototype.updateStats = function(hit) {
 	this.minKills += hit.minKills;
 	this.maxKills += hit.maxKills;
-	this.civilians += this.toNumber(hit.civilians);
-	this.children += this.toNumber(hit.children);
-	this.injuries += hit.injuries;
+	this.injuries += hit.injuries;	
+	this.civilians += Hit.toNumber(hit.civilians);
+	this.children += Hit.toNumber(hit.children);
 	this.targets.push(hit.target);
 	this.names.push(hit.names);	
 	this.totalHits++;

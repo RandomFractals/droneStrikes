@@ -22,11 +22,11 @@ function Hit(hitData) {
 	
 	// hit stats
 	this.killsRange = hitData.deaths;
-	this.minKills = parseInt(hitData.deaths_min);
-	this.maxKills = parseInt(hitData.deaths_max);
+	this.minKills = Hit.toNumber(hitData.deaths_min);
+	this.maxKills = Hit.toNumber(hitData.deaths_max);
+	this.injuries = Hit.toNumber(hitData.injuries);	
 	this.civilians = hitData.civilians;
 	this.children = hitData.children;	
-	this.injuries = parseInt(hitData.injuries);
 	this.targets = hitData.target;
 	this.names = hitData.names;
 	
@@ -80,4 +80,47 @@ Hit.prototype.toHtml = function() {
 		'</p></div>';
 	
 	return html;
+}
+
+	
+/** 
+* Quick and dirty data cleansing.
+*/
+Hit.toNumber = function(dirtyData) {
+		var number = 0; 
+		
+		// could be done better, 
+		// but ideally data feed should have only nubmer data
+		dirtyData = dirtyData.replace('Possibly', '')
+			.replace("'Many' (", '')
+			.replace('named)', '')
+			.replace('Unknown', '')
+			.replace('Yes, according to one source.')
+			.replace('At least', '')
+			.replace('Possible', '')
+			.replace('Yes', '')
+			.replace('-Mar', '')
+			.replace("Some'", '')
+			.replace('Some', '')
+			.replace('Dozens', '')
+			.replace('Several', '')
+			.replace('undefined', '')
+			.replace('?', '');
+			
+		dirtyData = dirtyData.trim();
+		if (dirtyData.length <= 0) {
+			return 0;
+		}
+			
+		//console.log(dirtyData);
+		var minMax = dirtyData.split('-');
+		//console.log(minMax);
+		
+		number = parseInt(minMax[0]); // use min known for all stats
+		if ( isNaN(number) ) {
+			// log and reset
+			console.log('NaN: "' + dirtyData + '"');
+			number = 0;			
+		}
+		return number;
 }
