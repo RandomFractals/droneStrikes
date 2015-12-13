@@ -47,13 +47,14 @@ Hit.dateTimeString = function(date) {
 
 Hit.prototype.toHtml = function() {
 	var html = '<div class="popup-content">' +
+		'<a class="story-link" href="' + this.link + '" target="_blank">' +
+			this.narrative +
+		'</a><br /><br />' +
 		'<span class="date">' + 
-		this.dateString() + 
+			this.dateString() + 
 		'</span> ' +
-		new HitBars(this).toHtml(false) + // don't break
-		'<br /><a class="story-link" href="' + this.link + '" target="_blank">' +
-		this.narrative +
-		'</a><p>' + 
+			new HitBars(this).toHtml(false) + // don't break
+		'<p>' + 
 		this.summary + 
 		'</p></div>';
 	
