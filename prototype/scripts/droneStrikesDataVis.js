@@ -120,7 +120,7 @@ function showData() {
 	if (loadTableData) {
 		// init data table display
 		var dataHtml = ''
-		for (var i=0; i<droneStrikes.hitList.length; i++) {
+		for (var i=droneStrikes.hitList.length-1; i>= 0; i--) {
 			hit = droneStrikes.hitList[i];
 			dataHtml += '<tr><td>' +
 				hit.dateString() +
