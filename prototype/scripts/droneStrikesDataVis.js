@@ -7,11 +7,11 @@
 // map view
 var map; 
 
+// data table view
+var dataTable;
+
 // main view data model
 var droneStrikes = new DroneStrikes();
-
-// table data load flag
-var loadTableData = true;
 
 
 /**
@@ -41,6 +41,12 @@ $(function() {
 		
 		// show hits on map
 		map.showHits(droneStrikes.hitList);		
+		
+		// load table data
+		dataTable = new HitDataTable( 
+			$('#dataTableBody'), // table body
+			droneStrikes.hitList); 
+
 		console.log(droneStrikes.stats.logStats());		
 	}
 	
@@ -82,26 +88,6 @@ function showHitMap() {
 */
 function showData() {
 	toggleMapDisplay(false); // hide map
-	
-	if (loadTableData) {
-		// init data table display
-		var dataHtml = ''
-		for (var i=droneStrikes.hitList.length-1; i>= 0; i--) {
-			hit = droneStrikes.hitList[i];
-			dataHtml += '<tr><td>' +	hit.dateString() + '<br />' +
-				new HitBars(hit).toHtml(true) + // vertical
-				'</td><td><a href="' + hit.link + '" target="_blank">' +
-					hit.narrative +
-				'</a>';
-			if ( hit.summary.length > 0 ) {
-				dataHtml += '<br /><br />' + hit.summary;
-			}
-			dataHtml +=	'</td></tr>';
-		}				
-		console.log(dataHtml);
-		$('#dataTableBody').html(dataHtml);
-	}
-	loadTableData = false;
 }
 
 
