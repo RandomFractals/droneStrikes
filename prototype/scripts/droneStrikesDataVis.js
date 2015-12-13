@@ -10,6 +10,9 @@ var map;
 // main view data model
 var droneStrikes = new DroneStrikes();
 
+// table data load flag
+var loadTableData = true;
+
 
 /**
 * Creates leaflet map on document ready,
@@ -34,6 +37,7 @@ $(function() {
 	// get data
 	var dataUrl = 'http://api.dronestre.am/data';
 	$.get(dataUrl).done(loadData).fail(dataLoadError);
+	
 	
 	/**
 	* Data load event handler.
@@ -63,6 +67,7 @@ $(function() {
 		showStats();
 	}
 	
+	
 	/**
 	* Logs and displays a message about failed data load.
 	*/
@@ -83,16 +88,6 @@ function resetMapView() {
 }
 
 
-/** 
-* Displays map view and resets it.
-*/
-function showHitMap() {
-	showMap(true);
-	$('#mapLink').addClass('selected');
-	resetMapView();
-}
-	
-
 /**
 * Displays drone strikes stats
 * in map view data message/title bar.
@@ -106,20 +101,47 @@ function showStats() {
 }
 
 
+/** 
+* Displays map view and resets it.
+*/
+function showHitMap() {
+	toggleMapDisplay(true); // show map
+	$('#mapLink').addClass('selected');
+	resetMapView();
+}
+	
+
 /**
 * Hides map view and display tabular drone strikes data.
 */
 function showData() {
-	showMap(false);
+	toggleMapDisplay(false); // hide map
 	
-	// todo: show data table for the data feed
+	if (loadTableData) {
+		// init data table display
+		var dataHtml = ''
+		for (var i=0; i<droneStrikes.hitList.length; i++) {
+			hit = droneStrikes.hitList[i];
+			dataHtml += '<tr><td>' +
+				hit.dateString() +
+				'</td><td><a href="' + 
+				hit.link + '" target="_blank">' +
+				hit.narrative +
+				'</a></td><td>' +
+				hit.summary +
+				'</td></tr>';
+		}				
+		console.log(dataHtml);
+		$('dataTableBody').html(dataHtml);
+	}
+	loadTableData = false;
 }
 
 
 /**
 * Toggles map and data view and menu links display.
 */
-function showMap(display) {
+function toggleMapDisplay(display) {
 	if (display) {
 		// show map
 		$('#map').removeClass('hide').addClass('show');	
