@@ -38,9 +38,9 @@
 				<!-- map/data section -->
 				<div id="dataMapContainer" class="container">
 					<div class="title-bar">
-						<span id="dataMessage" class="message left">
+						<p id="dataMessage" class="message left">
 							Loading drone strikes data...
-						</span>
+						</p>
 						<ul id="mapMenuList" class="menu right">
 							<li>
 								<a id="mapLink" 
@@ -79,11 +79,11 @@
 						<span id="graphMessage" class="message left">
 							Drone strikes over time
 						</span>
-						<ul id="graphMenuList" class="menu right">
-							<li><a href="#" title="Annual Drone Strike Hits">annual</a></li>
-							<li><a href="#" title="Monthly Drone Strike Hits">monthly</a></li>
-							<li><a href="#" title="Daily Drone Stike Hits">daily</a></li>
-						</ul>
+						<select id="graphMenuList" class="menu right">
+							<option value="annual">annual</option>
+							<option value="annual">monthly</option>
+							<option value="annual">daily</option>
+						</select>
 					</div>
 					<div id="graph" class="graph container">
 						[stacked bars and line graph of drone strikes over time (years, months, days)]
