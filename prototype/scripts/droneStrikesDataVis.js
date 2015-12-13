@@ -12,16 +12,26 @@ var dataTable;
 var dataScrollPosition = 0;
 var selectedHitRow = -1;
 
+// data graph
+var graph;
+
 // main view data model
 var droneStrikes = new DroneStrikes();
 
+var windowWidth = 960;
 
 /**
 * Creates leaflet map on document ready,
 * gets and displays drone strikes data.
 */
 $(function() {
-	
+
+	// get window width 
+	windowWidth = $(window).width();
+	$(window).resize( function() {
+		windowWidth = $(window).width();
+	});
+
 	// create map view
 	map = new HitMap();
 	
@@ -43,6 +53,9 @@ $(function() {
 		
 		// show hits on map
 		map.showHits(droneStrikes.hitList);		
+
+		// create hit graph
+		graph = new HitGraph(droneStrikes.hitList, windowWidth);
 		
 		// load table data
 		dataTable = new HitDataTable( 

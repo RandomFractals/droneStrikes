@@ -22,11 +22,11 @@ function Hit(hitData) {
 	
 	// hit stats
 	this.killsRange = hitData.deaths;
-	this.minKills = hitData.deaths_min;
-	this.maxKills = hitData.deaths_max;
+	this.minKills = parseInt(hitData.deaths_min);
+	this.maxKills = parseInt(hitData.deaths_max);
 	this.civilians = hitData.civilians;
 	this.children = hitData.children;	
-	this.injuries = hitData.injuries;
+	this.injuries = parseInt(hitData.injuries);
 	this.targets = hitData.target;
 	this.names = hitData.names;
 	

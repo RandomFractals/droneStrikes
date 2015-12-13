@@ -71,11 +71,11 @@ function HitStats(hitData) {
 * Updates hit stats summary data for every hit.
 */
 HitStats.prototype.updateStats = function(hit) {
-	this.minKills += this.toNumber(hit.minKills);
-	this.maxKills += this.toNumber(hit.maxKills);
+	this.minKills += hit.minKills;
+	this.maxKills += hit.maxKills;
 	this.civilians += this.toNumber(hit.civilians);
 	this.children += this.toNumber(hit.children);
-	this.injuries += this.toNumber(hit.injuries);
+	this.injuries += hit.injuries;
 	this.targets.push(hit.target);
 	this.names.push(hit.names);	
 	this.totalHits++;
