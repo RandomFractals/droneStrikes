@@ -4,7 +4,7 @@
 * for this simple single page data vis.
 */
 
-// leaflet map container
+// map view
 var map; 
 
 // main view data model
@@ -20,19 +20,8 @@ var loadTableData = true;
 */
 $(function() {
 	
-	// create leaflet map
-	map = L.map('map');
-	//map.locate({setView: true, maxZoom: 4}); // for geo-loc based on ip later
-	resetMapView();
-	
-	// create map tiles
-	var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
-	//var tiles = new L.StamenTileLayer('watercolor'); // experimental for later
-	map.addLayer(tiles);	
-	
-	// create marker cluster group and list
-	var markers = new L.MarkerClusterGroup();
-	var markerList = [];
+	// create map view
+	map = new HitMap();
 	
 	// get data
 	var dataUrl = 'http://api.dronestre.am/data';
@@ -43,28 +32,16 @@ $(function() {
 	* Data load event handler.
 	*/
 	function loadData(hitData) {
-		droneStrikes.addHits(hitData.strike);		
-		console.log(droneStrikes.stats.logStats());
 		
-		// add data point map markers
-		var marker;
-		var hit;
-		var points = [];
-		for (var i=0; i<droneStrikes.hitList.length; i++) {
-			hit = droneStrikes.hitList[i];
-			marker = L.marker([hit.latitude, hit.longitude]);
-			marker.bindPopup(hit.toHtml());
-			markers.addLayer(marker);
-			points.push([hit.latitude, hit.longitude]);
-		}		
-		map.addLayer(markers);
-		
-		// create heatmap strictly for visual effect
-		var heatMap = L.heatLayer(points);
-		map.addLayer(heatMap);
-		
+		// parse data
+		droneStrikes.addHits(hitData.strike);
+
 		// show drone strikes stats
 		showStats();
+		
+		// show hits on map
+		map.showHits(droneStrikes.hitList);		
+		console.log(droneStrikes.stats.logStats());		
 	}
 	
 	
@@ -78,14 +55,6 @@ $(function() {
 	}
 	
 });
-
-
-/**
-* Resets map view centered on middle east.
-*/
-function resetMapView() {
-	map.setView([29.0, 41.0], 3); // middle east lat/long + zoom	
-}
 
 
 /**
@@ -107,7 +76,6 @@ function showStats() {
 function showHitMap() {
 	toggleMapDisplay(true); // show map
 	$('#mapLink').addClass('selected');
-	//resetMapView();
 }
 	
 
