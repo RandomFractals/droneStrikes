@@ -4,7 +4,7 @@
  padding: 0px;
 }
 
-.map, .graph {
+.map, .data, .graph {
 	background-color: #eee;
 	border: solid 1px #AACFE4;
 	border-radius: 5px;
@@ -16,6 +16,11 @@
 
 .map, .data {
 	min-height: 580px;
+	max-height: 580px;
+}
+
+.data {
+	overflow-y: scroll;
 }
 
 .graph {

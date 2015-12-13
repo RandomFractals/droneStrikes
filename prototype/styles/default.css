@@ -127,3 +127,11 @@ li a:active, .selected {
 	background-color: #f60;
 	color: #fff;
 }
+
+
+/* table data styles */
+table {
+	border-collapse: collapse;
+  border: 1px;
+	width: 100%;
+}

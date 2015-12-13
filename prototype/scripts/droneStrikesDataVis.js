@@ -127,7 +127,7 @@ function showData() {
 				'</td><td><a href="' + 
 				hit.link + '" target="_blank">' +
 				hit.narrative +
-				'</a></td><td>' +
+				'</a><br />' +
 				hit.summary +
 				'</td></tr>';
 		}				
