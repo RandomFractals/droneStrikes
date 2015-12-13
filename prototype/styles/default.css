@@ -135,3 +135,8 @@ table {
   border: 1px;
 	width: 100%;
 }
+
+td {
+	padding: 10px;
+	border-bottom: 1px solid #999;
+}

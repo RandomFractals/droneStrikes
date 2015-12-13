@@ -122,14 +122,14 @@ function showData() {
 		var dataHtml = ''
 		for (var i=droneStrikes.hitList.length-1; i>= 0; i--) {
 			hit = droneStrikes.hitList[i];
-			dataHtml += '<tr><td>' +
-				hit.dateString() +
-				'</td><td><a href="' + 
-				hit.link + '" target="_blank">' +
-				hit.narrative +
-				'</a><br />' +
-				hit.summary +
-				'</td></tr>';
+			dataHtml += '<tr><td>' +	hit.dateString() +
+				'</td><td><a href="' + hit.link + '" target="_blank">' +
+					hit.narrative +
+				'</a>';
+			if ( hit.summary.length > 0 ) {
+				dataHtml += '<br /><br />' + hit.summary;
+			}
+			dataHtml +=	'</td></tr>';
 		}				
 		console.log(dataHtml);
 		$('#dataTableBody').html(dataHtml);
