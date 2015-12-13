@@ -34,14 +34,24 @@
 	color: #333;
 }
 
-.storyLink {
-	font-size: 1.2em;
+.date {
+	font-size: 1.2em;	
+}
+
+.story-link {
+	font-size: 1.1em;
 }
 
 
 /* stats bar styles */
 
-.stats-bar, .hits {
+.popup-content {
+	display: inline;
+	width: 100%;
+	font-size: 1.2em;
+}
+
+.hits {
 	display: inline;
 	width: 100%;
 	font-size: .8em;

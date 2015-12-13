@@ -46,14 +46,16 @@ Hit.dateTimeString = function(date) {
 }
 
 Hit.prototype.toHtml = function() {
-	var html = '<div class="stats-bar">' +
-		this.dateString() + ' ' +
+	var html = '<div class="popup-content">' +
+		'<span class="date">' + 
+		this.dateString() + 
+		'</span> ' +
 		new HitBars(this).toHtml(false) + // don't break
-		//'</div>' + // </stats bar>
-		'<br /><a class="storyLink" href="' + this.link + '" target="_blank">' +
+		'<br /><a class="story-link" href="' + this.link + '" target="_blank">' +
 		this.narrative +
-		'</a><br /><br />' + 
-		this.summary;
+		'</a><p>' + 
+		this.summary + 
+		'</p></div>';
 	
 	return html;
 }
