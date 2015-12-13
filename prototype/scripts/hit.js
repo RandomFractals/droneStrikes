@@ -1,3 +1,6 @@
+/**
+* Drone strike/hit view data model class.
+*/
 function Hit(hitData) {
 
 	// hit info
@@ -26,25 +29,43 @@ function Hit(hitData) {
 	this.injuries = hitData.injuries;
 	this.targets = hitData.target;
 	this.names = hitData.names;
-}
+	
+}	// end of Hit() constructor
 
+
+/**
+* Static date string utility method.
+*/
 Hit.months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-
-Hit.prototype.dateString = function() {
-	return Hit.months[this.date.getMonth()] + ' ' +
-		('0' + this.date.getDate()).slice(-2) + ' ' + //'/' + 
-		this.date.getFullYear();
-}
-
-Hit.dateTimeString = function(date) {
+Hit.dateString = function(date) {
 	return Hit.months[date.getMonth()] + ' ' +
 		('0' + date.getDate()).slice(-2) + ' ' + //'/' + 
 		//('0' + (date.getMonth() + 1)).slice(-2) + //'/' + 
-		date.getFullYear() + ' ' + 
+		date.getFullYear();
+}
+
+
+/**
+* Returns formatted hit date string for display.
+*/
+Hit.prototype.dateString = function() {
+	return Hit.dateString(this.date);
+}
+
+
+/**
+* Returns formatted hit date+time string for display.
+*/
+Hit.dateTimeString = function(date) {
+	return this.dateString() + ' ' + 
 		('0' + date.getHours()).slice(-2) + ':' + 
 		('0' + date.getMinutes()).slice(-2);
 }
 
+
+/**
+* Generates hit html for display in map marker popup.
+*/
 Hit.prototype.toHtml = function() {
 	var html = '<div class="popup-content">' +
 		'<a class="story-link" href="' + this.link + '" target="_blank">' +

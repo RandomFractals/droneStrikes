@@ -64,9 +64,7 @@ $(function() {
 function showStats() {
 	$('#dataMessage').text(
 		droneStrikes.hitList.length + ' strikes since ' + 
-		droneStrikes.stats.startTime.getMonth() + '/' +
-		droneStrikes.stats.startTime.getDate() + '/' +
-		droneStrikes.stats.startTime.getFullYear() );	
+		Hit.dateString(droneStrikes.stats.startTime) );	
 }
 
 
