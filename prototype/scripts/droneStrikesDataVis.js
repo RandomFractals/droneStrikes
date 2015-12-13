@@ -39,7 +39,7 @@ $(function() {
 		droneStrikes.addHits(hitData.strike);
 
 		// show drone strikes stats
-		showStats();
+		$('#dataMessage').text(droneStrikes.stats.toString());
 		
 		// show hits on map
 		map.showHits(droneStrikes.hitList);		
@@ -63,17 +63,6 @@ $(function() {
 	}
 	
 });
-
-
-/**
-* Displays drone strikes stats
-* in map view data message/title bar.
-*/
-function showStats() {
-	$('#dataMessage').text(
-		droneStrikes.hitList.length + ' strikes since ' + 
-		Hit.dateString(droneStrikes.stats.startTime) );	
-}
 
 
 /**

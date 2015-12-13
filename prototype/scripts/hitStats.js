@@ -8,6 +8,7 @@ function HitStats(hitData) {
 	this.startTime = new Date(); // now
 	this.endTime = new Date(0);	// 01/01/1970	
 	this.uniqueHitDays = 0;
+	this.totalHits = 0;
 
 	// hit stats init
 	this.minKills = 0;
@@ -77,6 +78,20 @@ HitStats.prototype.updateStats = function(hit) {
 	this.injuries += this.toNumber(hit.injuries);
 	this.targets.push(hit.target);
 	this.names.push(hit.names);	
+	this.totalHits++;
+}
+
+
+/**
+* Hit stats to string for display.
+*/
+HitStats.prototype.toString = function() {
+	return this.totalHits + ' strikes since ' + 
+		Hit.dateString(this.startTime) + 
+		'. Confirmed casualties: ' +
+		this.civilians + ' civilians, ' +
+		this.children + ' children. ';// +
+		//this.names.length + ' bad guys.';
 }
 
 
@@ -94,5 +109,5 @@ HitStats.prototype.logStats = function () {
 	console.log('children: ' + this.children);	
 	console.log('injuries: ' + this.injuries);	
 	console.log('targets: ' + this.targets.length);
-	console.log('names: ' + this.names);
+	console.log('names: ' + this.names.length);
 }
