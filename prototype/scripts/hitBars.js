@@ -32,7 +32,11 @@ HitBars.prototype.toHtml = function (vertical) {
 			'px"></div>' + */
 			' <span class="red">' + 
 			this.hitData.children + 
-			' child(ren)</span>';
+			' child';
+		if (this.hitData.children !== '1') {
+			hitBarsHtml += 'ren';
+		}
+		hitBarsHtml += '</span>';
 	}
 	
 	if (this.hitData.targets.length > 0) {
