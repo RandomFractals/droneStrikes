@@ -9,6 +9,7 @@ var map;
 
 // data table view
 var dataTable;
+var dataScrollPosition = 0;
 
 // main view data model
 var droneStrikes = new DroneStrikes();
@@ -75,7 +76,7 @@ function showStats() {
 
 
 /** 
-* Displays map view and resets it.
+* Displays map view.
 */
 function showHitMap() {
 	toggleMapDisplay(true); // show map
@@ -84,7 +85,7 @@ function showHitMap() {
 	
 
 /**
-* Hides map view and display tabular drone strikes data.
+* Hides map view and display drone strikes data table.
 */
 function showData() {
 	toggleMapDisplay(false); // hide map
@@ -94,19 +95,29 @@ function showData() {
 /**
 * Toggles map and data view and menu links display.
 */
-function toggleMapDisplay(display) {
-	if (display) {
+function toggleMapDisplay(showMap) {
+	if (showMap) {
+		
+		// save data table scroll position
+		dataScrollPosition = $('#data').scrollTop();
+		
 		// show map
 		$('#map').removeClass('hide').addClass('show');	
+		
 		// hide data table
 		$('#data').removeClass('show').addClass('hide');
 		$('#dataLink').removeClass('selected');		
 	} else {
+		
 		// hide map
 		$('#map').removeClass('show').addClass('hide');
 		$('#mapLink').removeClass('selected');
+		
 		// show data table
 		$('#data').addClass('show');		
 		$('#dataLink').addClass('selected');
+		
+		// scroll to last table view position
+		$('#data').scrollTop(dataScrollPosition);
 	}
 }
