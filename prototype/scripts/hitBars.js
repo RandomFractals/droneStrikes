@@ -17,7 +17,7 @@ HitBars.prototype.toHtml = function (vertical) {
 			'<div class="bar orange" style="height:' +
 			10 * this.hitData.civilians + 
 			'px"></div>' + */
-			'<span class="orange">' +	 
+			' <span class="orange">' +	 
 			this.hitData.civilians + 
 			' civilians</span>';
 	}
@@ -30,7 +30,7 @@ HitBars.prototype.toHtml = function (vertical) {
 			'<div class="bar red" style="height:' +
 			10 * this.hitData.schildren + 
 			'px"></div>' + */
-			'<span class="red">' + 
+			' <span class="red">' + 
 			this.hitData.children + 
 			' child(ren)</span>';
 	}
@@ -38,12 +38,12 @@ HitBars.prototype.toHtml = function (vertical) {
 	if (this.hitData.targets.length > 0) {
 		if (vertical) { 
 			hitBarsHtml += '<br />';
-		}		
+		}
 		hitBarsHtml += /*
 			'<div class="bar green" style="height:' +
 			10 * this.hitData.targets.length + 
 			'px"></div>' + */
-			'<span class="green">' +	 
+			' <span class="green">' +	 
 			this.hitData.targets.length + 
 			' bad guy(s)</span>';
 	}
