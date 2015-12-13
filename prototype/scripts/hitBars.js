@@ -15,7 +15,7 @@ HitBars.prototype.toHtml = function () {
 	hitBarsHtml += '<div class="bar orange" style="height:' +
 	 10 * this.hitData.civilians + 
 	 'px"></div>' + 
-	 '<span class="red">' +	 
+	 '<span class="orange">' +	 
 	 this.hitData.civilians + 
 	 ' civilians</span>';
 	 
