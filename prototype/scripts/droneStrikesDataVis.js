@@ -122,8 +122,8 @@ function showData() {
 		var dataHtml = ''
 		for (var i=droneStrikes.hitList.length-1; i>= 0; i--) {
 			hit = droneStrikes.hitList[i];
-			dataHtml += '<tr><td>' +	hit.dateString() +
-				new HitBars(hit).toHtml() +
+			dataHtml += '<tr><td>' +	hit.dateString() + '<br />' +
+				new HitBars(hit).toHtml(true) + // vertical
 				'</td><td><a href="' + hit.link + '" target="_blank">' +
 					hit.narrative +
 				'</a>';
