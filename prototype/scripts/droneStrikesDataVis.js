@@ -107,7 +107,7 @@ function showStats() {
 function showHitMap() {
 	toggleMapDisplay(true); // show map
 	$('#mapLink').addClass('selected');
-	resetMapView();
+	//resetMapView();
 }
 	
 
