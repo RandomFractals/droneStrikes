@@ -38,7 +38,12 @@ $(function() {
 	
 	// get data
 	var dataUrl = 'http://api.dronestre.am/data';
-	$.get(dataUrl).done(loadData).fail(dataLoadError);
+	$.ajax({
+		url: dataUrl, 
+		dataType: 'jsonp',
+		success: loadData,
+		error: dataLoadError
+	});
 	
 	
 	/**
