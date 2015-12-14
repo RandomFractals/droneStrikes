@@ -41,5 +41,5 @@ function HitChart(hitList, viewWidth, viewHeight) {
     .call(this.chart);
 
 	this.chart.update();		
-  nv.utils.windowResize(this.chart.update);	
+  nv.utils.windowResize(this.chart.update);
 }

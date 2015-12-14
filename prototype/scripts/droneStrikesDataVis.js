@@ -41,6 +41,11 @@ $(function() {
 		$('#map').height(windowHeight - marginTop);
 		$('#data').height(windowHeight - marginTop);
 		$('#graph').height(windowHeight - marginTop);
+		if (chart != null || chart != undefined) {
+			chart.chart.width(windowWidth);
+			chart.chart.height(windowHeight - marginTop);
+			chart.chart.update();
+		}
 	}
 	
 	// create map view
@@ -75,6 +80,11 @@ $(function() {
 			$('#dataTableBody'), // table body
 			droneStrikes.hitList); 
 
+		// create hit graph
+		//graph = new HitGraph(droneStrikes.hitList, windowWidth);
+		chart = new HitChart(droneStrikes.hitList, 
+			windowWidth, windowHeight - marginTop);
+			
 		console.log(droneStrikes.stats.logStats());		
 	}
 	
@@ -159,13 +169,6 @@ function showGraph() {
 	$('#mapLink').removeClass('selected');
 	$('#dataLink').removeClass('selected');	
 	$('#graphLink').addClass('selected');	
-
-	if (chart === null || chart === undefined) {
-		// create hit graph
-		//graph = new HitGraph(droneStrikes.hitList, windowWidth);
-		chart = new HitChart(droneStrikes.hitList, 
-			windowWidth, windowHeight - marginTop);
-	}
 }
 
 
