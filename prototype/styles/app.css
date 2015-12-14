@@ -94,9 +94,31 @@
   display: none;
 }
 
+.grid .tick {
+  stroke: lightgrey;
+  opacity: 0.7;
+}
+.grid path {
+  stroke-width: 0;
+}
+
 .line {
   fill: none;
   stroke: steelblue;
   stroke-width: 1.5px;
 }
 
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+	fill: #f60;
+}
+
+.legend {
+	padding: 5px;
+	font: 10px sans-serif;
+	background: yellow;
+	box-shadow: 2px 2px 1px #888;
+}
