@@ -11,7 +11,6 @@ function HitMap(width, height) {
 	var mapTilesLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 		attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
 	});
-	//var tiles = new L.StamenTileLayer('watercolor'); // experimental for later
 	this.map.addLayer(mapTilesLayer);	
 	
 	// create marker cluster group and list
