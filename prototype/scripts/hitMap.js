@@ -8,7 +8,9 @@ function HitMap() {
 	//this.map.locate({setView: true, maxZoom: 4}); // for geo-loc based on ip later
 	
 	// create map tiles
-	var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
+	var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
+	});
 	//var tiles = new L.StamenTileLayer('watercolor'); // experimental for later
 	this.map.addLayer(tiles);	
 	
