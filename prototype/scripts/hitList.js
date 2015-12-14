@@ -19,7 +19,7 @@ function HitList(listContainer, hitList) {
 		if ( hit.summary.length > 0 ) {
 			listHtml += '<p class="list-group-item-text">' + hit.summary;
 		}
-		listHtml +=	'</p></li>';
+		listHtml +=	'</p><br /></li>';
 	}				
 	
 	listContainer.html(listHtml);	
