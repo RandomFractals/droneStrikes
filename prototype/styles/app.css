@@ -102,9 +102,13 @@
   stroke-width: 0;
 }
 
+.area {
+  fill: steelblue;
+}
+
 .line {
   fill: none;
-  stroke: steelblue;
+  stroke: #f60;
   stroke-width: 1.5px;
 }
 
