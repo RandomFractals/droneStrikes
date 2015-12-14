@@ -24,10 +24,9 @@ function HitChart(hitList, windowWidth) {
     .x(function(d) { return d[0] })
     .y(function(d) { return d[1] })
     .useInteractiveGuideline(true)  
-    //.rightAlignYAxis(true)    
+		.clipEdge(true)
     .duration(300);
 		//.showControls(true) 
-    //.clipEdge(true);
 
   chart.xAxis
     .tickFormat(function(d) { 
