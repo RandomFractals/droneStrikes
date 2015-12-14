@@ -44,7 +44,7 @@ HitStats.prototype.updateStats = function(hit) {
 * Hit stats to string for display.
 */
 HitStats.prototype.toString = function() {
-	return this.totalHits + ' strikes. ' + // since ' + 
+	return this.totalHits + ' hits. ' + // since ' + 
 		//Hit.dateString(this.startTime) + 
 		//'. Confirmed casualties: ' +
 		this.civilians + ' civilians, ' +
