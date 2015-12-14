@@ -44,9 +44,8 @@ HitMap.prototype.showHits = function (hitList) {
 	this.map.addLayer(this.markers);
 		
 	// create heatmap strictly for visual effect
-	var heatMap = L.heatLayer(heatPoints, 
-		{minOpacity: 0.3, radius: 30});
-	this.map.addLayer(heatMap);	
+	//var heatMap = L.heatLayer(heatPoints, {minOpacity: 0.3, radius: 30});
+	//this.map.addLayer(heatMap);	
 	
 	this.resetMapView();
 }
