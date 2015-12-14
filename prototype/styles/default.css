@@ -1,10 +1,3 @@
-body {
-	background-color: #fff;
-	color: #000000;	
-	font-family: 'Istok Web', Helvetica, Arial, FreeSans, sans-serif;
-	font-size: 0.8em;
-	margin: 0px;	
-}
 
 /* page section styles */
 #toolbar {
@@ -19,16 +12,12 @@ body {
 }
 
 #content {
-	background: whiteSmoke;	
-	border-radius: 0px;
 	margin: 0px;
 	margin-top: 40px;
 	padding: 10px;
 }
 
-
 /* todo: add sticky footer later */
-
 
 /* header styles */
 h1 {
