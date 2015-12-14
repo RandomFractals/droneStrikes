@@ -12,8 +12,9 @@ var dataTable;
 var dataScrollPosition = 0;
 var selectedHitRow = -1;
 
-// data graph
+// data graph/chart
 var graph;
+var chart;
 
 // main view data model
 var droneStrikes = new DroneStrikes();
@@ -55,7 +56,8 @@ $(function() {
 		map.showHits(droneStrikes.hitList);		
 
 		// create hit graph
-		graph = new HitGraph(droneStrikes.hitList, windowWidth);
+		//graph = new HitGraph(droneStrikes.hitList, windowWidth);
+		chart = new HitChart(droneStrikes.hitList, windowWidth);
 		
 		// load table data
 		dataTable = new HitDataTable( 
