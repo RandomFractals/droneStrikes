@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset='utf-8'>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>US Drone Strikes Data Vis</title>
 	<link rel="stylesheet" href="styles/default.css">
 	<link rel="stylesheet" href="styles/app.css">
@@ -18,45 +18,40 @@
 <body>
 	<!-- app toolbar -->
 	<div id="toolbar">
-		<h1>US drone strikes</h1>
+		<h1 class="left">US drone strikes</h1>
+		<ul id="mapMenuList" class="menu">
+			<li>
+				<a id="mapLink" 
+					title="Drone Strikes Map" 
+					class="selected"
+					onclick="showHitMap()"
+					href="#">map</a>
+			</li>
+			<li>
+				<a id="dataLink" 
+					title="Drone Strikes Data"
+					onclick="showData()"
+					href="#">data</a>
+			</li>
+			<li>
+				<a id="graphLink" 
+					title="Drone Strikes Chart"
+					onclick="showGraph()"
+					href="#">graph</a>
+			</li>							
+		</ul>	
 	</div>
 	<!-- page content -->
 	<div id="content">	
 		<div class="card">		
-			<!-- app card title section -->
-			<div class="card-title">
-				<div class="left">
-					<span class="title">US Drone Strikes</span>
-				</div>
-				<div class="note right">
-					<span>data source:</span>
-					<a href="http://www.dronestre.am/" target="new"
-						title="http://www.dronestre.am">dronestre.am</a>				
-				</div>
-			</div>
 			<!-- main app card view -->
 			<div class="card-content">
 				<!-- map/data section -->
 				<div id="dataMapContainer" class="container">
-					<div class="title-bar">
-						<p id="dataMessage" class="message left">
+					<div>
+						<p id="message" class="message">
 							Loading drone strikes data...
-						</p>
-						<ul id="mapMenuList" class="menu right">
-							<li>
-								<a id="mapLink" 
-									title="Drone Strikes Map" 
-									class="selected"
-									onclick="showHitMap()"
-									href="#">map</a>
-							</li>
-							<li>
-								<a id="dataLink" 
-									title="Drone Strikes Data"
-									onclick="showData()"
-									href="#">data</a>
-							</li>
-						</ul>
+						</p>					
 					</div>
 					<div id="map" class="map container">
 					</div>
@@ -73,12 +68,14 @@
 							</tbody>
 						</table>
 					</div>
-				</div>
-				<!-- graphs section -->
-				<div id="graphContainer" class="container">
-					<div id="graph" class="graph container">
+					<div id="graph" class="graph container hide">
 						<svg id="chart"></svg>
-					</div>				
+					</div>
+				</div>
+				<div class="note left">
+					<span>data source:</span>
+					<a href="http://www.dronestre.am/" target="new"
+						title="http://www.dronestre.am">dronestre.am</a>				
 				</div>
 			</div> <!-- card-content -->
 		</div> <!-- card -->

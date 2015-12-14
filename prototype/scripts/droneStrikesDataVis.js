@@ -20,6 +20,8 @@ var chart;
 var droneStrikes = new DroneStrikes();
 
 var windowWidth = 960;
+var windowHeight = 640;
+var marginTop = 150;
 
 /**
 * Creates leaflet map on document ready,
@@ -27,12 +29,20 @@ var windowWidth = 960;
 */
 $(function() {
 
-	// get window width 
-	windowWidth = $(window).width();
+	// window sizing
+	resizeView();
 	$(window).resize( function() {
-		windowWidth = $(window).width();
+		resizeView();
 	});
 
+	function resizeView() {
+		windowWidth = $(window).width();
+		windowHeight = $(window).height();
+		$('#map').height(windowHeight - marginTop);
+		$('#data').height(windowHeight - marginTop);
+		$('#graph').height(windowHeight - marginTop);
+	}
+	
 	// create map view
 	map = new HitMap();
 	
@@ -55,14 +65,10 @@ $(function() {
 		droneStrikes.addHits(hitData.strike);
 
 		// show drone strikes stats
-		$('#dataMessage').text(droneStrikes.stats.toString());
+		$('#message').text(droneStrikes.stats.toString());
 		
 		// show hits on map
 		map.showHits(droneStrikes.hitList);		
-
-		// create hit graph
-		//graph = new HitGraph(droneStrikes.hitList, windowWidth);
-		chart = new HitChart(droneStrikes.hitList, windowWidth);
 		
 		// load table data
 		dataTable = new HitDataTable( 
@@ -97,6 +103,10 @@ function zoomToHit(hitNumber) {
 	// update selected hit row
 	selectedHitRow = droneStrikes.hitList.length - hitNumber;
 	$('#dataTable tr').eq(selectedHitRow).addClass('selectedRow');
+
+	// update menu links
+	$('#mapLink').addClass('selected');
+	$('#dataLink').removeClass('selected');	
 	
 	// show map
 	toggleMapDisplay(true);
@@ -111,7 +121,11 @@ function zoomToHit(hitNumber) {
 */
 function showHitMap() {
 	toggleMapDisplay(true); // show map
+	
+	// update menu links
 	$('#mapLink').addClass('selected');
+	$('#dataLink').removeClass('selected');	
+	$('#graphLink').removeClass('selected');	
 }
 	
 
@@ -120,6 +134,38 @@ function showHitMap() {
 */
 function showData() {
 	toggleMapDisplay(false); // hide map
+	$('#graph').removeClass('show').addClass('hide');		
+	
+	// update menu links
+	$('#mapLink').removeClass('selected');
+	$('#dataLink').addClass('selected');	
+	$('#graphLink').removeClass('selected');		
+}
+
+
+/**
+* Show hits graph.
+*/
+function showGraph() {
+	toggleMapDisplay(false); // hide map
+	
+	// show graph
+	$('#graph').removeClass('hide').addClass('show');		
+
+	// hide data
+	$('#data').removeClass('show').addClass('hide');
+	
+	// update menu links
+	$('#mapLink').removeClass('selected');
+	$('#dataLink').removeClass('selected');	
+	$('#graphLink').addClass('selected');	
+
+	if (chart === null || chart === undefined) {
+		// create hit graph
+		//graph = new HitGraph(droneStrikes.hitList, windowWidth);
+		chart = new HitChart(droneStrikes.hitList, 
+			windowWidth, windowHeight - marginTop);
+	}
 }
 
 
@@ -135,18 +181,16 @@ function toggleMapDisplay(showMap) {
 		// show map
 		$('#map').removeClass('hide').addClass('show');	
 		
-		// hide data table
+		// hide data table and graph
 		$('#data').removeClass('show').addClass('hide');
-		$('#dataLink').removeClass('selected');		
+		$('#graph').removeClass('show').addClass('hide');		
 	} else {
 		
 		// hide map
 		$('#map').removeClass('show').addClass('hide');
-		$('#mapLink').removeClass('selected');
 		
 		// show data table
 		$('#data').addClass('show');		
-		$('#dataLink').addClass('selected');
 		
 		// scroll to last table view position
 		$('#data').scrollTop(dataScrollPosition);

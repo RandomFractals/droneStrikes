@@ -1,5 +1,5 @@
 body {
-	background-color: #39f;
+	background-color: #fff;
 	color: #000000;	
 	font-family: 'Istok Web', Helvetica, Arial, FreeSans, sans-serif;
 	margin: 0px;	
@@ -10,19 +10,19 @@ body {
 	background: #06f;	
 	box-shadow: 3px 3px 5px #444;	
 	margin: 0px;
-	padding: 10px;		
+	padding: 5px;		
 	position: fixed;
 	top: 0px;
 	width: 100%;
+	display: inline;
 }
 
 #content {
 	background: whiteSmoke;	
-	border-radius: 5px;
-	box-shadow: 3px 3px 5px #444;	
-	margin: 20px;
-	margin-top: 80px;
-	padding: 20px;
+	border-radius: 0px;
+	margin: 0px;
+	margin-top: 40px;
+	padding: 10px;
 }
 
 
@@ -36,6 +36,7 @@ h1 {
 	font-size: 1.5em;	
 	font-weight: normal;
 	margin: 5px;	
+	display: inline;
 }
 
 h1 .small {
@@ -49,7 +50,7 @@ h1 a {
 
 /* card/containers styles */
 .card-title {
-	font-size: 1.5em;
+	font-size: 0.9em;
 }
 
 .card {
@@ -64,7 +65,7 @@ h1 a {
 .right {
 	float: right;
 	right: 0;
-	width: 180px;
+	width: 240px;
 }
 
 .clear {
@@ -104,17 +105,24 @@ ul {
 	list-style-type: none;
 	margin: 10px;
 	padding: 5px;
-}
-
-li {
+	overflow: hidden;
 	display: inline;
 }
 
+li {
+	float: left;
+}
+
 li a {
+	display: block;
+	color: #fff;
   border-radius: 4px 4px 0 0;	
 	font-size: 1.2em;	
-	font-weight: normal;	
-  padding: 10px;
+	font-weight: normal;
+	margin-left: 10px;
+  padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
   text-decoration: none;
 }
 

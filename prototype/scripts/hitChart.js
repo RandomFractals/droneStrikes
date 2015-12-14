@@ -1,7 +1,7 @@
 /**
 * Hit chart view component based on nv.d3 js lib.
 */
-function HitChart(hitList, windowWidth) {
+function HitChart(hitList, viewWidth, viewHeight) {
 	
 	// must be a better way to do this		
 	var data = [
@@ -19,8 +19,8 @@ function HitChart(hitList, windowWidth) {
 		data[3].values.push( [ hit.date, hit.children ] );
 	}
 
-	var chart = nv.models.stackedAreaChart()
-    .margin({right: 40, bottom: 30})
+	this.chart = nv.models.stackedAreaChart()
+    .margin({left: 40, right: 110, bottom: 30})
     .x(function(d) { return d[0] })
     .y(function(d) { return d[1] })
     .useInteractiveGuideline(true)  
@@ -28,14 +28,18 @@ function HitChart(hitList, windowWidth) {
     .duration(300);
 		//.showControls(true) 
 
-  chart.xAxis
+	this.chart.width(viewWidth);
+	this.chart.height(viewHeight);
+	
+  this.chart.xAxis
     .tickFormat(function(d) { 
       return d3.time.format('%x')(new Date(d)) 
   });
 
   d3.select('#chart')
     .datum(data)
-    .call(chart);
+    .call(this.chart);
 
-  nv.utils.windowResize(chart.update);	
+	this.chart.update();		
+  nv.utils.windowResize(this.chart.update);	
 }

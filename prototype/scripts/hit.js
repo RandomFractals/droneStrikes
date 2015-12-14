@@ -75,9 +75,10 @@ Hit.prototype.toHtml = function() {
 			this.dateString() + 
 		'</span> ' +
 			new HitBars(this).toHtml(false) + // don't break
-		'<p>' + 
-		this.summary + 
-		'</p></div>';
+		//'<p>' + 
+		//this.summary + 
+		//'</p>
+		'</div>';
 	
 	return html;
 }
