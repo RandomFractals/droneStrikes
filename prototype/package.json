@@ -1,0 +1,24 @@
+{
+  "name": "dronhits",
+  "version": "0.0.8",
+  "lang": "en",
+  "description": "drone strikes demo data vis",
+  "author": "Taras Novak <taras.novak@randomfractals.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RandomFractals/droneStrikes"
+  },
+  "bugs": {
+    "url": "https://github.com/RandomFractals/droneStrikes/issues"
+  },
+  "dependencies": {},
+  "license": "MIT",
+  "devDependencies": {
+    "bootstrap": "^3.3.6",
+    "jquery": "^2.1.4",
+    "d3": "^3.5.10",		
+    "leaflet": "^0.7.7",
+    "leaflet.heat": "^0.2.0",
+    "leaflet.markercluster": "^0.4.0"
+  }
+}
