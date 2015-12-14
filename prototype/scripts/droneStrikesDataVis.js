@@ -41,12 +41,12 @@ $(function() {
 		$('#map').height(windowHeight - marginTop);
 		$('#data').height(windowHeight - marginTop);
 		$('#graph').height(windowHeight - marginTop);
-		if (chart != null || chart != undefined) {
+		if (chart !== null && chart !== undefined) {
 			chart.chart.width(windowWidth);
 			chart.chart.height(windowHeight - marginTop);
 			chart.chart.update();
 		}
-		if (map != null || map != undefined) {
+		if (map !== null && map !== undefined && map.visible) {
 			map.map.invalidateSize();
 		}
 	}
@@ -185,7 +185,8 @@ function toggleMapDisplay(showMap) {
 		dataScrollPosition = $('#data').scrollTop();
 		
 		// show map
-		$('#map').removeClass('hide').addClass('show');	
+		$('#map').removeClass('hide').addClass('show');
+		map.visible = true;
 		
 		// hide data table and graph
 		$('#data').removeClass('show').addClass('hide');
@@ -194,6 +195,7 @@ function toggleMapDisplay(showMap) {
 		
 		// hide map
 		$('#map').removeClass('show').addClass('hide');
+		map.visible = false;
 		
 		// show data table
 		$('#data').addClass('show');		

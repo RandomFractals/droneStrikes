@@ -1,7 +1,7 @@
 /**
 * Hit map view component.
 */
-function HitMap() {
+function HitMap(width, height) {
 	
 	// create leaflet map
 	this.map = L.map('map');
@@ -17,6 +17,11 @@ function HitMap() {
 	// create marker cluster group and list
 	this.markers = new L.MarkerClusterGroup();
 	this.markerList = [];
+	
+	// save width and height for resize
+	this.width = width;
+	this.height = height;
+	this.visible = true;
 	
 	/**
 	* Resets map view centered on middle east.
@@ -41,11 +46,7 @@ HitMap.prototype.showHits = function (hitList) {
 		marker.bindPopup(hit.toHtml());
 		this.markers.addLayer(marker);
 		this.markerList.push(marker);
-		//heatPoints.push([hit.latitude, hit.longitude, 1.0]); // intensity
-		heatPoints.push( {
-			lat: hit.latitude, 
-			lng: hit.longitude, 
-			count: hit.maxKills}); // intensity
+		heatPoints.push([hit.latitude, hit.longitude, 1.0]); // intensity
 	}		
 	this.map.addLayer(this.markers);
 		
