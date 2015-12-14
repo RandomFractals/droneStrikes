@@ -99,6 +99,10 @@ ul {
 	display: inline;
 }
 
+.list ul li {
+	width: 100%;
+}
+
 li {
 	float: left;
 }
@@ -126,30 +130,3 @@ li a:active, .selected {
 	color: #fff;
 }
 
-
-/* table data styles */
-table {
-	border-collapse: collapse;
-  border: 1px;
-	width: 100%;
-}
-
-td {
-	padding: 10px;
-	border-bottom: 1px solid #999;
-}
-
-tr:hover, .selectedRow {
-	background-color: #ddd;
-}
-
-select {
-	font-size: 1.1em;
-  -moz-box-sizing:  content-box;
-  -webkit-box-sizing: content-box;
-  box-sizing: content-box;
-	line-height: 40px;
-	margin: 10px;
-	padding: 5px;
-	max-width: 90px;	
-}

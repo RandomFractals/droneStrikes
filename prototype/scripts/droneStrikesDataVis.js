@@ -110,12 +110,12 @@ $(function() {
 function zoomToHit(hitNumber) {
 	if (selectedListItem > 0) {
 		// clear last clicked hit list highlight
-		$('#hitList li').eq(selectedListItem).removeClass('selectedItem');
+		$('#hitList li').eq(selectedListItem).removeClass('selected');
 	}
 	
 	// update selected hit list item
 	selectedListItem = droneStrikes.hitList.length - hitNumber;
-	$('#hitList li').eq(selectedListItem).addClass('selectedItem');
+	$('#hitList li').eq(selectedListItem).addClass('selected');
 
 	// update menu links
 	$('#mapLink').addClass('selected');
