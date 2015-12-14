@@ -12,6 +12,10 @@
   <!-- bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	
+  <!-- bootstrap material design -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.5/css/bootstrap-material-design.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.5/css/ripples.css" rel="stylesheet">
+	
 	<!-- leaflet map + marker cluster -->
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css" />	
@@ -29,21 +33,21 @@
 	<!-- app toolbar -->
 	<div id="toolbar">
 		<h1 class="left">US drone strikes</h1>
-		<ul id="mapMenuList" class="menu">
-			<li>
+		<ul id="menuList" class="menu">
+			<li role="presentation">
 				<a id="mapLink" 
 					title="Drone Strikes Map" 
 					class="selected"
 					onclick="showHitMap()"
 					href="#">map</a>
 			</li>
-			<li>
+			<li role="presentation">
 				<a id="dataLink" 
 					title="Drone Strikes Data"
 					onclick="showData()"
 					href="#">data</a>
 			</li>
-			<li>
+			<li role="presentation">
 				<a id="graphLink" 
 					title="Drone Strikes Chart"
 					onclick="showGraph()"
@@ -66,7 +70,7 @@
 					<div id="map" class="map container">
 					</div>
 					<div id="data" class="data container hide">
-						<ul id="dataList" class="list">
+						<ul id="dataList" class="list-group">
 						</ul>
 					</div>
 					<div id="graph" class="graph container hide">
