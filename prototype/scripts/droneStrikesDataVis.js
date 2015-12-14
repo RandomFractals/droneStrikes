@@ -7,10 +7,10 @@
 // map view
 var map; 
 
-// data table view vars
-var dataTable;
-var dataScrollPosition = 0;
-var selectedHitRow = -1;
+// hit list view vars
+var histList;
+var listScrollPosition = 0;
+var selectedListItem = -1;
 
 // data graph/chart
 var graph;
@@ -78,9 +78,9 @@ $(function() {
 		// show hits on map
 		map.showHits(droneStrikes.hitList);		
 		
-		// load table data
-		dataTable = new HitDataTable( 
-			$('#dataTableBody'), // table body
+		// load hit list data
+		hitList = new HitList( 
+			$('#dataList'), 
 			droneStrikes.hitList); 
 
 		// create hit graph
@@ -108,14 +108,14 @@ $(function() {
 * Zooms map to the specified hit location.
 */
 function zoomToHit(hitNumber) {
-	if (selectedHitRow > 0) {
-		// clear last hit row click highlight
-		$('#dataTable tr').eq(selectedHitRow).removeClass('selectedRow');
+	if (selectedListItem > 0) {
+		// clear last clicked hit list highlight
+		$('#hitList li').eq(selectedHitRow).removeClass('selectedItem');
 	}
 	
-	// update selected hit row
-	selectedHitRow = droneStrikes.hitList.length - hitNumber;
-	$('#dataTable tr').eq(selectedHitRow).addClass('selectedRow');
+	// update selected hit list item
+	selectedListItem = droneStrikes.hitList.length - hitNumber;
+	$('#hitList li').eq(selectedHitRow).addClass('selectedItem');
 
 	// update menu links
 	$('#mapLink').addClass('selected');
@@ -143,7 +143,7 @@ function showHitMap() {
 	
 
 /**
-* Hides map view and display drone strikes data table.
+* Hides map view and displays drone strikes list.
 */
 function showData() {
 	toggleMapDisplay(false); // hide map
@@ -176,19 +176,19 @@ function showGraph() {
 
 
 /**
-* Toggles map and data view and menu links display.
+* Toggles map, list view, and menu links display.
 */
 function toggleMapDisplay(showMap) {
 	if (showMap) {
 		
-		// save data table scroll position
-		dataScrollPosition = $('#data').scrollTop();
+		// save list scroll position
+		listScrollPosition = $('#data').scrollTop();
 		
 		// show map
 		$('#map').removeClass('hide').addClass('show');
 		map.visible = true;
 		
-		// hide data table and graph
+		// hide hit list and graph
 		$('#data').removeClass('show').addClass('hide');
 		$('#graph').removeClass('show').addClass('hide');		
 	} else {
@@ -197,10 +197,10 @@ function toggleMapDisplay(showMap) {
 		$('#map').removeClass('show').addClass('hide');
 		map.visible = false;
 		
-		// show data table
+		// show hit list
 		$('#data').addClass('show');		
 		
-		// scroll to last table view position
-		$('#data').scrollTop(dataScrollPosition);
+		// scroll to last list view position
+		$('#data').scrollTop(listScrollPosition);
 	}
 }

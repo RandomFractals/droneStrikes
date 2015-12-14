@@ -21,7 +21,7 @@ function HitDataTable(dataTableContainer, hitList) {
 					hit.narrative +
 				'</a>';
 		if ( hit.summary.length > 0 ) {
-			dataHtml += '<br /><br />' + hit.summary;
+			dataHtml += '<br />' + hit.summary;
 		}
 		dataHtml +=	'</td></tr>';
 	}				
