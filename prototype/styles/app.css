@@ -15,8 +15,8 @@
 }
 
 .map, .data {
-	min-height: 580px;
-	max-height: 580px;
+	min-height: 420px;
+	max-height: 420px;
 }
 
 .data {
@@ -24,7 +24,7 @@
 }
 
 .graph {
-	height: 180px;
+	height: 360px;
 	overflow-x: hidden;
 }
 

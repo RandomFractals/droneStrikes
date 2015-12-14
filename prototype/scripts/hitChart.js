@@ -3,11 +3,6 @@
 */
 function HitChart(hitList, windowWidth) {
 	
-	var barWidth = 10;
-	var margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = windowWidth - margin.left - margin.right - 120, // page margin
-    height = 160 - margin.top - margin.bottom;
-
 	// must be a better way to do this		
 	var data = [
 		{"key": "max", "values": []},
