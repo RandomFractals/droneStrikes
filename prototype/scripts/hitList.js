@@ -12,7 +12,7 @@ function HitList(listContainer, hitList) {
 					(hit.hitNumber-1) + ')">' + hit.hitNumber + 
 				'</a>' +
 				hit.dateString() + ' ' +
-				new HitBars(hit).toHtml(true) + // vertical
+				new HitBars(hit).toHtml(false) + // horizontal
 			'<br />' + 
 				'<a href="' + hit.link + '" target="_blank">' +
 					hit.narrative +
