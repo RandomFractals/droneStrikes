@@ -17,9 +17,9 @@ function HitList(listContainer, hitList) {
 					hit.narrative +
 				'</a></p>';
 		if ( hit.summary.length > 0 ) {
-			listHtml += '<p class="list-group-item-text">' + hit.summary;
+			listHtml += '<p class="list-group-item-text">' + hit.summary + '</p>';
 		}
-		listHtml +=	'</p><br /></li>';
+		listHtml +=	'<br /></li>';
 	}				
 	
 	listContainer.html(listHtml);	

@@ -68,7 +68,7 @@ Hit.dateTimeString = function(date) {
 */
 Hit.prototype.toHtml = function() {
 	var html = '<div class="popup-content">' +
-		'<a class="story-link" href="' + this.link + '" target="_blank">' +
+		'<a class="link" href="' + this.link + '" target="_blank">' +
 			this.narrative +
 		'</a><br />' +
 		'<span class="date">' + 
