@@ -21,7 +21,7 @@ var droneStrikes = new DroneStrikes();
 
 var windowWidth = 960;
 var windowHeight = 640;
-var marginTop = 150;
+var marginTop = 140;
 
 /**
 * Creates leaflet map on document ready,

@@ -2,6 +2,7 @@ body {
 	background-color: #fff;
 	color: #000000;	
 	font-family: 'Istok Web', Helvetica, Arial, FreeSans, sans-serif;
+	font-size: 0.8em;
 	margin: 0px;	
 }
 
@@ -33,7 +34,7 @@ body {
 h1 {
 	color: #fff;	
 	font-family: 'Maven Pro', Helvetica;
-	font-size: 1.5em;	
+	font-size: 1.3em;	
 	font-weight: normal;
 	margin: 5px;	
 	display: inline;
@@ -117,7 +118,7 @@ li a {
 	display: block;
 	color: #fff;
   border-radius: 4px 4px 0 0;	
-	font-size: 1.2em;	
+	font-size: 1.1em;	
 	font-weight: normal;
 	margin-left: 10px;
   padding: 5px;

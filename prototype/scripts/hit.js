@@ -70,7 +70,7 @@ Hit.prototype.toHtml = function() {
 	var html = '<div class="popup-content">' +
 		'<a class="story-link" href="' + this.link + '" target="_blank">' +
 			this.narrative +
-		'</a><br /><br />' +
+		'</a><br />' +
 		'<span class="date">' + 
 			this.dateString() + 
 		'</span> ' +
