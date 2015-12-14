@@ -32,8 +32,8 @@ HitStats.prototype.updateStats = function(hit) {
 	this.minKills += hit.minKills;
 	this.maxKills += hit.maxKills;
 	this.injuries += hit.injuries;	
-	this.civilians += Hit.toNumber(hit.civilians);
-	this.children += Hit.toNumber(hit.children);
+	this.civilians += hit.civilians;
+	this.children += hit.children;
 	this.targets.push(hit.target);
 	this.names.push(hit.names);	
 	this.totalHits++;

@@ -25,8 +25,8 @@ function Hit(hitData) {
 	this.minKills = Hit.toNumber(hitData.deaths_min);
 	this.maxKills = Hit.toNumber(hitData.deaths_max);
 	this.injuries = Hit.toNumber(hitData.injuries);	
-	this.civilians = hitData.civilians;
-	this.children = hitData.children;	
+	this.civilians = Hit.toNumber(hitData.civilians);
+	this.children = Hit.toNumber(hitData.children);
 	this.targets = hitData.target;
 	this.names = hitData.names;
 	
