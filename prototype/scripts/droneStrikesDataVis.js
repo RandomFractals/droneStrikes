@@ -46,6 +46,9 @@ $(function() {
 			chart.chart.height(windowHeight - marginTop);
 			chart.chart.update();
 		}
+		if (map != null || map != undefined) {
+			map.map.invalidateSize();
+		}
 	}
 	
 	// create map view
