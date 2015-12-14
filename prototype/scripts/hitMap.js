@@ -8,11 +8,11 @@ function HitMap() {
 	//this.map.locate({setView: true, maxZoom: 4}); // for geo-loc based on ip later
 	
 	// create map tiles
-	var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+	var mapTilesLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 		attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
 	});
 	//var tiles = new L.StamenTileLayer('watercolor'); // experimental for later
-	this.map.addLayer(tiles);	
+	this.map.addLayer(mapTilesLayer);	
 	
 	// create marker cluster group and list
 	this.markers = new L.MarkerClusterGroup();
@@ -41,14 +41,19 @@ HitMap.prototype.showHits = function (hitList) {
 		marker.bindPopup(hit.toHtml());
 		this.markers.addLayer(marker);
 		this.markerList.push(marker);
-		heatPoints.push([hit.latitude, hit.longitude, 1.0]); // intensity
+		//heatPoints.push([hit.latitude, hit.longitude, 1.0]); // intensity
+		heatPoints.push( {
+			lat: hit.latitude, 
+			lng: hit.longitude, 
+			count: hit.maxKills}); // intensity
 	}		
 	this.map.addLayer(this.markers);
 		
 	// create heatmap strictly for visual effect
-	//var heatMap = L.heatLayer(heatPoints, {minOpacity: 0.3, radius: 30});
-	//this.map.addLayer(heatMap);	
+	var heatMapLayer = L.heatLayer(heatPoints, {minOpacity: 0.3, radius: 30});
+	this.map.addLayer(heatMapLayer);	
 	
+	// center on middle east
 	this.resetMapView();
 }
 
