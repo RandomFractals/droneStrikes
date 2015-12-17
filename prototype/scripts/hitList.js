@@ -11,7 +11,7 @@ function HitList(listContainer, hitList) {
 		
 		var li = $('<li/>').appendTo(listContainer);
 		var header = $('<div/>')
-			.addClass('list-group-item-heading')
+			.addClass('list-item')
 			.appendTo(li);
 			
 		var mapLink = $('<button/>')
@@ -31,7 +31,7 @@ function HitList(listContainer, hitList) {
 			.appendTo(header);
 		
 		var storyLink = $('<a/>')
-			.addClass('link')
+			.addClass('list-group-item')
 			.attr('href', hit.link)
 			.attr('target', '_blank')
 			.text(hit.narrative)

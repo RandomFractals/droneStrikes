@@ -48,6 +48,10 @@
 	color: #06f;
 }
 
+.list-group-item-text {
+	padding: 10px;
+}
+
 
 /* stats bar styles */
 
