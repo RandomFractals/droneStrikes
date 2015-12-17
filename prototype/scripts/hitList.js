@@ -25,7 +25,10 @@ function HitList(listContainer, hitList) {
 			.attr('height', 32)
 			.appendTo(mapLink);
 			
-		mapLink.after(hit.dateString() + ' ');
+		var dateSpan = $('<span/>')
+			.addClass('date')
+			.text(hit.dateString() + ' ')
+			.appendTo(header);
 		
 		var storyLink = $('<a/>')
 			.addClass('link')
