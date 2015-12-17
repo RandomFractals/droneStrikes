@@ -102,7 +102,7 @@ $(function() {
 		message.text(droneStrikes.stats.toString());
 		
 		// load hit list data
-		hitList = new HitList(dataList, droneStrikes.hitList); 
+		hitList = new HitList(dataList, droneStrikes.hitList).showHits(); 
 
 		// create hit graph
 		//graph = new HitGraph(droneStrikes.hitList, windowWidth);

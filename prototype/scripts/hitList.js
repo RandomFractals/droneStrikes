@@ -2,14 +2,24 @@
 * Hit data list view component.
 */
 function HitList(listContainer, hitList) {
-	// init list data display
-	var listHtml = ''
-	var hit;
-	var hitListData = [];
-	for (var i = hitList.length-1; i >= 0; i--) {
-		hit = hitList[i];		
-		
-		var li = $('<li/>').appendTo(listContainer);
+	this.listView = listContainer;
+	this.dataList = hitList;
+	this.listItemCount = 0;
+	this.maxHits = 20; // max hits to load for one page
+}
+
+
+/**
+* Loads max hits for the hit list data display.
+*/
+HitList.prototype.showHits = function () {
+	console.log('list length: ' + this.dataList.length);
+	var hit;	
+	var dataListLength = this.dataList.length;
+	for (var i = dataListLength - 1; i >= dataListLength - this.maxHits ; i--) {
+		hit = this.dataList[i];
+		// create hit list item
+		var li = $('<li/>').appendTo(this.listView);
 		var header = $('<div/>')
 			.addClass('list-item')
 			.appendTo(li);
@@ -44,5 +54,6 @@ function HitList(listContainer, hitList) {
 			.appendTo(li);
 			story.after('<br />');
 		}
-	}				
+		this.listItemCount++;
+	}	
 }
