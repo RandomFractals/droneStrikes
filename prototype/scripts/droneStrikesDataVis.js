@@ -1,7 +1,6 @@
 /**
 * Drone strikes data vis app js -
-* top level app view controller
-* for this simple single page data vis.
+* top level app view controller.
 */
 
 // top UI comp. vars
@@ -56,30 +55,13 @@ $(function() {
 	mapContainer = $('#map');
 	listContainer = $('#data');
 	graphContainer = $('#graph');
-
 	
-	// window resize handling
+	// handle inti window size & resize
 	resizeView();
 	$(window).resize( function() {
 		resizeView();
 	});
 
-	function resizeView() {
-		windowWidth = $(window).width();
-		windowHeight = $(window).height();
-		mapContainer.height(windowHeight - marginTop);
-		listContainer.height(windowHeight - marginTop);
-		graphContainer.height(windowHeight - marginTop);
-		if (chart !== null && chart !== undefined) {
-			chart.chart.width(windowWidth);
-			chart.chart.height(windowHeight - marginTop);
-			chart.chart.update();
-		}
-		if (map !== null && map !== undefined && map.visible) {
-			map.map.invalidateSize();
-		}
-	}
-	
 	// create map view
 	map = new HitMap();
 	
@@ -130,9 +112,31 @@ $(function() {
 		$('#message').text('Failed to load drone strikes data. Check data source site.');
 	}
 	
-});
+}); // end of doc reday
 
 
+/**
+* Updates view containers on window resize,
+* and/or mobile device switch between
+* portrait and landscape view mode.
+*/
+function resizeView() {
+	windowWidth = $(window).width();
+	windowHeight = $(window).height();
+	mapContainer.height(windowHeight - marginTop);
+	listContainer.height(windowHeight - marginTop);
+	graphContainer.height(windowHeight - marginTop);
+	if (chart !== null && chart !== undefined) {
+		chart.chart.width(windowWidth);
+		chart.chart.height(windowHeight - marginTop);
+		chart.chart.update();
+	}
+	if (map !== null && map !== undefined && map.visible) {
+		map.map.invalidateSize();
+	}
+}
+
+	
 /**
 * Zooms map to the specified hit location.
 */
@@ -186,7 +190,7 @@ function showData() {
 
 
 /**
-* Show hits graph.
+* Shows hits graph.
 */
 function showGraph() {
 	toggleMapDisplay(false); // hide map
@@ -194,7 +198,7 @@ function showGraph() {
 	// show graph
 	graphContainer.removeClass(Hide).addClass(Show);
 
-	// hide data
+	// hide hit list view
 	listContainer.removeClass(Show).addClass(Hide);
 	
 	// update menu links
