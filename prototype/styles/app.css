@@ -1,5 +1,6 @@
 #content {
-	padding-left: 10px;
+	padding: 5px;
+	width: 100%;
 }
 
 #message {
@@ -10,6 +11,7 @@
 .container {
  padding: 0px;
  margin: 0px;
+ width: 100%;
 }
 
 .map, .data, .graph {

@@ -1,6 +1,6 @@
 /**
-* Drone strikes data vis app js,
-* main app view contrroller
+* Drone strikes data vis app js -
+* top level app view controller
 * for this simple single page data vis.
 */
 
