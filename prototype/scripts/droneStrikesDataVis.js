@@ -7,7 +7,9 @@
 var mapMenu;
 var dataMenu;
 var graphMenu;
+
 var message;
+var progressContainer;
 var progressBar;
 
 // map view
@@ -16,7 +18,10 @@ var mapContainer;
 
 // hit list view vars
 var listContainer;
-var histList;
+var dataList; // ul
+var histList; // list data view
+
+// data list scroll/selection vars
 var listScrollPosition = 0;
 var selectedListItem = -1;
 
@@ -50,10 +55,14 @@ $(function() {
 	mapMenu = $('#mapMenu');
 	dataMenu = $('#dataMenu');
 	graphMenu = $('#graphMenu');
+	
 	message = $('#message');
 	progressBar = $('#progressBar');
+	
+	progressContainer = $('#progress');	
 	mapContainer = $('#map');
 	listContainer = $('#data');
+	dataList = $('#dataList');
 	graphContainer = $('#graph');
 	
 	// handle init window size & resize
@@ -93,9 +102,7 @@ $(function() {
 		message.text(droneStrikes.stats.toString());
 		
 		// load hit list data
-		hitList = new HitList( 
-			$('#dataList'), 
-			droneStrikes.hitList); 
+		hitList = new HitList(dataList, droneStrikes.hitList); 
 
 		// create hit graph
 		//graph = new HitGraph(droneStrikes.hitList, windowWidth);
@@ -103,7 +110,7 @@ $(function() {
 			windowWidth, windowHeight - marginTop);
 		
 		// hide data load progress bar
-		$('#progress').addClass(Hide);
+		progressContainer.addClass(Hide);
 		
 		console.log(droneStrikes.stats.logStats());		
 	}
@@ -149,12 +156,12 @@ function resizeView() {
 function zoomToHit(hitNumber) {
 	if (selectedListItem > 0) {
 		// clear last clicked hit list highlight
-		$('#hitList li').eq(selectedListItem).removeClass(Selected);
+		$('#dataList li').eq(selectedListItem).removeClass(Selected);
 	}
 	
 	// update selected hit list item
 	selectedListItem = droneStrikes.hitList.length - hitNumber;
-	$('#hitList li').eq(selectedListItem).addClass(Selected);
+	$('#dataList li').eq(selectedListItem).addClass(Selected);
 
 	// update menu links
 	mapMenu.addClass(Active);
