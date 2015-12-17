@@ -56,7 +56,7 @@ $(function() {
 	listContainer = $('#data');
 	graphContainer = $('#graph');
 	
-	// handle inti window size & resize
+	// handle init window size & resize
 	resizeView();
 	$(window).resize( function() {
 		resizeView();
@@ -64,6 +64,9 @@ $(function() {
 
 	// create map view
 	map = new HitMap();
+	
+	// show 50% view load progress
+	progressBar.css('width', '50%');
 	
 	// get data
 	var dataUrl = 'http://api.dronestre.am/data';
@@ -79,15 +82,15 @@ $(function() {
 	* Data load event handler.
 	*/
 	function loadData(hitData) {
-		
+	
 		// parse data
 		droneStrikes.addHits(hitData.strike);
+		
+		// show hits on map
+		map.showHits(droneStrikes.hitList);
 
 		// show drone strikes stats
 		message.text(droneStrikes.stats.toString());
-		
-		// show hits on map
-		map.showHits(droneStrikes.hitList);		
 		
 		// load hit list data
 		hitList = new HitList( 
@@ -98,7 +101,10 @@ $(function() {
 		//graph = new HitGraph(droneStrikes.hitList, windowWidth);
 		chart = new HitChart(droneStrikes.hitList, 
 			windowWidth, windowHeight - marginTop);
-			
+		
+		// hide data load progress bar
+		$('#progress').addClass(Hide);
+		
 		console.log(droneStrikes.stats.logStats());		
 	}
 	
@@ -109,7 +115,7 @@ $(function() {
 	function dataLoadError() {
 		console.log('data load error');
 		// show data load error msg
-		$('#message').text('Failed to load drone strikes data. Check data source site.');
+		message.text('Failed to load drone strikes data. Check data source site.');
 	}
 	
 }); // end of doc reday
