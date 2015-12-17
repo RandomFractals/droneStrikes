@@ -119,8 +119,8 @@ $(function() {
 	/**
 	* Logs and displays a message about failed data load.
 	*/
-	function dataLoadError() {
-		console.log('data load error');
+	function dataLoadError(request, status, error) {
+		console.log('data load error: ' + JSON.stringify(request) + status + error);
 		// show data load error msg
 		message.text('Failed to load drone strikes data. Check data source site.');
 	}
