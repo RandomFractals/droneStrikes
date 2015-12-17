@@ -4,24 +4,42 @@
 * for this simple single page data vis.
 */
 
+// top UI comp. vars
+var mapMenu;
+var dataMenu;
+var graphMenu;
+var message;
+var progressBar;
+
 // map view
 var map; 
+var mapContainer;
 
 // hit list view vars
+var listContainer;
 var histList;
 var listScrollPosition = 0;
 var selectedListItem = -1;
 
 // data graph/chart
+var graphContainer;
 var graph;
 var chart;
+
+// window vars
+var windowWidth = 960;
+var windowHeight = 640;
+var marginTop = 160;
+
+// UI state vars
+var Active = 'active';
+var Selected = 'selected';
+var Show = 'show';
+var Hide = 'hide';
 
 // main view data model
 var droneStrikes = new DroneStrikes();
 
-var windowWidth = 960;
-var windowHeight = 640;
-var marginTop = 140;
 
 /**
 * Creates leaflet map on document ready,
@@ -29,7 +47,18 @@ var marginTop = 140;
 */
 $(function() {
 
-	// window sizing
+	// initialize view comps
+	mapMenu = $('#mapMenu');
+	dataMenu = $('#dataMenu');
+	graphMenu = $('#graphMenu');
+	message = $('#message');
+	progressBar = $('#progressBar');
+	mapContainer = $('#map');
+	listContainer = $('#data');
+	graphContainer = $('#graph');
+
+	
+	// window resize handling
 	resizeView();
 	$(window).resize( function() {
 		resizeView();
@@ -38,9 +67,9 @@ $(function() {
 	function resizeView() {
 		windowWidth = $(window).width();
 		windowHeight = $(window).height();
-		$('#map').height(windowHeight - marginTop);
-		$('#data').height(windowHeight - marginTop);
-		$('#graph').height(windowHeight - marginTop);
+		mapContainer.height(windowHeight - marginTop);
+		listContainer.height(windowHeight - marginTop);
+		graphContainer.height(windowHeight - marginTop);
 		if (chart !== null && chart !== undefined) {
 			chart.chart.width(windowWidth);
 			chart.chart.height(windowHeight - marginTop);
@@ -73,7 +102,7 @@ $(function() {
 		droneStrikes.addHits(hitData.strike);
 
 		// show drone strikes stats
-		$('#message').text(droneStrikes.stats.toString());
+		message.text(droneStrikes.stats.toString());
 		
 		// show hits on map
 		map.showHits(droneStrikes.hitList);		
@@ -98,7 +127,7 @@ $(function() {
 	function dataLoadError() {
 		console.log('data load error');
 		// show data load error msg
-		$('#dataMessage').text('Failed to load drone strikes data. Check data source site.');
+		$('#message').text('Failed to load drone strikes data. Check data source site.');
 	}
 	
 });
@@ -110,16 +139,16 @@ $(function() {
 function zoomToHit(hitNumber) {
 	if (selectedListItem > 0) {
 		// clear last clicked hit list highlight
-		$('#hitList li').eq(selectedListItem).removeClass('selected');
+		$('#hitList li').eq(selectedListItem).removeClass(Selected);
 	}
 	
 	// update selected hit list item
 	selectedListItem = droneStrikes.hitList.length - hitNumber;
-	$('#hitList li').eq(selectedListItem).addClass('selected');
+	$('#hitList li').eq(selectedListItem).addClass(Selected);
 
 	// update menu links
-	$('#mapLink').addClass('selected');
-	$('#dataLink').removeClass('selected');	
+	mapMenu.addClass(Active);
+	dataMenu.removeClass(Active);	
 	
 	// show map
 	toggleMapDisplay(true);
@@ -136,9 +165,9 @@ function showHitMap() {
 	toggleMapDisplay(true); // show map
 	
 	// update menu links
-	$('#mapLink').addClass('selected');
-	$('#dataLink').removeClass('selected');	
-	$('#graphLink').removeClass('selected');	
+	mapMenu.addClass(Active);
+	dataMenu.removeClass(Active);	
+	graphMenu.removeClass(Active);	
 }
 	
 
@@ -147,12 +176,12 @@ function showHitMap() {
 */
 function showData() {
 	toggleMapDisplay(false); // hide map
-	$('#graph').removeClass('show').addClass('hide');		
+	graphContainer.removeClass(Show).addClass(Hide);
 	
 	// update menu links
-	$('#mapLink').removeClass('selected');
-	$('#dataLink').addClass('selected');	
-	$('#graphLink').removeClass('selected');		
+	mapMenu.removeClass(Active);
+	dataMenu.addClass(Active);	
+	graphMenu.removeClass(Active);		
 }
 
 
@@ -163,15 +192,15 @@ function showGraph() {
 	toggleMapDisplay(false); // hide map
 	
 	// show graph
-	$('#graph').removeClass('hide').addClass('show');		
+	graphContainer.removeClass(Hide).addClass(Show);
 
 	// hide data
-	$('#data').removeClass('show').addClass('hide');
+	listContainer.removeClass(Show).addClass(Hide);
 	
 	// update menu links
-	$('#mapLink').removeClass('selected');
-	$('#dataLink').removeClass('selected');	
-	$('#graphLink').addClass('selected');	
+	mapMenu.removeClass(Active);
+	dataMenu.removeClass(Active);	
+	graphMenu.addClass(Active);	
 }
 
 
@@ -182,25 +211,25 @@ function toggleMapDisplay(showMap) {
 	if (showMap) {
 		
 		// save list scroll position
-		listScrollPosition = $('#data').scrollTop();
+		listScrollPosition = listContainer.scrollTop();
 		
 		// show map
-		$('#map').removeClass('hide').addClass('show');
+		mapContainer.removeClass(Hide).addClass(Show);
 		map.visible = true;
 		
 		// hide hit list and graph
-		$('#data').removeClass('show').addClass('hide');
-		$('#graph').removeClass('show').addClass('hide');		
+		listContainer.removeClass(Show).addClass(Hide);
+		graphContainer.removeClass(Show).addClass(Hide);
 	} else {
 		
 		// hide map
-		$('#map').removeClass('show').addClass('hide');
+		mapContainer.removeClass(Show).addClass(Hide);
 		map.visible = false;
 		
 		// show hit list
-		$('#data').addClass('show');		
+		listContainer.addClass(Show);		
 		
 		// scroll to last list view position
-		$('#data').scrollTop(listScrollPosition);
+		listContainer.scrollTop(listScrollPosition);
 	}
 }

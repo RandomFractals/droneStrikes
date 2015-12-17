@@ -4,65 +4,55 @@
 	<meta charset='utf-8'>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>US Drone Strikes Data Vis</title>
-
   <!-- material design fonts -->
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
   <!-- bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	
   <!-- bootstrap material design -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.5/css/bootstrap-material-design.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.5/css/ripples.css" rel="stylesheet">
-	
 	<!-- leaflet map + marker cluster -->
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css" />	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css" />
-	
 	<!-- experimental nv.d3 -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.css">
-	
-	<!-- app styles -->
-	<link rel="stylesheet" href="styles/default.css">
 	<link rel="stylesheet" href="styles/app.css">
-	
 </head>
 <body>
 	<!-- app toolbar -->
-	<div id="toolbar">
-		<h1 class="left">US drone hits</h1>
-		<ul id="menuList" class="menu">
-			<li role="presentation">
-				<a id="mapLink" 
-					title="Drone Strikes Map" 
+	<nav id="toolbar" class="navbar navbar-default">
+		<ul id="menuList" class="nav navbar-nav">
+			<li id="mapMenu" class="active">
+				<a title="Drone Strikes Map" 
 					class="selected"
 					onclick="showHitMap()"
 					href="#">map</a>
 			</li>
-			<li role="presentation">
-				<a id="dataLink" 
-					title="Drone Strikes Data"
+			<li id="dataMenu">
+				<a title="Drone Strikes Data"
 					onclick="showData()"
 					href="#">data</a>
 			</li>
-			<li role="presentation">
-				<a id="graphLink" 
-					title="Drone Strikes Chart"
+			<li id="graphMenu">
+				<a title="Drone Strikes Chart"
 					onclick="showGraph()"
 					href="#">graph</a>
 			</li>							
 		</ul>	
-	</div>
+	</nav>
 	<!-- page content -->
-	<div id="content">	
+	<div id="content" class="container">	
 		<div id="viewContainer" class="container">
 			<div>
 				<p id="message" class="message">
 					Loading drone strikes data...
 				</p>					
 			</div>
+			<div class="progress progress-striped">
+				<div id="progressBar" class="progress-bar"></div>
+			</div>			
 			<div id="map" class="map container">
 			</div>
 			<div id="data" class="data container hide">

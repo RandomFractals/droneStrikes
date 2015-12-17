@@ -25,7 +25,7 @@ function HitList(listContainer, hitList) {
 			.attr('height', 32)
 			.appendTo(mapLink);
 			
-		mapLink.after(	hit.dateString() );
+		mapLink.after(hit.dateString() + ' ');
 		
 		var storyLink = $('<a/>')
 			.addClass('link')
