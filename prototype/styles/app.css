@@ -52,6 +52,10 @@
 	padding: 10px;
 }
 
+.selected {
+	background-color: #ddd;
+}
+
 
 /* stats bar styles */
 
