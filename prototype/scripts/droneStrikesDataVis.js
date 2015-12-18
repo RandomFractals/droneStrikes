@@ -70,7 +70,7 @@ $(function() {
 	$(window).resize( function() {
 		resizeView();
 	});
-
+	
 	// create map view
 	map = new HitMap();
 	
@@ -102,7 +102,7 @@ $(function() {
 		message.text(droneStrikes.stats.toString());
 		
 		// load hit list data
-		hitList = new HitList(dataList, droneStrikes.hitList).showHits(); 
+		hitList = new HitList(dataList, droneStrikes.hitList).loadHits(); 
 
 		// create hit graph
 		//graph = new HitGraph(droneStrikes.hitList, windowWidth);

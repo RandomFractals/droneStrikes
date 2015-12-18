@@ -5,19 +5,29 @@ function HitList(listContainer, hitList) {
 	this.listView = listContainer;
 	this.dataList = hitList;
 	this.listItemCount = 0;
-	this.maxHits = 20; // max hits to load for one page
+	this.maxHits = 20; // max hits to load for one page	
+	HitList.instance = this; // quick and dirty for scroll
+	
+	// scroll handler for loading more data
+	$('#data').scroll( function () {
+		if (this.scrollHeight - $(this).scrollTop() - $(this).offset().top - $(this).height() <= 0) {
+			// load more data
+			HitList.instance.loadHits();
+		}		
+	});
+	
 }
 
 
 /**
 * Loads max hits for the hit list data display.
 */
-HitList.prototype.showHits = function () {
-	console.log('list length: ' + this.dataList.length);
+HitList.prototype.loadHits = function () {
+	console.log('list length: ' + this.listItemCount);
 	var hit;	
-	var dataListLength = this.dataList.length;
-	for (var i = dataListLength - 1; i >= dataListLength - this.maxHits ; i--) {
-		hit = this.dataList[i];
+	for (var i = 0; (i < this.maxHits && this.listItemCount <= this.dataList.length-1); i++) {
+			
+		hit = this.dataList[this.dataList.length - this.listItemCount - 1];
 		// create hit list item
 		var li = $('<li/>').appendTo(this.listView);
 		var header = $('<div/>')
