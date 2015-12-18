@@ -160,7 +160,7 @@ function zoomToHit(hitNumber) {
 	}
 	
 	// update selected hit list item
-	selectedListItem = droneStrikes.hitList.length - hitNumber;
+	selectedListItem = droneStrikes.hitList.length - hitNumber - 1;
 	$('#dataList li').eq(selectedListItem).addClass(Selected);
 
 	// update menu links
