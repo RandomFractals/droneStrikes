@@ -27,11 +27,6 @@
 	overflow-y: scroll;
 }
 
-.graph {
-	height: 360px;
-	overflow-x: hidden;
-}
-
 
 /* app text elements + link styles */
 .note, .label {
@@ -58,7 +53,6 @@
 
 
 /* stats bar styles */
-
 .popup-content {
 	display: inline;
 	width: 100%;
@@ -95,7 +89,6 @@
 
 
 /* graph styles */
-
 .axis path,
 .axis line {
   fill: none;
