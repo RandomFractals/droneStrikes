@@ -1,12 +1,12 @@
 /**
 * Hit graph view component.
 */
-function HitGraph(hitList, windowWidth) {
+function HitGraph(hitList, windowWidth, windowHeight) {
 	
 	var barWidth = 10;
-	var margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = windowWidth - margin.left - margin.right - 120, // page margin
-    height = 160 - margin.top - margin.bottom;
+	var margin = {left: 40, top: 20, right: 20, bottom: 30};
+  var width = windowWidth - margin.left - margin.right; // page margin
+  var height = windowHeight - margin.top - margin.bottom;
 
 	var x = d3.time.scale().range([0, width]); //.rangeRound([0, width]);
 	var y = d3.scale.linear().range([height, 0]);

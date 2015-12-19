@@ -105,9 +105,8 @@ $(function() {
 		hitList = new HitList(dataList, droneStrikes.hitList).loadHits(); 
 
 		// create hit graph
-		//graph = new HitGraph(droneStrikes.hitList, windowWidth);
-		chart = new HitChart(droneStrikes.hitList, 
-			windowWidth, windowHeight - marginTop);
+		graph = new HitGraph(droneStrikes.hitList, windowWidth, windowHeight - marginTop);
+		//chart = new HitChart(droneStrikes.hitList, windowWidth, windowHeight - marginTop);
 		
 		// hide data load progress bar
 		progressContainer.addClass(Hide);

@@ -14,8 +14,8 @@
   "dependencies": {},
   "license": "MIT",
   "devDependencies": {
-    "bootstrap": "^3.3.6",
-    "bootstrap-material-design": "^0.3.0",
+    //"bootstrap": "^3.3.6",
+    //"bootstrap-material-design": "^0.3.0",
     "d3": "^3.5.10",
     "jquery": "^2.1.4",
     "leaflet": "^0.7.7",
