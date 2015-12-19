@@ -23,7 +23,7 @@ function HitList(listContainer, hitList) {
 * Loads max hits for the hit list data display.
 */
 HitList.prototype.loadHits = function () {
-	console.log('list length: ' + this.listItemCount);
+	//console.log('list length: ' + this.listItemCount);
 	var hit;	
 	for (var i = 0; (i < this.maxHits && this.listItemCount <= this.dataList.length-1); i++) {
 			
