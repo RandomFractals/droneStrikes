@@ -1,32 +1,33 @@
+// navbar collapse fix
 @media (min-width: 300px) {
-.navbar-header {
-        float: left;
-}
-.navbar-toggle {
+	.navbar-header {
+		float: left;
+	}
+	.navbar-toggle {
     display: none;
-}
-.navbar-collapse {
+	}
+	.navbar-collapse {
     border-top: 0 none;
     box-shadow: none;
     width: auto;
-}
-.navbar-collapse.collapse {
+	}
+	.navbar-collapse.collapse {
     display: block !important;
     height: auto !important;
     padding-bottom: 0;
     overflow: visible !important;
-}
-.navbar-nav {
+	}
+	.navbar-nav {
     float: left !important;
     margin: 0;
-}
-.navbar-nav>li {
+	}
+	.navbar-nav>li {
     float: left;
-}
-.navbar-nav>li>a {
+	}
+	.navbar-nav>li>a {
     padding-top: 15px;
     padding-bottom: 15px;
-}
+	}
 }
 
 #content {
