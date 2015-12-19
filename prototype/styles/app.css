@@ -58,11 +58,13 @@ body {
 	border: solid 1px #AACFE4;
 	height: 4px;
 	width: 100%;
+	margin-bottom: 2px;
 }
 
 .progress-bar {
 	background-color: #39f;
 	height: 4px;
+	width: 1px;
 }
 
 /* data vis container styles */
@@ -132,12 +134,13 @@ a {
 
 .data-list > li {
  	border: solid 1px #ccc;
+	border-collapse: collapse;
 	background-color: #fff;
 	margin: 0px;
 }
 
 .data-list li[class=selected] {
-	background-color: #ddd;
+	background-color: #ccc;
 }
 
 .list-tem {
