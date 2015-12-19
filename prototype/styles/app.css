@@ -140,7 +140,7 @@ a {
 }
 
 .data-list li[class=selected] {
-	background-color: #ccc;
+	background-color: #e0e0e0;
 }
 
 .list-tem {
