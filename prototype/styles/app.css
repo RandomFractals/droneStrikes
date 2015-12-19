@@ -41,7 +41,7 @@ body {
 }
 
 #content {
-	margin-top: 60px;
+	margin-top: 50px;
 	padding: 0px;
 	width: 100%;
 	overflow: hidden;	
@@ -51,6 +51,17 @@ body {
 	padding-left: 10px;
 	font-size: .9em;	
 	color: #f60;	
+}
+
+.progress {
+	border: solid 1px #AACFE4;
+	height: 4px;
+	width: 100%;
+}
+
+.progress-bar {
+	background-color: #39f;
+	height: 4px;
 }
 
 /* data vis container styles */
