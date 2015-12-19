@@ -143,6 +143,11 @@ function resizeView() {
 		chart.chart.height(windowHeight - marginTop);
 		chart.chart.update();
 	}
+	
+	if (graph !== null && graph !== undefined) {
+		graph.redraw(windowWidth, windowHeight - marginTop);
+	}
+	
 	if (map !== null && map !== undefined && map.visible) {
 		map.map.invalidateSize();
 	}

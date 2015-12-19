@@ -1,15 +1,27 @@
 /**
 * Hit graph view component.
 */
-function HitGraph(hitList, windowWidth, windowHeight) {
-	
-	var barWidth = 10;
-	var margin = {left: 40, top: 20, right: 20, bottom: 30};
-  var width = windowWidth - margin.left - margin.right; // page margin
-  var height = windowHeight - margin.top - margin.bottom;
+function HitGraph(hitList, windowWidth, windowHeight) {	
+	this.barWidth = 10;
+	this.margin = {left: 40, top: 20, right: 20, bottom: 30};
+  this.width = 0;
+  this.height = 0;
+	this.dataList = hitList;
+	this.redraw(windowWidth, windowHeight);
+}
 
-	var x = d3.time.scale().range([0, width]); //.rangeRound([0, width]);
-	var y = d3.scale.linear().range([height, 0]);
+
+/**
+* Redraws hit graph on init and window resize.
+*/
+HitGraph.prototype.redraw = function(windowWidth, windowHeight) {
+
+	// update graph width and height
+  this.width = windowWidth - this.margin.left - this.margin.right;
+  this.height = windowHeight - this.margin.top - this.margin.bottom;
+
+	var x = d3.time.scale().range([0, this.width]); //.rangeRound([0, width]);
+	var y = d3.scale.linear().range([this.height, 0]);
 	var xAxis = d3.svg.axis().scale(x).orient("bottom");
 	var yAxis = d3.svg.axis().scale(y).orient("left").ticks(5);
 	
@@ -19,27 +31,28 @@ function HitGraph(hitList, windowWidth, windowHeight) {
 
 	var minKillsArea = d3.svg.area()
     .x(function(d) { return x(d.date); })
-    .y0(height)
+    .y0(this.height)
     .y1(function(d) { return y(d.minKills); });
 
 	var maxKillsArea = d3.svg.area()
     .x(function(d) { return x(d.date); })
-    .y0(height)
+    .y0(this.height)
     .y1(function(d) { return y(d.maxKills); });
 		
+	d3.select("#graph").selectAll("svg").remove();
 	var svg = d3.select("#graph").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("width", this.width + this.margin.left + this.margin.right)
+    .attr("height", this.height + this.margin.top + this.margin.bottom)
 		.append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
-  x.domain(d3.extent(hitList, function(d) { return d.date; }));
+  x.domain(d3.extent(this.dataList, function(d) { return d.date; }));
   //y.domain(d3.extent(hitList, function(d) { return d.minKills; }));
-	y.domain([0, d3.max(hitList, function(d) { return d.maxKills; })]);
+	y.domain([0, d3.max(this.dataList, function(d) { return d.maxKills; })]);
 
   svg.append("g")
       .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
+      .attr("transform", "translate(0," + this.height + ")")
       .call(xAxis);
 
   svg.append("g")
@@ -55,18 +68,18 @@ function HitGraph(hitList, windowWidth, windowHeight) {
 	svg.append("g")         
       .attr("class", "grid")
       .call(yAxis
-            .tickSize(-width, 0, 0)
+            .tickSize(-this.width, 0, 0)
             .tickFormat("")
         );
 	
 	svg.append("path")
-      .datum(hitList)
+      .datum(this.dataList)
       .attr("class", "area")
       .attr("d", maxKillsArea);
 			
 	/*
 	svg.selectAll(".bar")
-    .data(hitList)
+    .data(this.dataList)
     .enter().append("rect")
       .attr("class", "bar")
       .attr("x", function(d) { return x(d.date); })
@@ -77,7 +90,7 @@ function HitGraph(hitList, windowWidth, windowHeight) {
 	
 	// line 
   svg.append("path")
-      .datum(hitList)
+      .datum(this.dataList)
       .attr("class", "line")
-      .attr("d", line);
+      .attr("d", line);	
 }
