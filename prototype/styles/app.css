@@ -132,6 +132,10 @@ a {
 	margin: 5px;
 }
 
+.data-list li[class=selected] {
+	background-color: #ddd;
+}
+
 .list-tem {
 	display: table-cell;
 	vertical-align: top;
@@ -146,10 +150,6 @@ a {
 	font-size: 0.9em;	
 	padding: 5px;
 	margin: 5px;
-}
-
-.selected {
-	background-color: #ddd;
 }
 
 
