@@ -93,23 +93,26 @@ a {
 
 .menu {
 	margin: 0px;
-	padding: 5px;
+	margin-left: 2px;
+	padding: 0px;
 	list-style-type: none;	
 }
 
 .menu li {
 	display: inline;
-	line-height: 40px;
+	line-height: 50px;
+	margin: 0px;
+	padding: 0px;	
 }
 
 .menu li a {
 	background-color: #39f;
 	color: #fff;	
-  border-radius: 0px;
+  border: 0px;
 	font-size: 0.9em;	
 	font-weight: normal;	
 	margin: 0px;
-  padding: 10px;
+  padding: 15px;
   text-decoration: none;
 }
 
@@ -129,7 +132,7 @@ a {
 .data-list > li {
  	border: solid 1px #ccc;
 	background-color: #fff;
-	margin: 5px;
+	margin: 0px;
 }
 
 .data-list li[class=selected] {
