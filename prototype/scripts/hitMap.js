@@ -8,11 +8,20 @@ function HitMap(width, height) {
 	//this.map.locate({setView: true, maxZoom: 4}); // for geo-loc based on ip later
 	
 	// create map tiles
-	var mapTilesLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+	var mapTilesLayer = MQ.mapLayer(); // map quest
+	/*L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { // OSM
 		attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
-	});
+	});*/
 	this.map.addLayer(mapTilesLayer);	
 	
+	// create MQ map view controls
+	L.control.layers({
+		'Map': mapTilesLayer,
+		'Dark': MQ.darkLayer(),
+		'Light': MQ.lightLayer(),
+		'Satellite': MQ.satelliteLayer()
+	}).addTo(this.map);
+
 	// create marker cluster group and list
 	this.markers = new L.MarkerClusterGroup();
 	this.markerList = [];
