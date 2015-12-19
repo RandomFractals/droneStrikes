@@ -33,7 +33,7 @@ var chart;
 // window vars
 var windowWidth = 960;
 var windowHeight = 640;
-var marginTop = 160;
+var marginTop = 140;
 
 // UI state vars
 var Active = 'active';

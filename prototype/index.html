@@ -6,12 +6,6 @@
 	<title>US Drone Strikes Data Vis</title>
   <!-- material design fonts -->
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" type="text/css">
-  <!-- bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <!-- bootstrap material design -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.5/css/bootstrap-material-design.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.5/css/ripples.css" rel="stylesheet">
 	<!-- leaflet map + marker cluster -->
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css" />	
@@ -22,11 +16,10 @@
 </head>
 <body>
 	<!-- app toolbar -->
-	<div id="toolbar" class="navbar navbar-default">
-		<ul id="menuList" class="nav navbar-nav">
+	<div id="toolbar">
+		<ul id="menuList" class="menu">
 			<li id="mapMenu" class="active">
 				<a title="Drone Strikes Map" 
-					class="selected"
 					onclick="showHitMap()"
 					href="#">map</a>
 			</li>
@@ -42,11 +35,11 @@
 			</li>							
 		</ul>	
 	</div>
-	<!-- page content -->
+	<!-- app content -->
 	<div id="content" class="container">	
 		<div id="viewContainer" class="container">
-			<div>
-				<p id="message" class="message">
+			<div class="message">
+				<p id="message">
 					Loading drone strikes data...
 				</p>					
 			</div>
@@ -56,26 +49,24 @@
 			<div id="map" class="map container">
 			</div>
 			<div id="data" class="data container hide">
-				<ul id="dataList" class="list-group">
+				<ul id="dataList" class="data-list">
 				</ul>
 			</div>
 			<div id="graph" class="graph container hide">
 				<svg id="chart"></svg>
 			</div>
 		</div>
-		<div class="note left">
+		<div id="footer" class="footer left">
 			<span>data source:</span>
 			<a href="http://www.dronestre.am/" target="_blank"
 				title="http://www.dronestre.am">dronestre.am</a>
 			|
 			<span>code:</span>
 			<a href="https://github.com/RandomFractals/droneStrikes" target="_blank"
-				title="&copy;Random Fractals 2015 droneStrikes github">&copy;Random Fractals Inc. 2015 drone strikes data vis</a>
+				title="&copy;Random Fractals 2015 droneStrikes github">drone strikes</a>
 		</div>
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.5/js/ripples.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.5/js/material.min.js"></script>	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js"></script>	
 	<script src="http://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"></script>	

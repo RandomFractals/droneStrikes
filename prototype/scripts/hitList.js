@@ -34,8 +34,8 @@ HitList.prototype.loadHits = function () {
 			.addClass('list-item')
 			.appendTo(li);
 			
-		var mapLink = $('<button/>')
-			.addClass('btn-link')
+		var mapLink = $('<a/>')
+			.addClass('map-link')
 			.attr('onclick', 'zoomToHit(' + (hit.hitNumber-1) + ')')
 			.appendTo(header);
 			
@@ -51,7 +51,7 @@ HitList.prototype.loadHits = function () {
 			.appendTo(header);
 		
 		var storyLink = $('<a/>')
-			.addClass('list-group-item')
+			.addClass('list-item-link')
 			.attr('href', hit.link)
 			.attr('target', '_blank')
 			.text(hit.narrative)
@@ -59,10 +59,10 @@ HitList.prototype.loadHits = function () {
 			
 		if ( hit.summary.length > 0 ) {		
 			var story = $('<p/>')
-			.addClass('list-group-item-text')
+			.addClass('list-item-text')
 			.text(hit.summary)
 			.appendTo(li);
-			story.after('<br />');
+			//story.after('<br />');
 		}
 		this.listItemCount++;
 	}	

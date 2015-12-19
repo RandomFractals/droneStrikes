@@ -1,42 +1,56 @@
-// navbar collapse fix
-@media (min-width: 300px) {
-	.navbar-header {
-		float: left;
-	}
-	.navbar-toggle {
-    display: none;
-	}
-	.navbar-collapse {
-    border-top: 0 none;
-    box-shadow: none;
-    width: auto;
-	}
-	.navbar-collapse.collapse {
-    display: block !important;
-    height: auto !important;
-    padding-bottom: 0;
-    overflow: visible !important;
-	}
-	.navbar-nav {
-    float: left !important;
-    margin: 0;
-	}
-	.navbar-nav>li {
-    float: left;
-	}
-	.navbar-nav>li>a {
-    padding-top: 15px;
-    padding-bottom: 15px;
-	}
+body {
+	background-color: #fff;
+	color: #000000;	
+	font-family: 'Istok Web', Helvetica, Arial, FreeSans, sans-serif;
+	margin: 0px;
+}
+
+
+/* div magic styles */
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+	right: 0;
+	width: 180px;
+}
+
+.clear {
+	clear: both;
+}
+
+.hide {
+	display: none;
+}
+
+.show {
+	display: block;
+}
+
+
+#toolbar {
+	background: #06f;	
+	margin: 0px;
+	padding: 0px;		
+	position: fixed;
+	top: 0px;
+	width: 100%;
+	height: 50px;
 }
 
 #content {
-	padding: 5px;
+	margin-top: 60px;
+	padding: 0px;
 	width: 100%;
+	overflow: hidden;	
 }
 
 #message {
 	padding-left: 10px;
+	font-size: .9em;	
+	color: #f60;	
 }
 
 /* data vis container styles */
@@ -49,7 +63,7 @@
 .map, .data, .graph {
 	background-color: #eee;
 	border: solid 1px #AACFE4;
-	border-radius: 5px;
+	border-radius: 0px;
 	box-shadow: 0px 0px 10px #ccc;	
 	margin: 0px;	
 	overflow: hidden;
@@ -60,10 +74,85 @@
 }
 
 
+/* menu link styles */
+a {
+	color: #06f;
+  text-decoration: none;	
+}
+
+.menu {
+	margin: 0px;
+	padding: 5px;
+	list-style-type: none;	
+}
+
+.menu li {
+	display: inline;
+	line-height: 40px;
+}
+
+.menu li a {
+	background-color: #39f;
+	color: #fff;	
+  border-radius: 0px;
+	font-size: 0.9em;	
+	font-weight: normal;	
+	margin: 0px;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.menu li a:hover, .menu li[class=active]  a {
+	background-color: #f60;
+	color: #fff;
+}
+
+
+/* data list item styles */
+.data-list {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+.data-list > li {
+ 	border: solid 1px #ccc;
+	background-color: #fff;
+	margin: 5px;
+}
+
+.list-tem {
+	display: table-cell;
+	vertical-align: top;
+}
+
+.map-link, .list-item-link {
+	padding: 0px;
+	margin: 0px;
+}
+
+.list-item-text {
+	font-size: 0.9em;	
+	padding: 5px;
+	margin: 5px;
+}
+
+.selected {
+	background-color: #ddd;
+}
+
+
 /* app text elements + link styles */
-.note, .label {
+.footer, .label {
 	font-size: .8em;	
 	color: #333;
+	margin: 5px;
+}
+
+.popup-content {
+	display: inline;
+	width: 100%;
+	font-size: 1.2em;
 }
 
 .date {
@@ -73,22 +162,6 @@
 .link {
 	font-size: 0.9em;
 	color: #06f;
-}
-
-.list-group-item-text {
-	padding: 10px;
-}
-
-.selected {
-	background-color: #ddd;
-}
-
-
-/* stats bar styles */
-.popup-content {
-	display: inline;
-	width: 100%;
-	font-size: 1.2em;
 }
 
 .hits {
