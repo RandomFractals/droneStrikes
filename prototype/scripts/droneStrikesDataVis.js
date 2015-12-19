@@ -65,14 +65,14 @@ $(function() {
 	dataList = $('#dataList');
 	graphContainer = $('#graph');
 	
-	// handle init window size & resize
-	resizeView();
+	// add window resize handler
 	$(window).resize( function() {
 		resizeView();
 	});
 	
-	// create map view
+	// create map view and graph
 	map = new HitMap();
+	graph = new HitGraph();
 	
 	// show 50% view load progress
 	progressBar.css('width', '50%');
@@ -95,6 +95,9 @@ $(function() {
 		// parse data
 		droneStrikes.addHits(hitData.strike);
 		
+		// reset view size
+		resizeView();
+	
 		// show hits on map
 		map.showHits(droneStrikes.hitList);
 
@@ -104,9 +107,8 @@ $(function() {
 		// load hit list data
 		hitList = new HitList(dataList, droneStrikes.hitList).loadHits(); 
 
-		// create hit graph
-		graph = new HitGraph(droneStrikes.hitList, windowWidth, windowHeight - marginTop);
-		//chart = new HitChart(droneStrikes.hitList, windowWidth, windowHeight - marginTop);
+		// init graph
+		graph.showHits(droneStrikes.hitList, windowWidth, windowHeight - marginTop);
 		
 		// hide data load progress bar
 		progressContainer.addClass(Hide);
@@ -138,14 +140,9 @@ function resizeView() {
 	mapContainer.height(windowHeight - marginTop);
 	listContainer.height(windowHeight - marginTop);
 	graphContainer.height(windowHeight - marginTop);
-	if (chart !== null && chart !== undefined) {
-		chart.chart.width(windowWidth);
-		chart.chart.height(windowHeight - marginTop);
-		chart.chart.update();
-	}
 	
 	if (graph !== null && graph !== undefined) {
-		graph.redraw(windowWidth, windowHeight - marginTop);
+		graph.showHits(droneStrikes.hitList, windowWidth, windowHeight - marginTop);
 	}
 	
 	if (map !== null && map !== undefined && map.visible) {

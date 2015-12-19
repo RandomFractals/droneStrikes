@@ -1,20 +1,18 @@
 /**
 * Hit graph view component.
 */
-function HitGraph(hitList, windowWidth, windowHeight) {	
+function HitGraph() {	
 	this.barWidth = 10;
 	this.margin = {left: 40, top: 20, right: 20, bottom: 30};
   this.width = 0;
   this.height = 0;
-	this.dataList = hitList;
-	this.redraw(windowWidth, windowHeight);
 }
 
 
 /**
 * Redraws hit graph on init and window resize.
 */
-HitGraph.prototype.redraw = function(windowWidth, windowHeight) {
+HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
 
 	// update graph width and height
   this.width = windowWidth - this.margin.left - this.margin.right;
@@ -46,9 +44,9 @@ HitGraph.prototype.redraw = function(windowWidth, windowHeight) {
 		.append("g")
     .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
-  x.domain(d3.extent(this.dataList, function(d) { return d.date; }));
+  x.domain(d3.extent(dataList, function(d) { return d.date; }));
   //y.domain(d3.extent(hitList, function(d) { return d.minKills; }));
-	y.domain([0, d3.max(this.dataList, function(d) { return d.maxKills; })]);
+	y.domain([0, d3.max(dataList, function(d) { return d.maxKills; })]);
 
   svg.append("g")
       .attr("class", "x axis")
@@ -73,13 +71,13 @@ HitGraph.prototype.redraw = function(windowWidth, windowHeight) {
         );
 	
 	svg.append("path")
-      .datum(this.dataList)
+      .datum(dataList)
       .attr("class", "area")
       .attr("d", maxKillsArea);
 			
 	/*
 	svg.selectAll(".bar")
-    .data(this.dataList)
+    .data(dataList)
     .enter().append("rect")
       .attr("class", "bar")
       .attr("x", function(d) { return x(d.date); })
@@ -90,7 +88,7 @@ HitGraph.prototype.redraw = function(windowWidth, windowHeight) {
 	
 	// line 
   svg.append("path")
-      .datum(this.dataList)
+      .datum(dataList)
       .attr("class", "line")
       .attr("d", line);	
 }
