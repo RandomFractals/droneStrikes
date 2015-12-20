@@ -193,10 +193,10 @@ a {
 }
 
 
-/* data color coding + legends styles */
-#legendBox {
+/* stats, data color coding + legends styles */
+#statsdBox {
 	margin-left: 60px;
-	display: inline-block;
+	display: inline;
 }
 
 .legend {

@@ -39,19 +39,9 @@
 			<div class="message">
 				<p id="message">
 					Loading drone strikes data...
-				</p>					
-			</div>
-			<div id="progress" class="progress">
-				<div id="progressBar" class="progress-bar"></div>
-			</div>			
-			<div id="map" class="map container">
-			</div>
-			<div id="data" class="data container hide">
-				<ul id="dataList" class="data-list">
-				</ul>
-			</div>
-			<div id="graph" class="graph container hide">
-				<div id="legendBox">
+				</p>
+				<div id="statsBox" class="hide">
+					<span id="hitCount" class="label"></span>
 					<div class="legend">
 						<div class="legend-box red-box"></div>
 						<span id="childrenCount" class="label"></span>
@@ -67,7 +57,18 @@
 						<span id="badGuysCount" class="label"></span>
 						<span class="label">bad guys</span>
 					</div>
-				</div>
+				</div>				
+			</div>
+			<div id="progress" class="progress">
+				<div id="progressBar" class="progress-bar"></div>
+			</div>			
+			<div id="map" class="map container">
+			</div>
+			<div id="data" class="data container hide">
+				<ul id="dataList" class="data-list">
+				</ul>
+			</div>
+			<div id="graph" class="graph container hide">
 				<svg id="chart"></svg>
 			</div>
 		</div>
