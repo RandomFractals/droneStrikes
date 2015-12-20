@@ -5,7 +5,7 @@ function HitList(listContainer, hitList) {
 	this.listView = listContainer;
 	this.dataList = hitList;
 	this.listItemCount = 0;
-	this.maxHits = 20; // max hits to load for one page	
+	this.maxHits = 40; // max hits to load for one page	
 	HitList.instance = this; // quick and dirty for scroll
 	
 	// scroll handler for loading more data
