@@ -193,7 +193,47 @@ a {
 }
 
 
-/* data color coding styles */
+/* data color coding + legends styles */
+#legendBox {
+	margin-left: 60px;
+	display: inline-block;
+}
+
+.legend {
+	display: inline;
+	margin-left: 10px;
+}
+
+.legend-box {
+	width: 10px;
+	height: 10px;
+	display: inline-block;
+}
+
+.legend-text {
+	font-size: 0.8em;	
+}
+
+.red-box {	
+	background-color: #f00;
+	border: solid 1px #AACFE4;	
+}
+
+.orange-box {
+	background-color: #f60;
+	border: solid 1px #AACFE4;	
+}
+
+.green-box {
+	background-color: #0c0;
+	border: solid 1px #AACFE4;	
+}
+
+.blue-box {
+	background-color: #06f;
+	border: solid 1px #AACFE4;	
+}
+
 .red {
 	color: #f00;
 }
@@ -247,11 +287,4 @@ a {
 
 .bar:hover {
 	fill: #f60;
-}
-
-.legend {
-	padding: 5px;
-	font: 10px sans-serif;
-	background: yellow;
-	box-shadow: 2px 2px 1px #888;
 }

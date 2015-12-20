@@ -3,7 +3,7 @@
 */
 function HitGraph() {	
 	this.barWidth = 10;
-	this.margin = {left: 40, top: 20, right: 20, bottom: 30};
+	this.margin = {left: 40, top: 20, right: 20, bottom: 40};
   this.width = 0;
   this.height = 0;
 }
