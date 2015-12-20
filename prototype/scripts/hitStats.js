@@ -44,7 +44,7 @@ HitStats.prototype.updateStats = function(hit) {
 * Displays hits stats and legends.
 */
 HitStats.prototype.showStats = function() {
-	$('#hitCount').text(this.totalHits);
+	//$('#hitCount').text(this.totalHits);
 	$('#civiliansCount').text(this.civilians);
 	$('#childrenCount').text(this.children);
 	$('#badGuysCount').text(this.targets.length);
