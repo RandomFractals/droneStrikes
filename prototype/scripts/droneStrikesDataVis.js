@@ -11,6 +11,7 @@ var graphMenu;
 var message;
 var progressContainer;
 var progressBar;
+var statsBar;
 
 // map view
 var map; 
@@ -33,7 +34,7 @@ var chart;
 // window vars
 var windowWidth = 960;
 var windowHeight = 640;
-var marginTop = 140;
+var marginTop = 120;
 
 // UI state vars
 var Active = 'active';
@@ -58,6 +59,7 @@ $(function() {
 	
 	message = $('#message');
 	progressBar = $('#progressBar');
+	statsBar = $('#statsBar');
 	
 	progressContainer = $('#progress');	
 	mapContainer = $('#map');
@@ -101,8 +103,11 @@ $(function() {
 		// show hits on map
 		map.showHits(droneStrikes.hitList);
 
-		// show drone strikes stats
-		message.text(droneStrikes.stats.toString());
+		// hide msg and show drone strikes stats
+		message.addClass(Hide);
+		statsBar.css('display', 'inline');
+		droneStrikes.stats.showStats();
+		//message.text(droneStrikes.stats.toString());
 		
 		// load hit list data
 		hitList = new HitList(dataList, droneStrikes.hitList).loadHits(); 

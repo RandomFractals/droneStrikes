@@ -49,9 +49,14 @@ body {
 }
 
 #message {
-	padding-left: 10px;
 	font-size: .9em;	
 	color: #f60;	
+	margin: 10px;
+}
+
+.message {
+	height: 20px;
+	padding: 10px;
 }
 
 .progress {
@@ -64,7 +69,7 @@ body {
 .progress-bar {
 	background-color: #f60;
 	height: 4px;
-	width: 1px;
+	width: 25%;
 }
 
 /* data vis container styles */
@@ -194,14 +199,15 @@ a {
 
 
 /* stats, data color coding + legends styles */
-#statsdBox {
-	margin-left: 60px;
-	display: inline;
+#statsBar {
+	display: none;
+	font-size: .9em;
 }
 
 .legend {
 	display: inline;
-	margin-left: 10px;
+	margin: 0px;
+	padding-left: 10px;
 }
 
 .legend-box {
