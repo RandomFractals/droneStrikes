@@ -88,8 +88,7 @@ Hit.prototype.toHtml = function() {
 * Generates hit html tooltip for the bar graph.
 */
 Hit.prototype.tooltip = function() {
-	var html = this.dateString() + 
-		'<br/><br/>' +
+	var html = this.dateString() + '<br/><br/>' +
 		'<div class="legend"><div class="legend-box blue-box"></div><span> ' +
 		this.minKills + '-' + this.maxKills + ' killed</span></div><br/>' +
 		'<div class="legend"><div class="legend-box orange-box"></div><span> ' +		

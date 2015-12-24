@@ -2,7 +2,7 @@
 * Hit graph view component.
 */
 function HitGraph() {	
-	this.margin = {left: 40, top: 20, right: 40, bottom: 40};
+	this.margin = {left: 40, top: 20, right: 180, bottom: 40};
   this.width = 0;
   this.height = 0;
 }
@@ -110,9 +110,12 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
       .attr("width", barWidth-4) 
       .attr("y", function(d) { return y(d.maxKills); })
       .attr("height", function(d) { return maxHeight - y(d.maxKills); })
+			.on("click", function(d) {      
+				HitGraph.showTooltip(d3.event.pageX, d3.event.pageY, d);
+      })			
 			.on("mouseover", function(d) {      
 				HitGraph.showTooltip(d3.event.pageX, d3.event.pageY, d);
-      })                  
+      })
       .on("mouseout", function(d) {
 				HitGraph.hideTooltip();
       });
@@ -143,7 +146,7 @@ HitGraph.showTooltip = function(x, y, hitData) {
   HitGraph.tooltip.html(
 					hitData.tooltip() )
           .style('left', (d3.event.pageX + 20) + 'px')
-          .style('top', (d3.event.pageY - 40) + 'px');
+          .style('top', (d3.event.pageY - 60) + 'px');
 	
 }
 
