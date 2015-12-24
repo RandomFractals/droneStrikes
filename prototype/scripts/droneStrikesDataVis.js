@@ -244,6 +244,7 @@ function toggleMapDisplay(showMap) {
 		// hide hit list and graph
 		listContainer.removeClass(Show).addClass(Hide);
 		graphContainer.removeClass(Show).addClass(Hide);
+		graphMenu.removeClass(Active);		
 	} else {
 		
 		// hide map

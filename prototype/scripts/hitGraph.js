@@ -104,6 +104,9 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
       .attr("width", barWidth-4) 
       .attr("y", function(d) { return y(d.maxKills); })
       .attr("height", function(d) { return maxHeight - y(d.maxKills); })
+			.on("dblclick", function(d) {      
+				zoomToHit(d.hitNumber-1);
+			})
 			.on("click", function(d) {      
 				HitGraph.showTooltip(d3.event.pageX, d3.event.pageY, d);
       })			
