@@ -93,17 +93,12 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
       .attr("class", "area")
       .attr("d", maxKillsArea);
 	*/
-		
-	// draw max kills bars
-	var formatTime = d3.time.format("%b %e %Y");
-	svg.selectAll(".bar")
+
+	// create stacked bars
+	var bars = svg.selectAll(".bar-group")
     .data(dataList)
-    .enter().append("rect")
-      .attr("class", "bar")
-      .attr("x", function(d) { return d.hitNumber * barWidth; }) //x(d.date); })
-      .attr("width", barWidth-4) 
-      .attr("y", function(d) { return y(d.maxKills); })
-      .attr("height", function(d) { return maxHeight - y(d.maxKills); })
+    .enter().append("g")
+			.attr("class", "bar-group")
 			.on("dblclick", function(d) {      
 				zoomToHit(d.hitNumber-1);
 			})
@@ -116,7 +111,31 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
       .on("mouseout", function(d) {
 				HitGraph.hideTooltip();
       });
-				
+		
+		// max kills bar
+		bars.append("rect")
+      .attr("class", "bar blue")
+      .attr("x", function(d) { return d.hitNumber * barWidth; }) //x(d.date); })
+      .attr("width", barWidth-4) 
+      .attr("y", function(d) { return y(d.maxKills); })
+      .attr("height", function(d) { return maxHeight - y(d.maxKills); });
+
+		// civilians bar
+		bars.append("rect")
+      .attr("class", "bar orange")
+      .attr("x", function(d) { return d.hitNumber * barWidth; }) //x(d.date); })
+      .attr("width", barWidth-4) 
+      .attr("y", function(d) { return y(d.civilians); })
+      .attr("height", function(d) { return maxHeight - y(d.civilians); });
+
+		// children bar
+		bars.append("rect")
+      .attr("class", "bar red")
+      .attr("x", function(d) { return d.hitNumber * barWidth; }) //x(d.date); })
+      .attr("width", barWidth-4) 
+      .attr("y", function(d) { return y(d.children); })
+      .attr("height", function(d) { return maxHeight - y(d.children); });
+			
 	// line 
 	/*
   svg.append("path")

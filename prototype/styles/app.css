@@ -241,18 +241,22 @@ a {
 
 .red {
 	color: #f00;
+	fill: #f00;
 }
 
 .orange {
 	color: #f60;
+	fill: #f60;
 }
 
 .green {
 	color: #0c0;
+	fill: #0c0;
 }
 
 .blue {
 	color: #06f;
+	fill: #39f;
 }
 
 
@@ -286,12 +290,9 @@ a {
   stroke-width: 1.5px;
 }
 
-.bar {
-  fill: #39f;
-}
-
 .bar:hover {
-	fill: #f60;
+	stroke-width: 1px;
+	stroke: #39f;
 }
 
 div.tooltip {   
