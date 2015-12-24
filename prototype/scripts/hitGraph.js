@@ -94,8 +94,9 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
 	*/
 
 	// create tooltip div
-	var div = d3.select("body").append("div")   
-    .attr("class", "tooltip")               
+	var tooltip = d3.select("body").append("div")   
+    .attr("class", "tooltip")
+		.attr('id', 'tooltip')
     .style("opacity", 0);
 		
 	// draw max kills bars
@@ -109,18 +110,10 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
       .attr("y", function(d) { return y(d.maxKills); })
       .attr("height", function(d) { return maxHeight - y(d.maxKills); })
 			.on("mouseover", function(d) {      
-        div.transition()        
-          .duration(100)      
-          .style("opacity", .9);
-        div.html(formatTime(d.date) + 
-					'<br/>kills: '  + d.minKills + ' - ' + d.maxKills)  
-          .style("left", (d3.event.pageX) + "px")     
-          .style("top", (d3.event.pageY - 28) + "px");    
+				HitGraph.showTooltip(d3.event.pageX, d3.event.pageY, d);
       })                  
-      .on("mouseout", function(d) {       
-        div.transition()        
-        .duration(100)      
-        .style("opacity", 0);   
+      .on("mouseout", function(d) {
+				HitGraph.hideTooltip();
       });
 				
 	// line 
@@ -129,4 +122,36 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
       .datum(dataList)
       .attr("class", "line")
       .attr("d", line);	*/
+}
+
+
+// create bar chart tooltip
+HitGraph.tooltip = d3.select("body").append("div")   
+  .attr("class", "tooltip")
+	.attr('id', 'tooltip')
+  .style("opacity", 0);	
+
+	
+/**
+* Show bar tooltip.
+*/
+HitGraph.showTooltip = function(x, y, hitData) {
+  HitGraph.tooltip.transition()        
+          .duration(100)      
+          .style('opacity', .9);
+  HitGraph.tooltip.html(
+					hitData.tooltip() )
+          .style('left', (d3.event.pageX + 20) + 'px')
+          .style('top', (d3.event.pageY - 20) + 'px');
+	
+}
+
+
+/**
+* Hides bar tooltip.
+*/
+HitGraph.hideTooltip = function() {
+	HitGraph.tooltip.transition()
+					.duration(100)
+					.style('opacity', 0);
 }

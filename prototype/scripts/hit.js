@@ -83,6 +83,23 @@ Hit.prototype.toHtml = function() {
 	return html;
 }
 
+
+/**
+* Generates hit html tooltip for the bar graph.
+*/
+Hit.prototype.tooltip = function() {
+	var html = this.dateString() + 
+		'<br/><br/>' +
+		'<div class="legend"><div class="legend-box blue-box"></div><span> ' +
+		this.minKills + '-' + this.maxKills + ' killed</span></div><br/>' +
+		'<div class="legend"><div class="legend-box orange-box"></div><span> ' +		
+		this.civilians + ' civilians</span></div><br/>' +
+		'<div class="legend"><div class="legend-box red-box"></div><span> ' +		
+		this.children + ' children</span></div><br/>';
+	
+	return html;
+}
+
 	
 /** 
 * Quick and dirty data cleansing.

@@ -303,8 +303,8 @@ div.tooltip {
   border: solid 1px #aacfe4;
   border-radius: 5px;
   padding: 5px;             	
-  width: 140px;
-  height: 40px;                 
+  width: 120px;
+  height: 80px;                 
   pointer-events: none;         
   position: absolute;
   text-align: left;	
