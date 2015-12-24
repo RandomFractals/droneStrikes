@@ -1,15 +1,24 @@
 /**
 * Hit data list view component.
 */
-function HitList(listContainer, hitList) {
-	this.listView = listContainer;
+function HitList(hitList) {
+	
+	// list view vars
+	this.listMenuItem = $('#listMenuItem');
+	this.listView = $('#listView');
+	this.list = $('#dataList');		
+	this.listScrollPosition = 0;
+	this.selectedListItem = -1;
+	this.visible = false;
+	
+	// list data vars
 	this.dataList = hitList;
 	this.listItemCount = 0;
 	this.maxHits = 40; // max hits to load for one page	
 	HitList.instance = this; // quick and dirty for scroll
 	
 	// scroll handler for loading more data
-	$('#data').scroll( function () {
+	$('#listView').scroll( function () {
 		if (this.scrollHeight - $(this).scrollTop() - $(this).offset().top - $(this).height() <= 0) {
 			// load more data
 			HitList.instance.loadHits();
@@ -67,3 +76,45 @@ HitList.prototype.loadHits = function () {
 		this.listItemCount++;
 	}	
 }
+
+
+/**
+* Resets hit list display to show.
+*/
+HitList.prototype.resize = function (height) {
+	this.listView.height(height);
+}
+
+
+/**
+* Resets hit list display to show.
+*/
+HitList.prototype.show = function () {
+	
+	// show list menu and view
+	this.listMenuItem.addClass(Active);	
+	this.listView.addClass(Show);		
+	
+	// scroll to the last list view position
+	this.listView.scrollTop(this.listScrollPosition);		
+	this.visible = true;
+}
+
+
+/**
+* Hides hit list display.
+*/
+HitList.prototype.hide = function () {
+	
+	// hide list menu and view
+	this.listMenuItem.removeClass(Active);			
+	this.listView.removeClass(Show).addClass(Hide);
+	
+	if (this.visible) {
+		// save last scroll position for later
+		this.listScrollPosition = this.listView.scrollTop();
+	}
+	this.visible = false;
+}
+
+

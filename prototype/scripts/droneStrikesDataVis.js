@@ -4,43 +4,27 @@
 */
 
 // top UI comp. vars
-var mapMenu;
-var dataMenu;
-var graphMenu;
-
 var message;
 var progressContainer;
 var progressBar;
 var statsBar;
 
-// map view
-var map; 
+var mapMenuItem;
+var graphMenuItem;
+
+// view containers
+var mapView; 
 var mapContainer;
-
-// hit list view vars
-var listContainer;
-var dataList; // ul
-var histList; // list data view
-
-// data list scroll/selection vars
-var listScrollPosition = 0;
-var selectedListItem = -1;
+var listView; 
 
 // data graph/chart
 var graphContainer;
-var graph;
-var chart;
+var graphView;
 
 // window vars
 var windowWidth = 960;
 var windowHeight = 640;
 var marginTop = 120;
-
-// UI state vars
-var Active = 'active';
-var Selected = 'selected';
-var Show = 'show';
-var Hide = 'hide';
 
 // main view data model
 var droneStrikes = new DroneStrikes();
@@ -52,20 +36,19 @@ var droneStrikes = new DroneStrikes();
 */
 $(function() {
 
-	// initialize view comps
-	mapMenu = $('#mapMenu');
-	dataMenu = $('#dataMenu');
-	graphMenu = $('#graphMenu');
-	
+	// initialize top level view comps
 	message = $('#message');
 	progressBar = $('#progressBar');
 	statsBar = $('#statsBar');
 	
 	progressContainer = $('#progress');	
 	mapContainer = $('#map');
-	listContainer = $('#data');
-	dataList = $('#dataList');
 	graphContainer = $('#graph');
+	
+	mapMenuItem = $('#mapMenuItem');
+	listMenuItem = $('#listMenuItem');
+	graphMenuItem = $('#graphMenuItem');
+	
 	
 	// add window resize handler
 	$(window).resize( function() {
@@ -73,8 +56,8 @@ $(function() {
 	});
 	
 	// create map view and graph
-	map = new HitMap();
-	graph = new HitGraph();
+	mapView = new HitMap();
+	graphView = new HitGraph();
 	
 	// show 50% view load progress
 	progressBar.css('width', '50%');
@@ -101,7 +84,7 @@ $(function() {
 		resizeView();
 	
 		// show hits on map
-		map.showHits(droneStrikes.hitList);
+		mapView.showHits(droneStrikes.hitList);
 
 		// hide msg and show drone strikes stats
 		message.addClass(Hide);
@@ -110,10 +93,12 @@ $(function() {
 		//message.text(droneStrikes.stats.toString());
 		
 		// load hit list data
-		hitList = new HitList(dataList, droneStrikes.hitList).loadHits(); 
+		listView = new HitList(droneStrikes.hitList);
+		
+		listView.loadHits(); 
 
 		// init graph
-		graph.showHits(droneStrikes.hitList, windowWidth, windowHeight - marginTop);
+		graphView.showHits(droneStrikes.hitList, windowWidth, windowHeight - marginTop);
 		
 		// hide data load progress bar
 		progressContainer.addClass(Hide);
@@ -143,16 +128,20 @@ function resizeView() {
 	windowWidth = $(window).width();
 	windowHeight = $(window).height();
 	mapContainer.height(windowHeight - marginTop);
-	listContainer.height(windowHeight - marginTop);
-	graphContainer.height(windowHeight - marginTop);
 	
-	if (graph !== null && graph !== undefined) {
-		graph.showHits(droneStrikes.hitList, windowWidth, windowHeight - marginTop);
+	if (mapView !== null && mapView !== undefined && mapView.visible) {
+		mapView.map.invalidateSize();
 	}
 	
-	if (map !== null && map !== undefined && map.visible) {
-		map.map.invalidateSize();
+	//listContainer.height(windowHeight - marginTop);
+	if (listView !== null && listView !== undefined) {
+		listView.resize(windowHeight - marginTop);
 	}
+	
+	graphContainer.height(windowHeight - marginTop);	
+	if (graphView !== null && graphView !== undefined) {
+		graphView.showHits(droneStrikes.hitList, windowWidth, windowHeight - marginTop);
+	}	
 }
 
 	
@@ -177,7 +166,7 @@ function zoomToHit(hitNumber) {
 	toggleMapDisplay(true);
 	
 	// zoom to hit location
-	map.zoomToHit(hitNumber);
+	mapView.zoomToHit(hitNumber);
 }
 
 
@@ -188,9 +177,9 @@ function showHitMap() {
 	toggleMapDisplay(true); // show map
 	
 	// update menu links
-	mapMenu.addClass(Active);
-	dataMenu.removeClass(Active);	
-	graphMenu.removeClass(Active);	
+	mapMenuItem.addClass(Active);
+	dataMenuItem.removeClass(Active);	
+	graphMenuItem.removeClass(Active);	
 }
 	
 
@@ -202,9 +191,9 @@ function showData() {
 	graphContainer.removeClass(Show).addClass(Hide);
 	
 	// update menu links
-	mapMenu.removeClass(Active);
-	dataMenu.addClass(Active);	
-	graphMenu.removeClass(Active);		
+	mapMenuItem.removeClass(Active);
+	
+	graphMenuItem.removeClass(Active);		
 }
 
 
@@ -218,12 +207,11 @@ function showGraph() {
 	graphContainer.removeClass(Hide).addClass(Show);
 
 	// hide hit list view
-	listContainer.removeClass(Show).addClass(Hide);
+	listView.hide();
 	
 	// update menu links
-	mapMenu.removeClass(Active);
-	dataMenu.removeClass(Active);	
-	graphMenu.addClass(Active);	
+	mapMenuItem.removeClass(Active);
+	graphMenuItem.addClass(Active);	
 }
 
 
@@ -231,30 +219,24 @@ function showGraph() {
 * Toggles map, list view, and menu links display.
 */
 function toggleMapDisplay(showMap) {
-	if (showMap) {
-		
-		// save list scroll position
-		listScrollPosition = listContainer.scrollTop();
+	if (showMap) {		
+		listView.hide();
 		
 		// show map
 		mapContainer.removeClass(Hide).addClass(Show);
-		map.visible = true;
-		map.map.invalidateSize();
+		mapView.visible = true;
+		mapView.map.invalidateSize();
 		
-		// hide hit list and graph
-		listContainer.removeClass(Show).addClass(Hide);
+		// hide graph
 		graphContainer.removeClass(Show).addClass(Hide);
-		graphMenu.removeClass(Active);		
+		graphMenu.removeClass(Active);
 	} else {
 		
 		// hide map
 		mapContainer.removeClass(Show).addClass(Hide);
-		map.visible = false;
+		mapView.visible = false;
 		
 		// show hit list
-		listContainer.addClass(Show);		
-		
-		// scroll to last list view position
-		listContainer.scrollTop(listScrollPosition);
+		listView.show();		
 	}
 }
