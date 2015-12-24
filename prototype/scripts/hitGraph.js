@@ -93,12 +93,6 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
       .attr("class", "area")
       .attr("d", maxKillsArea);
 	*/
-
-	// create tooltip div
-	var tooltip = d3.select("body").append("div")   
-    .attr("class", "tooltip")
-		.attr('id', 'tooltip')
-    .style("opacity", 0);
 		
 	// draw max kills bars
 	var formatTime = d3.time.format("%b %e %Y");
@@ -130,10 +124,7 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
 
 
 // create bar chart tooltip
-HitGraph.tooltip = d3.select("body").append("div")   
-  .attr("class", "tooltip")
-	.attr('id', 'tooltip')
-  .style("opacity", 0);	
+HitGraph.tooltip = d3.select("#tooltip");
 
 	
 /**
