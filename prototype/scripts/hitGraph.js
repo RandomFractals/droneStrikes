@@ -2,7 +2,6 @@
 * Hit graph view component.
 */
 function HitGraph() {	
-	this.barWidth = 10;
 	this.margin = {left: 40, top: 20, right: 20, bottom: 40};
   this.width = 0;
   this.height = 0;
@@ -17,12 +16,22 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
 	// update graph width and height
   this.width = windowWidth - this.margin.left - this.margin.right;
   this.height = windowHeight - this.margin.top - this.margin.bottom;
-
-	var x = d3.time.scale().range([0, this.width]); //.rangeRound([0, width]);
-	var y = d3.scale.linear().range([this.height, 0]);
-	var xAxis = d3.svg.axis().scale(x).orient("bottom");
-	var yAxis = d3.svg.axis().scale(y).orient("left").ticks(5);
 	
+	var barWidth = 11;	
+	var maxWidth = dataList.length * barWidth;
+  var maxHeight = this.height;
+	
+	// create x/y scale ranges
+	//var x = d3.time.scale().range([0, maxWidth]); //this.width]); //.rangeRound([0, width]);
+	var x = d3.scale.ordinal().range([0, maxWidth]);
+	var y = d3.scale.linear().range([this.height, 0]);
+	
+	// create x/y axis and ticks
+	var xAxis = d3.svg.axis().scale(x).orient("bottom")
+		.ticks(2).tickFormat( d3.time.format("%m/%d/%Y") );
+	var yAxis = d3.svg.axis().scale(y).orient("left").ticks(10);
+	
+	// create min kills line
 	var line = d3.svg.line()
     .x(function(d) { return x(d.date); })
     .y(function(d) { return y(d.minKills); });
@@ -36,23 +45,29 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
     .x(function(d) { return x(d.date); })
     .y0(this.height)
     .y1(function(d) { return y(d.maxKills); });
-		
-	d3.select("#graph").selectAll("svg").remove();
+	
+	// remove and create svg for win resize, etc.
+	d3.select("#graph").selectAll("svg").remove();	
 	var svg = d3.select("#graph").append("svg")
     .attr("width", this.width + this.margin.left + this.margin.right)
     .attr("height", this.height + this.margin.top + this.margin.bottom)
 		.append("g")
     .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
-  x.domain(d3.extent(dataList, function(d) { return d.date; }));
-  //y.domain(d3.extent(hitList, function(d) { return d.minKills; }));
+	// map hit dates
+	x.domain( dataList.map( function(d){ return d.date; }));
+  //x.domain(d3.extent(dataList, function(d) { return d.date; }));
+	
+	// map max kills
 	y.domain([0, d3.max(dataList, function(d) { return d.maxKills; })]);
 
+	// create x axis group
   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + this.height + ")")
       .call(xAxis);
 
+	// create y axis group
   svg.append("g")
       .attr("class", "y axis")
       .call(yAxis)
@@ -63,32 +78,55 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
       .style("text-anchor", "end")
       .text("Kills");
 
+	// create y grid lines
 	svg.append("g")         
       .attr("class", "grid")
       .call(yAxis
-            .tickSize(-this.width, 0, 0)
+            .tickSize(-maxWidth, 0, 0)
             .tickFormat("")
         );
 	
+	/*
 	svg.append("path")
       .datum(dataList)
       .attr("class", "area")
       .attr("d", maxKillsArea);
-			
-	/*
+	*/
+
+	// create tooltip div
+	var div = d3.select("body").append("div")   
+    .attr("class", "tooltip")               
+    .style("opacity", 0);
+		
+	// draw max kills bars
+	var formatTime = d3.time.format("%b %e %Y");
 	svg.selectAll(".bar")
     .data(dataList)
     .enter().append("rect")
       .attr("class", "bar")
-      .attr("x", function(d) { return x(d.date); })
-      .attr("width", '10') 
-      .attr("y", function(d) { return y(d.minKills); })
-      .attr("height", function(d) { return height - y(d.minKills); });
-	*/
-	
+      .attr("x", function(d) { return d.hitNumber * barWidth; }) //x(d.date); })
+      .attr("width", barWidth-1) 
+      .attr("y", function(d) { return y(d.maxKills); })
+      .attr("height", function(d) { return maxHeight - y(d.maxKills); })
+			.on("mouseover", function(d) {      
+        div.transition()        
+          .duration(100)      
+          .style("opacity", .9);
+        div.html(formatTime(d.date) + 
+					'<br/>kills: '  + d.minKills + ' - ' + d.maxKills)  
+          .style("left", (d3.event.pageX) + "px")     
+          .style("top", (d3.event.pageY - 28) + "px");    
+      })                  
+      .on("mouseout", function(d) {       
+        div.transition()        
+        .duration(100)      
+        .style("opacity", 0);   
+      });
+				
 	// line 
+	/*
   svg.append("path")
       .datum(dataList)
       .attr("class", "line")
-      .attr("d", line);	
+      .attr("d", line);	*/
 }

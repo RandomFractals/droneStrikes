@@ -92,6 +92,9 @@ body {
 	overflow-y: scroll;
 }
 
+.graph {
+	overflow-x: scroll;
+}
 
 /* menu link styles */
 a {
@@ -293,4 +296,16 @@ a {
 
 .bar:hover {
 	fill: #f60;
+}
+
+div.tooltip {   
+  background: #cce5ff;
+  border: solid 1px #aacfe4;
+  border-radius: 5px;
+  padding: 5px;             	
+  width: 140px;
+  height: 40px;                 
+  pointer-events: none;         
+  position: absolute;
+  text-align: left;	
 }
