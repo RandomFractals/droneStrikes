@@ -277,7 +277,7 @@ a {
 }
 
 .area {
-  fill: steelblue;
+  fill: #06f;
 }
 
 .line {
@@ -287,7 +287,7 @@ a {
 }
 
 .bar {
-  fill: steelblue;
+  fill: #06f;
 }
 
 .bar:hover {

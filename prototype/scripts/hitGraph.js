@@ -52,6 +52,9 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
 	var svg = d3.select("#graph").append("svg")
     .attr("width", maxWidth + this.margin.left + this.margin.right)
     .attr("height", this.height + this.margin.top + this.margin.bottom)
+		.on("click", function(d) {      
+			HitGraph.hideTooltip();
+    })			
 		.append("g")
     .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
