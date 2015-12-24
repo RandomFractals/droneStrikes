@@ -2,7 +2,7 @@
 * Hit graph view component.
 */
 function HitGraph() {	
-	this.margin = {left: 40, top: 20, right: 20, bottom: 60};
+	this.margin = {left: 40, top: 20, right: 40, bottom: 40};
   this.width = 0;
   this.height = 0;
 }
@@ -17,7 +17,8 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
   this.width = windowWidth - this.margin.left - this.margin.right;
   this.height = windowHeight - this.margin.top - this.margin.bottom;
 	
-	var barWidth = 11;	
+	// bar vars
+	var barWidth = 24;	
 	var maxWidth = dataList.length * barWidth;
   var maxHeight = this.height;
 	
@@ -49,7 +50,7 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
 	// remove and create svg for win resize, etc.
 	d3.select("#graph").selectAll("svg").remove();	
 	var svg = d3.select("#graph").append("svg")
-    .attr("width", maxWidth) //this.width + this.margin.left + this.margin.right)
+    .attr("width", maxWidth + this.margin.left + this.margin.right)
     .attr("height", this.height + this.margin.top + this.margin.bottom)
 		.append("g")
     .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
@@ -106,7 +107,7 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
     .enter().append("rect")
       .attr("class", "bar")
       .attr("x", function(d) { return d.hitNumber * barWidth; }) //x(d.date); })
-      .attr("width", barWidth-1) 
+      .attr("width", barWidth-4) 
       .attr("y", function(d) { return y(d.maxKills); })
       .attr("height", function(d) { return maxHeight - y(d.maxKills); })
 			.on("mouseover", function(d) {      
@@ -142,7 +143,7 @@ HitGraph.showTooltip = function(x, y, hitData) {
   HitGraph.tooltip.html(
 					hitData.tooltip() )
           .style('left', (d3.event.pageX + 20) + 'px')
-          .style('top', (d3.event.pageY - 20) + 'px');
+          .style('top', (d3.event.pageY - 40) + 'px');
 	
 }
 
