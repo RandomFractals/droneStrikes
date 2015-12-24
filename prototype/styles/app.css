@@ -41,6 +41,19 @@ body {
 	height: 50px;
 }
 
+#filter {
+	position: fixed;
+	top: 15px;
+	height: 50px;
+	float: right;
+	right: 10px;
+}
+
+.filter-label {
+	color: #ccc;
+	font-size: 1.0em;
+}
+
 #content {
 	margin-top: 50px;
 	padding: 0px;
