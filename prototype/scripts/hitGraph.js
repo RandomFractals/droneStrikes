@@ -2,7 +2,7 @@
 * Hit graph view component.
 */
 function HitGraph() {	
-	this.margin = {left: 40, top: 20, right: 20, bottom: 40};
+	this.margin = {left: 40, top: 20, right: 20, bottom: 60};
   this.width = 0;
   this.height = 0;
 }
@@ -49,7 +49,7 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
 	// remove and create svg for win resize, etc.
 	d3.select("#graph").selectAll("svg").remove();	
 	var svg = d3.select("#graph").append("svg")
-    .attr("width", this.width + this.margin.left + this.margin.right)
+    .attr("width", maxWidth) //this.width + this.margin.left + this.margin.right)
     .attr("height", this.height + this.margin.top + this.margin.bottom)
 		.append("g")
     .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");

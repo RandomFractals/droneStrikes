@@ -307,5 +307,6 @@ div.tooltip {
   height: 80px;                 
   pointer-events: none;         
   position: absolute;
+	top: 0px;
   text-align: left;	
 }
