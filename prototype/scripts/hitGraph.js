@@ -1,10 +1,15 @@
 /**
 * Hit graph view component.
 */
-function HitGraph() {	
+function HitGraph(viewWidth, viewHeight, hitList) {	
+	// graph menu and view vars
+	this.graphMenuItem = $('#graphMenuItem');
+	this.graphView = $('#graphView');
 	this.margin = {left: 40, top: 20, right: 180, bottom: 40};
-  this.width = 0;
-  this.height = 0;
+  this.width = viewWidth;
+  this.height = viewHeight;
+	this.visible = false;
+	this.dataList = hitList;
 }
 
 
@@ -48,8 +53,8 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
     .y1(function(d) { return y(d.maxKills); });
 	
 	// remove and create svg for win resize, etc.
-	d3.select("#graph").selectAll("svg").remove();	
-	var svg = d3.select("#graph").append("svg")
+	d3.select("#graphView").selectAll("svg").remove();	
+	var svg = d3.select("#graphView").append("svg")
     .attr("width", maxWidth + this.margin.left + this.margin.right)
     .attr("height", this.height + this.margin.top + this.margin.bottom)
 		.append("g")
@@ -172,3 +177,36 @@ HitGraph.hideTooltip = function() {
 					.duration(100)
 					.style('opacity', 0);
 }
+
+
+/**
+* Resets graph display on window resize.
+*/
+HitGraph.prototype.resize = function (width, height) {
+	this.graphView.height(height);
+	if (this.visible) {
+		this.showHits(this.dataList, width, height);
+	}
+}
+
+/**
+* Resets hit graph display for show.
+*/
+HitGraph.prototype.show = function () {
+	this.graphMenuItem.addClass(Active);	
+	this.graphView.removeClass(Hide).addClass(Show);	
+	this.visible = true;
+}
+
+
+/**
+* Hides graph display.
+*/
+HitGraph.prototype.hide = function () {
+	this.graphMenuItem.removeClass(Active);			
+	this.graphView.removeClass(Show).addClass(Hide);
+	this.visible = false;
+}
+
+	
+	

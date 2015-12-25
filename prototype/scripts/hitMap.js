@@ -3,8 +3,11 @@
 */
 function HitMap(width, height) {
 	
+	this.mapMenuItem = $('#mapMenuItem');
+	this.mapView = $('#mapView');
+	
 	// create leaflet map
-	this.map = L.map('map');
+	this.map = L.map('mapView');
 	//this.map.locate({setView: true, maxZoom: 4}); // for geo-loc based on ip later
 	
 	// create map tiles
@@ -83,3 +86,36 @@ HitMap.prototype.zoomToHit = function(hitNumber) {
 	// show popup
 	marker.openPopup();
 }
+
+
+/**
+* Resets map display on window resize.
+*/
+HitMap.prototype.resize = function (height) {
+	this.mapView.height(height);
+	this.map.invalidateSize();
+}
+
+
+/**
+* Resets hit graph display for show.
+*/
+HitMap.prototype.show = function () {
+	this.mapMenuItem.addClass(Active);	
+	this.mapView.removeClass(Hide).addClass(Show);	
+	this.map.invalidateSize();	
+	this.visible = true;
+}
+
+
+/**
+* Hides map display.
+*/
+HitMap.prototype.hide = function () {
+	this.mapMenuItem.removeClass(Active);			
+	this.mapView.removeClass(Show).addClass(Hide);
+	this.visible = false;
+}
+
+
+

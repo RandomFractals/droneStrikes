@@ -3,32 +3,27 @@
 * top level app view controller.
 */
 
-// top UI comp. vars
+// progress UI vars
 var message;
 var progressContainer;
 var progressBar;
 var statsBar;
 
-var mapMenuItem;
-var graphMenuItem;
-
-// view containers
+// view comps
 var mapView; 
-var mapContainer;
 var listView; 
-
-// data graph/chart
-var graphContainer;
 var graphView;
 
-// window vars
+// window/view vars
 var windowWidth = 960;
 var windowHeight = 640;
 var marginTop = 120;
+var viewWidth = windowWidth;
+var viewHeight = windowHeight - marginTop;
 
 // main view data model
 var droneStrikes = new DroneStrikes();
-
+var selectedListItem = -1;
 
 /**
 * Creates leaflet map on document ready,
@@ -38,17 +33,9 @@ $(function() {
 
 	// initialize top level view comps
 	message = $('#message');
+	progressContainer = $('#progress');		
 	progressBar = $('#progressBar');
 	statsBar = $('#statsBar');
-	
-	progressContainer = $('#progress');	
-	mapContainer = $('#map');
-	graphContainer = $('#graph');
-	
-	mapMenuItem = $('#mapMenuItem');
-	listMenuItem = $('#listMenuItem');
-	graphMenuItem = $('#graphMenuItem');
-	
 	
 	// add window resize handler
 	$(window).resize( function() {
@@ -56,8 +43,8 @@ $(function() {
 	});
 	
 	// create map view and graph
-	mapView = new HitMap();
-	graphView = new HitGraph();
+	mapView = new HitMap(viewWidth, viewHeight);
+	graphView = new HitGraph(viewWidth, viewHeight);
 	
 	// show 50% view load progress
 	progressBar.css('width', '50%');
@@ -93,8 +80,7 @@ $(function() {
 		//message.text(droneStrikes.stats.toString());
 		
 		// load hit list data
-		listView = new HitList(droneStrikes.hitList);
-		
+		listView = new HitList(droneStrikes.hitList, windowHeight - marginTop);		
 		listView.loadHits(); 
 
 		// init graph
@@ -116,7 +102,7 @@ $(function() {
 		message.text('Failed to load drone strikes data. Check data source site.');
 	}
 	
-}); // end of doc reday
+}); // end of doc ready
 
 
 /**
@@ -127,20 +113,17 @@ $(function() {
 function resizeView() {
 	windowWidth = $(window).width();
 	windowHeight = $(window).height();
-	mapContainer.height(windowHeight - marginTop);
 	
 	if (mapView !== null && mapView !== undefined && mapView.visible) {
-		mapView.map.invalidateSize();
+		mapView.resize(windowHeight - marginTop);
 	}
 	
-	//listContainer.height(windowHeight - marginTop);
 	if (listView !== null && listView !== undefined) {
 		listView.resize(windowHeight - marginTop);
 	}
 	
-	graphContainer.height(windowHeight - marginTop);	
 	if (graphView !== null && graphView !== undefined) {
-		graphView.showHits(droneStrikes.hitList, windowWidth, windowHeight - marginTop);
+		graphView.resize(windowWidth, windowHeight - marginTop);
 	}	
 }
 
@@ -158,12 +141,7 @@ function zoomToHit(hitNumber) {
 	selectedListItem = droneStrikes.hitList.length - hitNumber - 1;
 	$('#dataList li').eq(selectedListItem).addClass(Selected);
 
-	// update menu links
-	mapMenu.addClass(Active);
-	dataMenu.removeClass(Active);	
-	
-	// show map
-	toggleMapDisplay(true);
+	showHitMap();
 	
 	// zoom to hit location
 	mapView.zoomToHit(hitNumber);
@@ -174,12 +152,9 @@ function zoomToHit(hitNumber) {
 * Displays map view.
 */
 function showHitMap() {
-	toggleMapDisplay(true); // show map
-	
-	// update menu links
-	mapMenuItem.addClass(Active);
-	dataMenuItem.removeClass(Active);	
-	graphMenuItem.removeClass(Active);	
+	listView.hide();
+	graphView.hide();
+	mapView.show();
 }
 	
 
@@ -187,13 +162,9 @@ function showHitMap() {
 * Hides map view and displays drone strikes list.
 */
 function showData() {
-	toggleMapDisplay(false); // hide map
-	graphContainer.removeClass(Show).addClass(Hide);
-	
-	// update menu links
-	mapMenuItem.removeClass(Active);
-	
-	graphMenuItem.removeClass(Active);		
+	listView.show();
+	mapView.hide();
+	graphView.hide();
 }
 
 
@@ -201,42 +172,7 @@ function showData() {
 * Shows hits graph.
 */
 function showGraph() {
-	toggleMapDisplay(false); // hide map
-	
-	// show graph
-	graphContainer.removeClass(Hide).addClass(Show);
-
-	// hide hit list view
 	listView.hide();
-	
-	// update menu links
-	mapMenuItem.removeClass(Active);
-	graphMenuItem.addClass(Active);	
-}
-
-
-/**
-* Toggles map, list view, and menu links display.
-*/
-function toggleMapDisplay(showMap) {
-	if (showMap) {		
-		listView.hide();
-		
-		// show map
-		mapContainer.removeClass(Hide).addClass(Show);
-		mapView.visible = true;
-		mapView.map.invalidateSize();
-		
-		// hide graph
-		graphContainer.removeClass(Show).addClass(Hide);
-		graphMenu.removeClass(Active);
-	} else {
-		
-		// hide map
-		mapContainer.removeClass(Show).addClass(Hide);
-		mapView.visible = false;
-		
-		// show hit list
-		listView.show();		
-	}
+	mapView.hide();
+	graphView.show();
 }
