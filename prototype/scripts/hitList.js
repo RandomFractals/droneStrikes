@@ -59,14 +59,14 @@ HitList.prototype.loadHits = function () {
 			
 		hit = this.dataList[this.dataList.length - this.listItemCount - 1];
 		// create hit list item
-		var li = $('<li/>').appendTo(this.listView);
+		var li = $('<li/>').appendTo(this.list);
 		var header = $('<div/>')
 			.addClass('list-item')
 			.appendTo(li);
 			
 		var mapLink = $('<a/>')
 			.addClass('map-link')
-			.attr('onclick', 'zoomToHit(' + (hit.hitNumber-1) + ')')
+			.attr('onclick', 'zoomToHit(' + (hit.number) + ')')
 			.appendTo(header);
 			
 		var mapImage = $('<img/>')
