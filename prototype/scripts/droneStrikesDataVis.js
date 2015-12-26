@@ -8,6 +8,7 @@ var message;
 var progressContainer;
 var progressBar;
 var statsBar;
+var yearFilter;
 
 // view comps
 var mapView; 
@@ -36,6 +37,7 @@ $(function() {
 	progressContainer = $('#progress');		
 	progressBar = $('#progressBar');
 	statsBar = $('#statsBar');
+	yearFilter = $('#yearFilter');
 	
 	// add window resize handler
 	$(window).resize( function() {
@@ -76,6 +78,11 @@ $(function() {
 		droneStrikes.stats.showStats();
 		droneStrikes.stats.updateYearFilter();
 		//message.text(droneStrikes.stats.toString());
+
+		// add year filter handler
+		yearFilter.change(function() {
+			console.log('selected year: ' + yearFilter.val());
+		});
 		
 		// create list view
 		listView = new HitList(droneStrikes.hitList, windowHeight - marginTop);		
