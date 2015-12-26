@@ -82,6 +82,9 @@ $(function() {
 		// add year filter handler
 		yearFilter.change(function() {
 			console.log('selected year: ' + yearFilter.val());
+			var hitList = droneStrikes.getHits(yearFilter.val());
+			reloadData(hitList);
+			console.log('selected year hit list: ' + hitList.length);
 		});
 		
 		// create list view

@@ -81,6 +81,25 @@ DroneStrikes.prototype.addHits = function(strikesData) {
 
 
 /**
+* Gets drone hits for the specified year.
+*/
+DroneStrikes.prototype.getHits = function(year) {
+	if (year === 'all') {
+		return this.hitList; // all
+	}
+	
+	// get hit list for the specified year
+	var dataList = [];
+	for (var i=0; i < this.hitList.length; i++) {
+		if (this.hitList[i].date.getFullYear() == year) {
+			dataList.push(this.hitList[i]);
+		}
+	}
+	return dataList;
+}
+
+
+/**
 * Strikes date metrics.
 */
 DroneStrikes.prototype.totalHitDays = function() {
