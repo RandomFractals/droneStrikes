@@ -29,17 +29,29 @@ function HitList(hitList, height) {
 
 
 /**
-* Loads max hits for the hit list data display.
+* Updates list data display with new hit list.
 */
-HitList.prototype.loadHits = function (hitList) {
-	//console.log('list length: ' + this.listItemCount);
-	if (hitList !== null && hitList !== undefined &&
-		this.dataList.length !== hitList.length) {
-		// reset data list and view for new list didsplay
+HitList.prototype.reset = function(hitList) {
+	if (hitList !== null && hitList !== undefined) {
+		// reset data list and view vars for new list didsplay
 		this.dataList = hitList;
 		this.listItemCount = 0;
 		this.selectedListItem = -1;
-	}
+		
+		// clear stale list view
+		this.list.empty();
+		
+		// load new hits
+		this.loadHits();
+	}	
+}
+
+
+/**
+* Loads max hits for the hit list data display.
+*/
+HitList.prototype.loadHits = function () {
+	//console.log('list length: ' + this.listItemCount);
 	
 	// load next max hits
 	var hit;	
