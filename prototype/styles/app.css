@@ -102,6 +102,7 @@ body {
 }
 
 .data {
+	background-color: #fff;	
 	overflow-y: scroll;
 }
 
@@ -168,9 +169,15 @@ a {
 
 .list-item {
  	border: solid 1px #ccc;
+	border-bottom: 0px;
 	border-collapse: collapse;
 	background-color: #fff;
 	width: 100%;
+}
+
+.list-item-text {
+	background-color: #fff;
+	margin: 0px;
 }
 
 .map-link, .list-item-link {
