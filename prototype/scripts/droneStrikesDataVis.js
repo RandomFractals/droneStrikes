@@ -70,9 +70,6 @@ $(function() {
 		// reset view size
 		resizeView();
 	
-		// show hits on map
-		mapView.showHits(droneStrikes.hitList);
-
 		// hide msg and show drone strikes stats
 		message.addClass(Hide);
 		statsBar.css('display', 'inline');
@@ -80,17 +77,27 @@ $(function() {
 		droneStrikes.stats.updateYearFilter();
 		//message.text(droneStrikes.stats.toString());
 		
-		// load hit list data
+		// create list view
 		listView = new HitList(droneStrikes.hitList, windowHeight - marginTop);		
-		listView.loadHits(); 
 
-		// init graph
-		graphView.showHits(droneStrikes.hitList, windowWidth, windowHeight - marginTop);
+		// reload all data views
+		reloadData(droneStrikes.hitList);
 		
 		// hide data load progress bar
 		progressContainer.addClass(Hide);
 		
 		console.log(droneStrikes.stats.logStats());		
+	}
+	
+	
+	/**
+	* Resets all views with new hit list to display.
+	*/
+	function reloadData(hitList) {
+		mapView.showHits(hitList);
+		//droneStrikes.stats.showStats();
+		listView.loadHits(hitList); 
+		graphView.showHits(hitList, windowWidth, windowHeight - marginTop);		
 	}
 	
 	

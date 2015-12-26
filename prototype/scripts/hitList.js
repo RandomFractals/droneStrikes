@@ -31,8 +31,17 @@ function HitList(hitList, height) {
 /**
 * Loads max hits for the hit list data display.
 */
-HitList.prototype.loadHits = function () {
+HitList.prototype.loadHits = function (hitList) {
 	//console.log('list length: ' + this.listItemCount);
+	if (hitList !== null && hitList !== undefined &&
+		this.dataList.length !== hitList.length) {
+		// reset data list and view for new list didsplay
+		this.dataList = hitList;
+		this.listItemCount = 0;
+		this.selectedListItem = -1;
+	}
+	
+	// load next max hits
 	var hit;	
 	for (var i = 0; (i < this.maxHits && this.listItemCount <= this.dataList.length-1); i++) {
 			
