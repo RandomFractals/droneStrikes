@@ -82,7 +82,7 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Kills");
+      .text("killed");
 
 	// create y grid lines
 	svg.append("g")         

@@ -77,6 +77,7 @@ $(function() {
 		message.addClass(Hide);
 		statsBar.css('display', 'inline');
 		droneStrikes.stats.showStats();
+		droneStrikes.stats.updateYearFilter();
 		//message.text(droneStrikes.stats.toString());
 		
 		// load hit list data

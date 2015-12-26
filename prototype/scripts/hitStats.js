@@ -41,6 +41,35 @@ HitStats.prototype.updateStats = function(hit) {
 
 
 /**
+* Returns the years for hits year filter.
+*/
+HitStats.prototype.getYears = function() {
+	var years = [];
+	var startYear = this.startTime.getFullYear();
+	var endYear = this.endTime.getFullYear();
+	for (var year = startYear; year <= endYear; year++) {
+		years.push(year);
+	}
+	return years;
+}
+
+
+/**
+* Updates year filter for the strikes display.
+*/
+HitStats.prototype.updateYearFilter = function() {
+	var yearFilter = $('#yearFilter');
+	var yearOption;
+	var years = this.getYears();
+	for (var i = 0; i < years.length; i++) {
+		yearOption = $('<option/>')
+			.text(years[i])
+			.appendTo(yearFilter);
+	}
+}
+
+
+/**
 * Displays hits stats and legends.
 */
 HitStats.prototype.showStats = function() {
@@ -78,4 +107,5 @@ HitStats.prototype.logStats = function () {
 	console.log('injuries: ' + this.injuries);	
 	console.log('targets: ' + this.targets.length);
 	console.log('names: ' + this.names.length);
+	console.log('years: ' + this.getYears());
 }
