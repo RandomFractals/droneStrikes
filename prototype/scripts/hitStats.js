@@ -7,9 +7,9 @@ function HitStats(hitData) {
 	// some base date metrics
 	this.startTime = new Date(); // now
 	this.endTime = new Date(0);	// 01/01/1970	
-	this.uniqueHitDays = 0;
 	this.totalHits = 0;
-
+	this.uniqueHitYears = 0;
+	
 	// hit stats init
 	this.minKills = 0;
 	this.maxKills = 0;
@@ -100,7 +100,7 @@ HitStats.prototype.logStats = function () {
 	// log hit history stats
 	console.log('first strike: ' + this.startTime.toString());
 	console.log('last strike: ' + this.endTime.toString());
-	console.log('unique hit days: ' + this.uniqueHitDays); 
+	console.log('unique hit years: ' + this.getYears()); 
 	console.log('min kills: ' + this.minKills);
 	console.log('max kills: ' + this.maxKills);	
 	console.log('civilians: ' + this.civilians);	

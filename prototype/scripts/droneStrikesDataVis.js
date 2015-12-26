@@ -68,7 +68,8 @@ $(function() {
 	function loadData(hitData) {
 	
 		// parse data
-		droneStrikes.addHits(hitData.strike);
+		var hitYearsDataMap = droneStrikes.addHits(hitData.strike);
+		console.log('hit years: ' + Object.keys(hitYearsDataMap) );
 		
 		// reset view size
 		resizeView();

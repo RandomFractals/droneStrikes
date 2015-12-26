@@ -6,6 +6,7 @@ function DroneStrikes() {
 	// hits
 	this.hitList = [];
 	this.stats = new HitStats();
+	this.filter = 'all';
 		
 	// hits date map for data vis
 	var _hitDateMap;	
@@ -26,7 +27,7 @@ function DroneStrikes() {
 		for (var i=0; i < this.hitList.length; i++) {	
 			// get hit and date key
 			hit = this.hitList[i];		
-			dateKey = hit.dateString();
+			dateKey = hit.date.getFullYear(); //hit.dateString();
 		
 			// get hit date list
 			hitDateList = _hitDateMap[dateKey];
@@ -41,7 +42,7 @@ function DroneStrikes() {
 		}
 		
 		// update unique hit days count
-		this.stats.uniqueHitDays = Object.keys(_hitDateMap).length;
+		this.stats.uniqueHitYears = Object.keys(_hitDateMap).length;
 		
 		return _hitDateMap;
 	}
@@ -98,6 +99,7 @@ DroneStrikes.prototype.getHits = function(year) {
 			hit.number = i; // reset index for lookup
 		}
 	}
+	this.filter = year;
 	return dataList;
 }
 
