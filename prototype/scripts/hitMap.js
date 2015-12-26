@@ -41,7 +41,7 @@ function HitMap(width, height) {
 	* Resets map view centered on middle east.
 	*/
 	this.resetMapView = function () {
-		this.map.setView([29.0, 41.0], 3); // middle east lat/long + zoom	
+		this.map.setView([29.0, 41.0], 2); // middle east lat/long + zoom	
 	};
 }
 
