@@ -9,7 +9,6 @@ function HitGraph(viewWidth, viewHeight, hitList) {
   this.width = viewWidth;
   this.height = viewHeight;
 	this.visible = false;
-	this.dataList = hitList;
 }
 
 
@@ -17,7 +16,7 @@ function HitGraph(viewWidth, viewHeight, hitList) {
 * Redraws hit graph on init and window resize.
 */
 HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
-
+	
 	// update graph width and height
   this.width = windowWidth - this.margin.left - this.margin.right;
   this.height = windowHeight - this.margin.top - this.margin.bottom;
@@ -61,7 +60,7 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
     .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
 	// map hit dates
-	x.domain( dataList.map( function(d){ return d.date; }));
+	x.domain(dataList.map( function(d){ return d.date; }));
   //x.domain(d3.extent(dataList, function(d) { return d.date; }));
 	
 	// map max kills
