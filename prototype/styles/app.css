@@ -319,7 +319,7 @@ a {
 
 .bar:hover {
 	stroke-width: 1px;
-	stroke: #39f;
+	stroke: #000;
 }
 
 div.tooltip {   
