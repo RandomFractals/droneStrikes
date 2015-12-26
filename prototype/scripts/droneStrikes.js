@@ -83,16 +83,19 @@ DroneStrikes.prototype.addHits = function(strikesData) {
 /**
 * Gets drone hits for the specified year.
 */
-DroneStrikes.prototype.getHits = function(year) {
-	if (year === 'all') {
-		return this.hitList; // all
-	}
-	
+DroneStrikes.prototype.getHits = function(year) {	
 	// get hit list for the specified year
 	var dataList = [];
-	for (var i=0; i < this.hitList.length; i++) {
-		if (this.hitList[i].date.getFullYear() == year) {
-			dataList.push(this.hitList[i]);
+	var hit;
+	var count = 0;
+	for (var i = 0; i < this.hitList.length; i++) {
+		hit = this.hitList[i];
+		if (hit.date.getFullYear() == year) {
+			dataList.push(hit);
+			hit.number = count++; // for bars
+		} else if (year == 'all') { // for all years
+			dataList.push(hit);
+			hit.number = i; // reset index for lookup
 		}
 	}
 	return dataList;

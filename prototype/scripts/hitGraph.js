@@ -119,7 +119,7 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
 		// max kills bar
 		bars.append("rect")
       .attr("class", "bar blue")
-      .attr("x", function(d) { return d.hitNumber * barWidth; }) //x(d.date); })
+      .attr("x", function(d) { return d.number * barWidth; }) //x(d.date); })
       .attr("width", barWidth-4) 
       .attr("y", function(d) { return y(d.maxKills); })
       .attr("height", function(d) { return maxHeight - y(d.maxKills); });
@@ -127,7 +127,7 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
 		// civilians bar
 		bars.append("rect")
       .attr("class", "bar orange")
-      .attr("x", function(d) { return d.hitNumber * barWidth; }) //x(d.date); })
+      .attr("x", function(d) { return d.number * barWidth; }) //x(d.date); })
       .attr("width", barWidth-4) 
       .attr("y", function(d) { return y(d.civilians); })
       .attr("height", function(d) { return maxHeight - y(d.civilians); });
@@ -135,7 +135,7 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
 		// children bar
 		bars.append("rect")
       .attr("class", "bar red")
-      .attr("x", function(d) { return d.hitNumber * barWidth; }) //x(d.date); })
+      .attr("x", function(d) { return d.number * barWidth; }) //x(d.date); })
       .attr("width", barWidth-4) 
       .attr("y", function(d) { return y(d.children); })
       .attr("height", function(d) { return maxHeight - y(d.children); });

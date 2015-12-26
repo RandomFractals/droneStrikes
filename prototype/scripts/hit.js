@@ -6,6 +6,7 @@ function Hit(hitData) {
 	// hit info
 	this.hitId = hitData._id;
 	this.hitNumber = hitData.number;
+	this.number = hitData.number;
 	this.date = new Date(hitData.date);
 	this.tweetId = hitData.tweet_id;
 	this.bureauId = hitData.bureau_id;
