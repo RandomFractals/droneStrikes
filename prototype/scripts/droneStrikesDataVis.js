@@ -96,7 +96,7 @@ $(function() {
 	function reloadData(hitList) {
 		mapView.showHits(hitList);
 		//droneStrikes.stats.showStats();
-		listView.loadHits(hitList); 
+		listView.loadHits(); 
 		graphView.showHits(hitList, windowWidth, windowHeight - marginTop);		
 	}
 	
@@ -121,17 +121,19 @@ $(function() {
 function resizeView() {
 	windowWidth = $(window).width();
 	windowHeight = $(window).height();
+	viewWidth = windowWidth;
+	viewHeight = windowHeight - marginTop;
 	
 	if (mapView !== null && mapView !== undefined && mapView.visible) {
-		mapView.resize(windowHeight - marginTop);
+		mapView.resize(viewHeight);
 	}
 	
 	if (listView !== null && listView !== undefined) {
-		listView.resize(windowHeight - marginTop);
+		listView.resize(viewHeight);
 	}
 	
 	if (graphView !== null && graphView !== undefined) {
-		graphView.resize(windowWidth, windowHeight - marginTop);
+		graphView.resize(viewWidth, viewHeight);
 	}	
 }
 

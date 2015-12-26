@@ -63,6 +63,7 @@ HitStats.prototype.updateYearFilter = function() {
 	var years = this.getYears();
 	for (var i = 0; i < years.length; i++) {
 		yearOption = $('<option/>')
+			.attr('value', years[i])
 			.text(years[i])
 			.appendTo(yearFilter);
 	}
