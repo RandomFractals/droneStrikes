@@ -156,11 +156,11 @@ a {
 }
 
 .data-list li {
- 	border: solid 1px #ccc;
+ 	border: 0px;
 	border-collapse: collapse;
 	background-color: #fff;
 	margin: 0px;
-	padding: 5px;
+	padding: 0px;
 }
 
 .data-list li[class=selected] {
@@ -302,16 +302,6 @@ a {
 }
 .grid path {
   stroke-width: 0;
-}
-
-.area {
-  fill: #06f;
-}
-
-.line {
-  fill: none;
-  stroke: #f60;
-  stroke-width: 1.5px;
 }
 
 .bar:hover {
