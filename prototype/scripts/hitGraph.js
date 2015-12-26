@@ -94,7 +94,15 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
       .on("mouseout", function(d) {
 				HitGraph.hideTooltip();
       });
-		
+
+		// injuries bar
+		bars.append("rect")
+      .attr("class", "bar yellow")
+      .attr("x", function(d) { return d.number * barWidth; }) //x(d.date); })
+      .attr("width", barWidth-4) 
+      .attr("y", function(d) { return y(d.injuries); })
+      .attr("height", function(d) { return maxHeight - y(d.injuries); });
+			
 		// max kills bar
 		bars.append("rect")
       .attr("class", "bar blue")

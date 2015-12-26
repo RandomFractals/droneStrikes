@@ -263,6 +263,16 @@ a {
 	border: solid 1px #AACFE4;	
 }
 
+.yellow-box {
+	background-color: #ff0;
+	border: solid 1px #AACFE4;	
+}
+
+.bar {
+	stroke-width: 1px;
+	stroke: #666;
+}
+
 .red {
 	color: #f00;
 	fill: #f00;
@@ -283,6 +293,9 @@ a {
 	fill: #39f;
 }
 
+.yellow {
+	fill: #ff0;
+}
 
 /* graph styles */
 .axis path,
