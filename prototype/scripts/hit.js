@@ -95,7 +95,9 @@ Hit.prototype.tooltip = function() {
 		'<div class="legend"><div class="legend-box orange-box"></div><span> ' +		
 		this.civilians + ' civilians</span></div><br/>' +
 		'<div class="legend"><div class="legend-box red-box"></div><span> ' +		
-		this.children + ' children</span></div><br/>';
+		this.children + ' children</span></div><br/>' +
+		'<div class="legend"><div class="legend-box yellow-box"></div><span> ' +		
+		this.injuries + ' injuries</span></div><br/>';
 	
 	return html;
 }
