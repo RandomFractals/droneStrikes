@@ -36,21 +36,6 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
 		.ticks(2).tickFormat( d3.time.format("%m/%d/%Y") );
 	var yAxis = d3.svg.axis().scale(y).orient("left").ticks(10);
 	
-	// create min kills line
-	var line = d3.svg.line()
-    .x(function(d) { return x(d.date); })
-    .y(function(d) { return y(d.minKills); });
-
-	var minKillsArea = d3.svg.area()
-    .x(function(d) { return x(d.date); })
-    .y0(this.height)
-    .y1(function(d) { return y(d.minKills); });
-
-	var maxKillsArea = d3.svg.area()
-    .x(function(d) { return x(d.date); })
-    .y0(this.height)
-    .y1(function(d) { return y(d.maxKills); });
-	
 	// remove and create svg for win resize, etc.
 	d3.select("#graphView").selectAll("svg").remove();	
 	var svg = d3.select("#graphView").append("svg")
@@ -90,13 +75,6 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
             .tickSize(-maxWidth, 0, 0)
             .tickFormat("")
         );
-	
-	/*
-	svg.append("path")
-      .datum(dataList)
-      .attr("class", "area")
-      .attr("d", maxKillsArea);
-	*/
 
 	// create stacked bars
 	var bars = svg.selectAll(".bar-group")
@@ -104,7 +82,7 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
     .enter().append("g")
 			.attr("class", "bar-group")
 			.on("dblclick", function(d) {      
-				zoomToHit(d.hitNumber-1);
+				zoomToHit(d.number);
 			})
 			.on("click", function(d) {      
 				HitGraph.showTooltip(d3.event.pageX, d3.event.pageY, d);
@@ -139,13 +117,6 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
       .attr("width", barWidth-4) 
       .attr("y", function(d) { return y(d.children); })
       .attr("height", function(d) { return maxHeight - y(d.children); });
-			
-	// line 
-	/*
-  svg.append("path")
-      .datum(dataList)
-      .attr("class", "line")
-      .attr("d", line);	*/
 }
 
 
