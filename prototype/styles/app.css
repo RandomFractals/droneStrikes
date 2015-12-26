@@ -153,11 +153,12 @@ a {
 	padding: 0px;
 }
 
-.data-list > li {
+.data-list li {
  	border: solid 1px #ccc;
 	border-collapse: collapse;
 	background-color: #fff;
 	margin: 0px;
+	padding: 5px;
 }
 
 .data-list li[class=selected] {
@@ -165,8 +166,10 @@ a {
 }
 
 .list-item {
-	display: table-cell;
-	vertical-align: top;
+ 	border: solid 1px #ccc;
+	border-collapse: collapse;
+	background-color: #fff;
+	width: 100%;
 }
 
 .map-link, .list-item-link {
