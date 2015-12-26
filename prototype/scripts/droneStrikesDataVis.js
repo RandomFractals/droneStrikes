@@ -104,9 +104,9 @@ $(function() {
 	* Resets all views with new hit list to display.
 	*/
 	function reloadData(hitList) {
-		mapView.showHits(hitList);
+		mapView.reset(hitList);
 		//droneStrikes.stats.showStats();
-		listView.loadHits(); 
+		listView.reset(hitList);
 		graphView.showHits(hitList, windowWidth, windowHeight - marginTop);		
 	}
 	

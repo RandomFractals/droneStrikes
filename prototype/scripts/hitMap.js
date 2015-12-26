@@ -3,6 +3,7 @@
 */
 function HitMap(width, height) {
 	
+	// init map menu item and view
 	this.mapMenuItem = $('#mapMenuItem');
 	this.mapView = $('#mapView');
 	
@@ -25,9 +26,11 @@ function HitMap(width, height) {
 		'Satellite': MQ.satelliteLayer()
 	}).addTo(this.map);
 
-	// create marker cluster group and list
+	// create new marker cluster group and list
 	this.markers = new L.MarkerClusterGroup();
 	this.markerList = [];
+	this.heatMapLayer = null;
+	this.dataList = [];
 	
 	// save width and height for resize
 	this.width = width;
@@ -44,29 +47,52 @@ function HitMap(width, height) {
 
 
 /**
+* Resets map view for new hit list display.
+*/
+HitMap.prototype.reset = function(hitList) {
+	
+	// save new data list
+	this.dataList = hitList;
+	
+	// remove stale map layers
+	if (this.heatMapLayer !== null && this.heatMapLayer !== undefined) {
+		this.map.removeLayer(this.heatMapLayer);
+		this.map.removeLayer(this.markers);
+		this.markers = new L.MarkerClusterGroup();
+		this.markerList = [];
+	}
+	
+	// show new hit list on map
+	this.showHits();
+}
+
+
+/**
 * Shows dronke strike hits on the map.
 */
-HitMap.prototype.showHits = function (hitList) {
+HitMap.prototype.showHits = function () {	
 	// add data point map markers
 	var marker;
 	var hit;
 	var heatPoints = [];
-	for (var i=0; i < hitList.length; i++) {
-		hit = hitList[i];
+	for (var i=0; i < this.dataList.length; i++) {
+		hit = this.dataList[i];
 		marker = L.marker([hit.latitude, hit.longitude]);
 		marker.bindPopup(hit.toHtml());
 		this.markers.addLayer(marker);
 		this.markerList.push(marker);
 		heatPoints.push([hit.latitude, hit.longitude, 1.0]); // intensity
 	}		
+	
+	// add map markers
 	this.map.addLayer(this.markers);
 		
 	// create heatmap strictly for visual effect
-	var heatMapLayer = L.heatLayer(heatPoints, {minOpacity: 0.3, radius: 30});
-	this.map.addLayer(heatMapLayer);	
+	this.heatMapLayer = L.heatLayer(heatPoints, {minOpacity: 0.3, radius: 30});
+	this.map.addLayer(this.heatMapLayer);	
 	
 	// center on middle east
-	this.resetMapView();
+	this.resetMapView();	
 }
 
 
