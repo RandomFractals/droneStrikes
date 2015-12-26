@@ -86,6 +86,7 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
 			})
 			.on("click", function(d) {      
 				HitGraph.showTooltip(d3.event.pageX, d3.event.pageY, d);
+				zoomToHit(d.number);
       })			
 			.on("mouseover", function(d) {      
 				HitGraph.showTooltip(d3.event.pageX, d3.event.pageY, d);
