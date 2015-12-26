@@ -1,7 +1,7 @@
 /**
 * Hit data list view component.
 */
-function HitList(hitList, height) {
+function HitList(width, height) {
 	
 	// list view vars
 	this.listMenuItem = $('#listMenuItem');
@@ -12,7 +12,7 @@ function HitList(hitList, height) {
 	this.visible = false;
 	
 	// list data vars
-	this.dataList = hitList;
+	this.dataList = null;
 	this.listItemCount = 0;
 	this.maxHits = 40; // max hits to load for one page	
 	HitList.instance = this; // quick and dirty for scroll

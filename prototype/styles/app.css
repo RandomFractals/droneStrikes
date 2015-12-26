@@ -148,9 +148,10 @@ a {
 
 /* data list item styles */
 .data-list {
-	list-style-type: none;
 	margin: 0px;
 	padding: 0px;
+	list-style-type: none;
+	list-style: none;	
 }
 
 .data-list li {

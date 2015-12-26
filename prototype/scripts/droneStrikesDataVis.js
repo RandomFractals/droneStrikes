@@ -44,9 +44,10 @@ $(function() {
 		resizeView();
 	});
 	
-	// create map view and graph
+	// create view comps
 	mapView = new HitMap(viewWidth, viewHeight);
 	graphView = new HitGraph(viewWidth, viewHeight);
+	listView = new HitList(viewWidth, viewHeight);
 	
 	// show 50% view load progress
 	progressBar.css('width', '50%');
@@ -86,9 +87,6 @@ $(function() {
 			reloadData(hitList);
 			console.log('selected year hit list: ' + hitList.length);
 		});
-		
-		// create list view
-		listView = new HitList(droneStrikes.hitList, windowHeight - marginTop);		
 
 		// reload all data views
 		reloadData(droneStrikes.hitList);
