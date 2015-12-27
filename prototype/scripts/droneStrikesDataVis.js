@@ -3,6 +3,13 @@
 * top level app view controller.
 */
 
+// window/view vars
+var windowWidth = 960;
+var windowHeight = 640;
+var marginTop = 120;
+var viewWidth = windowWidth;
+var viewHeight = windowHeight - marginTop;
+
 // progress/filter UI vars
 var message;
 var progressContainer;
@@ -16,15 +23,8 @@ var mapView;
 var listView; 
 var graphView;
 
-// window/view vars
-var windowWidth = 960;
-var windowHeight = 640;
-var marginTop = 120;
-var viewWidth = windowWidth;
-var viewHeight = windowHeight - marginTop;
-
 // main view data model vars
-var hitStats = new HitStats();
+var hitStats = new HitStats(selectedYear);
 var droneStrikes = new DroneStrikes(hitStats);
 var selectedListItem = -1;
 

@@ -2,13 +2,12 @@
 * Hit stats summary data for display 
 * of all kills and casualties.
 */
-function HitStats() {
+function HitStats(year) {
 	// some base date metrics
-	this.statsBar = $('#statsBar');
 	this.startTime = new Date(); // now
 	this.endTime = new Date(0);	// 01/01/1970	
 	this.totalHits = 0;
-	this.uniqueHitYears = 0;
+	this.year = year;
 	
 	// hit stats init
 	this.minKills = 0;
@@ -19,7 +18,8 @@ function HitStats() {
 	this.targets = [];
 	this.names = [];
 	this.hitYearMapList;
-	this.hitYearStats = [];
+	this.hitYearStats = [];	
+	this.statusBar = $('#statsBar');	
 }
 
 
@@ -57,6 +57,9 @@ HitStats.prototype.updateYearFilter = function(hitDateMap) {
 				.attr('value', year)
 				.text(year + ' (' + hitList.length + ')' )
 				.appendTo(yearFilter);
+				
+			// add hit year stats
+			this.hitYearStats[year] = new HitStats(year);
 		}
 	}
 	
@@ -93,11 +96,11 @@ HitStats.prototype.showStats = function(year) {
 HitStats.prototype.toHtml = function() {
 	
 	// clear old stats
-	this.statsBar.empty();
+	this.statusBar.empty();
 	
 	var hitBar = $('<div/>')
 		.addClass('legend')
-		.appendTo(this.statsBar);
+		.appendTo(this.statusBar);
 	
 	var hitLegend = $('<div/>')
 		.addClass('legend-box green-box')
