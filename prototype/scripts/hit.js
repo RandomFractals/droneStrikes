@@ -73,7 +73,7 @@ Hit.prototype.toHtml = function() {
 			this.narrative +
 		'</a><br />' +
 		'<span class="date">' + 
-			this.dateString() + 
+			this.dateString() + ': ' + this.location + ' > ' + this.town +
 		'</span> ' +
 		// new HitBars(this).toHtml(false) + // don't break
 		//'<p>' + 
