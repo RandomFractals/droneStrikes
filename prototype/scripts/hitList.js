@@ -74,19 +74,19 @@ HitList.prototype.loadHits = function () {
 			.attr('width', 32)
 			.attr('height', 32)
 			.appendTo(mapLink);
-					
+		
 		var storyLink = $('<a/>')
 			.addClass('list-item-link')
 			.attr('href', hit.link)
 			.attr('target', '_blank')
 			.text(hit.narrative)
-			.appendTo(header).after('<br/>');
-			
+			.appendTo(header).after('<br/>').after('<br/>');
+		
 		var dateSpan = $('<span/>')
 			.addClass('date')
-			.text(hit.dateString() + ' ')
+			.text(hit.dateString() + ' | ' + hit.location + ' > ' + hit.town)
 			.appendTo(header);
-			
+		
 		if ( hit.summary.length > 0 ) {		
 			var story = $('<p/>')
 			.addClass('list-item-text')

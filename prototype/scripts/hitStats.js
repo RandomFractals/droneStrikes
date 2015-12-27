@@ -2,8 +2,7 @@
 * Hit stats summary data for display 
 * of all kills and casualties.
 */
-function HitStats(hitData) {
-
+function HitStats() {
 	// some base date metrics
 	this.statsBar = $('#statsBar');
 	this.startTime = new Date(); // now
@@ -19,10 +18,6 @@ function HitStats(hitData) {
 	this.injuries = 0;
 	this.targets = [];
 	this.names = [];
-	
-	if (hitData !== null && hitData !== undefined) {
-		this.updateStats(hitData);
-	}
 }
 
 
@@ -44,15 +39,21 @@ HitStats.prototype.updateStats = function(hit) {
 /**
 * Updates year filter for the strikes display.
 */
-HitStats.prototype.updateYearFilter = function() {
+HitStats.prototype.updateYearFilter = function(hitDateMap) {
 	var yearFilter = $('#yearFilter');
 	var yearOption;
 	var years = this.getYears();
+	var year;
+	var hitList;
 	for (var i = 0; i < years.length; i++) {
-		yearOption = $('<option/>')
-			.attr('value', years[i])
-			.text(years[i])
-			.appendTo(yearFilter);
+		year = years[i];
+		hitList = hitDateMap[year];
+		if (hitList !== null && hitList !== undefined) {
+			yearOption = $('<option/>')
+				.attr('value', year)
+				.text(year + ' (' + hitList.length + ')' )
+				.appendTo(yearFilter);
+		}
 	}
 }
 
@@ -108,26 +109,12 @@ HitStats.prototype.toHtml = function() {
 
 
 /**
-* Hit stats to string for display.
-*/
-HitStats.prototype.toString = function() {
-	return this.totalHits + ' hits. ' + // since ' + 
-		//Hit.dateString(this.startTime) + 
-		//'. Confirmed casualties: ' +
-		this.civilians + ' civilians, ' +
-		this.children + ' children. ';// +
-		//this.names.length + ' bad guys.';
-}
-
-
-/**
 * Drone strikes stats logging.
 */
 HitStats.prototype.logStats = function () {
 	// log hit history stats
 	console.log('first strike: ' + this.startTime.toString());
 	console.log('last strike: ' + this.endTime.toString());
-	console.log('unique hit years: ' + this.getYears()); 
 	console.log('min kills: ' + this.minKills);
 	console.log('max kills: ' + this.maxKills);	
 	console.log('civilians: ' + this.civilians);	

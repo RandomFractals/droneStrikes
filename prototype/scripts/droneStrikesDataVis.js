@@ -79,7 +79,7 @@ $(function() {
 		// hide msg and show drone strikes stats
 		message.addClass(Hide);
 		statsBar.css('display', 'inline');
-		droneStrikes.stats.updateYearFilter();
+		droneStrikes.stats.updateYearFilter(hitYearsDataMap);
 		droneStrikes.stats.toHtml();
 
 		// add year filter handler
