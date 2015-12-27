@@ -1,11 +1,11 @@
 /**
 * Drone strikes data model.
 */
-function DroneStrikes() {
+function DroneStrikes(hitStats) {
 	this.hitList = [];
 	this.hitDateMap  = {};	
 	this.filter = 'all';	
-	this.stats = new HitStats();
+	this.stats = hitStats;
 }	
 
 

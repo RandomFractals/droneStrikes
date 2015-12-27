@@ -9,6 +9,7 @@ var progressContainer;
 var progressBar;
 var statsBar;
 var yearFilter;
+var selectedYear = 'all';
 
 // view comps
 var mapView; 
@@ -23,8 +24,8 @@ var viewWidth = windowWidth;
 var viewHeight = windowHeight - marginTop;
 
 // main view data model vars
-var droneStrikes = new DroneStrikes();
-var hitStats;
+var hitStats = new HitStats();
+var droneStrikes = new DroneStrikes(hitStats);
 var selectedListItem = -1;
 
 
@@ -79,19 +80,19 @@ $(function() {
 		// hide msg and show drone strikes stats
 		message.addClass(Hide);
 		statsBar.css('display', 'inline');
-		droneStrikes.stats.updateYearFilter(hitYearsDataMap);
-		droneStrikes.stats.toHtml();
+		hitStats.updateYearFilter(hitYearsDataMap);
 
 		// add year filter handler
 		yearFilter.change(function() {
-			console.log('selected year: ' + yearFilter.val());
-			var hitList = droneStrikes.getHits(yearFilter.val());
+			selectedYear = yearFilter.val();
+			console.log('selected year: ' + selectedYear);
+			var hitList = droneStrikes.getHits(selectedYear);
 			reloadData(hitList);
 			console.log('selected year hit list: ' + hitList.length);
 		});
 
 		// reload all data views
-		reloadData(droneStrikes.hitList);
+		reloadData(droneStrikes.hitList, selectedYear);
 		
 		// hide data load progress bar
 		progressContainer.addClass(Hide);
@@ -103,11 +104,11 @@ $(function() {
 	/**
 	* Resets all views with new hit list to display.
 	*/
-	function reloadData(hitList) {
+	function reloadData(hitList, year) {
+		hitStats.showStats(year);		
 		mapView.reset(hitList);
-		//droneStrikes.stats.showStats();
-		listView.reset(hitList);
-		graphView.showHits(hitList, windowWidth, windowHeight - marginTop);		
+		listView.reset(hitList);		
+		graphView.showHits(hitList, viewWidth, viewHeight);
 	}
 	
 	

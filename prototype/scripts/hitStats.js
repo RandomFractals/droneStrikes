@@ -18,6 +18,8 @@ function HitStats() {
 	this.injuries = 0;
 	this.targets = [];
 	this.names = [];
+	this.hitYearMapList;
+	this.hitYearStats = [];
 }
 
 
@@ -45,18 +47,22 @@ HitStats.prototype.updateYearFilter = function(hitDateMap) {
 	var years = this.getYears();
 	var year;
 	var hitList;
+	this.hitYearMapList = hitDateMap;
 	for (var i = 0; i < years.length; i++) {
 		year = years[i];
 		hitList = hitDateMap[year];
 		if (hitList !== null && hitList !== undefined) {
+			// add year option filter with hits count
 			yearOption = $('<option/>')
 				.attr('value', year)
 				.text(year + ' (' + hitList.length + ')' )
 				.appendTo(yearFilter);
 		}
 	}
+	
+	// update stats bar display
+	this.toHtml();
 }
-
 
 
 /**
@@ -74,9 +80,20 @@ HitStats.prototype.getYears = function() {
 
 
 /**
+* Updates top level stats bar display.
+*/
+HitStats.prototype.showStats = function(year) {
+	this.toHtml();
+}
+
+
+/**
 * Displays stats hit bars and legends.
 */
 HitStats.prototype.toHtml = function() {
+	
+	// clear old stats
+	this.statsBar.empty();
 	
 	var hitBar = $('<div/>')
 		.addClass('legend')
