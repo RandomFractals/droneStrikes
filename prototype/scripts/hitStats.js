@@ -72,16 +72,6 @@ HitStats.prototype.updateYearFilter = function() {
 
 
 /**
-* Displays hits stats and legends.
-*/
-HitStats.prototype.showStats = function() {
-	$('#hitCount').text(this.targets.length);
-	$('#civiliansCount').text(this.civilians);
-	$('#childrenCount').text(this.children);
-}
-
-
-/**
 * Displays stats hit bars and legends.
 */
 HitStats.prototype.toHtml = function() {
