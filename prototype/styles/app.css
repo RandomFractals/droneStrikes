@@ -163,7 +163,7 @@ a {
 	padding: 5px;
 }
 
-.data-list li[class=selected] {
+.data-list > li[class=selected] {
 	background-color: #e0e0e0;
 }
 
@@ -193,7 +193,6 @@ a {
 	padding: 5px;
 	margin: 5px;
 }
-
 
 /* app text elements + link styles */
 .footer, .label {
