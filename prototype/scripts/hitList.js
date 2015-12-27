@@ -84,9 +84,15 @@ HitList.prototype.loadHits = function () {
 		
 		var dateSpan = $('<span/>')
 			.addClass('date')
-			.text(hit.dateString() + ' | ' + hit.location + ' > ' + hit.town)
+			.text(hit.dateString() + ' ')
 			.appendTo(header);
-		
+
+		var locationLink = $('<a/>')
+			.attr('href', '#')
+			.attr('onclick', 'zoomToHit(' + (hit.number) + ')')
+			.text(hit.location + ' > ' + hit.town) 
+			.appendTo(header);
+			
 		if ( hit.summary.length > 0 ) {		
 			var story = $('<p/>')
 			.addClass('list-item-text')
