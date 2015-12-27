@@ -179,8 +179,9 @@ a {
 .list-item-text {
  	border: 0px;
 	background-color: #fff;
+	font-size: 0.9em;	
 	margin: 0px;
-	padding: 0px;
+	padding: 5px;
 }
 
 .map-link, .list-item-link {
@@ -188,11 +189,6 @@ a {
 	margin: 0px;
 }
 
-.list-item-text {
-	font-size: 0.9em;	
-	padding: 5px;
-	margin: 5px;
-}
 
 /* app text elements + link styles */
 .footer, .label {
