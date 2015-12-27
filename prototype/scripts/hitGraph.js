@@ -185,6 +185,7 @@ HitGraph.prototype.hide = function () {
 	this.graphMenuItem.removeClass(Active);			
 	this.graphView.removeClass(Show).addClass(Hide);
 	this.visible = false;
+	HitGraph.hideTooltip();
 }
 
 	
