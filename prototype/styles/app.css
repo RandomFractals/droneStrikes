@@ -230,12 +230,13 @@ a {
 .legend {
 	display: inline;
 	margin: 0px;
-	padding-left: 10px;
+	padding: 0px;
 }
 
 .legend-box {
 	width: 10px;
 	height: 10px;
+	margin-left: 5px;
 	display: inline-block;
 }
 

@@ -3,7 +3,7 @@
 * top level app view controller.
 */
 
-// progress UI vars
+// progress/filter UI vars
 var message;
 var progressContainer;
 var progressBar;
@@ -22,9 +22,11 @@ var marginTop = 120;
 var viewWidth = windowWidth;
 var viewHeight = windowHeight - marginTop;
 
-// main view data model
+// main view data model vars
 var droneStrikes = new DroneStrikes();
+var hitStats;
 var selectedListItem = -1;
+
 
 /**
 * Creates leaflet map on document ready,
@@ -77,8 +79,8 @@ $(function() {
 		// hide msg and show drone strikes stats
 		message.addClass(Hide);
 		statsBar.css('display', 'inline');
-		droneStrikes.stats.showStats();
 		droneStrikes.stats.updateYearFilter();
+		droneStrikes.stats.toHtml();
 		//message.text(droneStrikes.stats.toString());
 
 		// add year filter handler

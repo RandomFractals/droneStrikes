@@ -5,6 +5,7 @@
 function HitStats(hitData) {
 
 	// some base date metrics
+	this.statsBar = $('#statsBar');
 	this.startTime = new Date(); // now
 	this.endTime = new Date(0);	// 01/01/1970	
 	this.totalHits = 0;
@@ -77,6 +78,41 @@ HitStats.prototype.showStats = function() {
 	$('#hitCount').text(this.targets.length);
 	$('#civiliansCount').text(this.civilians);
 	$('#childrenCount').text(this.children);
+}
+
+
+/**
+* Displays stats hit bars and legends.
+*/
+HitStats.prototype.toHtml = function() {
+	
+	var hitBar = $('<div/>')
+		.addClass('legend')
+		.appendTo(this.statsBar);
+	
+	var hitLegend = $('<div/>')
+		.addClass('legend-box green-box')
+		.appendTo(hitBar);
+		
+	var hitCount = $('<span/>')
+			.text(' ' + this.targets.length + ' strikes  ')
+			.appendTo(hitBar);
+			
+	var civiliansLegend = $('<div/>')
+		.addClass('legend-box orange-box')
+		.appendTo(hitBar);
+		
+	var civiliansCount = $('<span/>')
+			.text(' ' + this.civilians + ' civilians  ')
+			.appendTo(hitBar);
+
+	var childrenLegend = $('<div/>')
+		.addClass('legend-box red-box')
+		.appendTo(hitBar);
+		
+	var childrenCount = $('<span/>')
+			.text(' ' + this.children + ' children  ')
+			.appendTo(hitBar);	
 }
 
 
