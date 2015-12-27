@@ -160,7 +160,7 @@ a {
 	border-collapse: collapse;
 	background-color: #fff;
 	margin: 0px;
-	padding: 0px;
+	padding: 5px;
 }
 
 .data-list li[class=selected] {
@@ -168,16 +168,19 @@ a {
 }
 
 .list-item {
- 	border: solid 1px #ccc;
-	border-bottom: 0px;
-	border-collapse: collapse;
+	border: 0px;	
+ 	border-top: solid 1px #ccc;
 	background-color: #fff;
+	margin: 0px;
+	padding: 0px;	
 	width: 100%;
 }
 
 .list-item-text {
+ 	border: 0px;
 	background-color: #fff;
 	margin: 0px;
+	padding: 0px;
 }
 
 .map-link, .list-item-link {
@@ -207,6 +210,7 @@ a {
 
 .date {
 	font-size: 0.8em;	
+	padding-left: 5px;
 }
 
 .link {
