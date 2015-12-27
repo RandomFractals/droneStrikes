@@ -42,20 +42,6 @@ HitStats.prototype.updateStats = function(hit) {
 
 
 /**
-* Returns the years for hits year filter.
-*/
-HitStats.prototype.getYears = function() {
-	var years = [];
-	var startYear = this.startTime.getFullYear();
-	var endYear = this.endTime.getFullYear();
-	for (var year = startYear; year <= endYear; year++) {
-		years.push(year);
-	}
-	return years;
-}
-
-
-/**
 * Updates year filter for the strikes display.
 */
 HitStats.prototype.updateYearFilter = function() {
@@ -68,6 +54,21 @@ HitStats.prototype.updateYearFilter = function() {
 			.text(years[i])
 			.appendTo(yearFilter);
 	}
+}
+
+
+
+/**
+* Returns years array for hits year filter.
+*/
+HitStats.prototype.getYears = function() {
+	var years = [];
+	var startYear = this.startTime.getFullYear();
+	var endYear = this.endTime.getFullYear();
+	for (var year = startYear; year <= endYear; year++) {
+		years.push(year);
+	}
+	return years;
 }
 
 
