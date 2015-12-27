@@ -81,7 +81,6 @@ $(function() {
 		statsBar.css('display', 'inline');
 		droneStrikes.stats.updateYearFilter();
 		droneStrikes.stats.toHtml();
-		//message.text(droneStrikes.stats.toString());
 
 		// add year filter handler
 		yearFilter.change(function() {
