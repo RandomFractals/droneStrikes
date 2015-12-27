@@ -32,8 +32,8 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
 	var y = d3.scale.linear().range([this.height, 0]);
 	
 	// create x/y axis and ticks
-	var xAxis = d3.svg.axis().scale(x).orient("bottom")
-		.ticks(2).tickFormat( d3.time.format("%m/%d/%Y") );
+	var xAxis = d3.svg.axis().scale(x).orient("bottom").tickValues([]);
+		//.ticks(0).tickFormat( d3.time.format("%m/%d/%Y") );
 	var yAxis = d3.svg.axis().scale(y).orient("left").ticks(10);
 	
 	// remove and create svg for win resize, etc.
@@ -55,7 +55,9 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + this.height + ")")
-      .call(xAxis);
+      .call(xAxis)
+		.append("text")
+			.text('');
 
 	// create y axis group
   svg.append("g")
