@@ -5,7 +5,7 @@ function HitGraph(viewWidth, viewHeight, hitList) {
 	// graph menu and view vars
 	this.graphMenuItem = $('#graphMenuItem');
 	this.graphView = $('#graphView');
-	this.margin = {left: 40, top: 20, right: 180, bottom: 40};
+	this.margin = {left: 40, top: 10, right: 180, bottom: 10};
   this.width = viewWidth;
   this.height = viewHeight;
 	this.visible = false;
@@ -19,7 +19,7 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
 	
 	// update graph width and height
   this.width = windowWidth - this.margin.left - this.margin.right;
-  this.height = windowHeight - this.margin.top - this.margin.bottom;
+  this.height = windowHeight - this.margin.top - this.margin.bottom - 20;
 	
 	// bar vars
 	var barWidth = 24;	
@@ -35,14 +35,6 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
 	var xAxis = d3.svg.axis().scale(x).orient("bottom").tickValues([]);
 		//.ticks(0).tickFormat( d3.time.format("%m/%d/%Y") );
 	var yAxis = d3.svg.axis().scale(y).orient("left").ticks(10);
-	
-	// remove and create svg for win resize, etc.
-	d3.select("#graphView").selectAll("svg").remove();	
-	var svg = d3.select("#graphView").append("svg")
-    .attr("width", maxWidth + this.margin.left + this.margin.right)
-    .attr("height", this.height + this.margin.top + this.margin.bottom)
-		.append("g")
-    .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
 	// map hit dates
 	x.domain(dataList.map( function(d){ return d.date; }));
@@ -50,6 +42,22 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
 	
 	// map max kills
 	y.domain([0, d3.max(dataList, function(d) { return d.maxKills; })]);
+	
+	// remove stale svg for win resize, etc.
+	d3.select("#graph").selectAll("svg").remove();	
+	d3.select("#yAxis").selectAll("svg").remove();
+	
+	var yAxisSvg = d3.select("#yAxis").append("svg")
+    .attr("width", 40)
+    .attr("height", this.height + this.margin.top + this.margin.bottom)
+		.append("g")
+    .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
+
+	var svg = d3.select("#graph").append("svg")
+    .attr("width", maxWidth + this.margin.left + this.margin.right)
+    .attr("height", this.height + this.margin.top + this.margin.bottom)
+		.append("g")
+    .attr("transform", "translate(0," + this.margin.top + ")");
 
 	// create x axis group
   svg.append("g")
@@ -60,15 +68,15 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
 			.text('');
 
 	// create y axis group
-  svg.append("g")
+  yAxisSvg.append("g")
       .attr("class", "y axis")
       .call(yAxis)
     .append("text")
       .attr("transform", "rotate(-90)")
-      .attr("y", 6)
+      .attr("y", 6); /*
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("killed");
+      .text("killed"); */
 
 	// create y grid lines
 	svg.append("g")         
@@ -177,7 +185,7 @@ HitGraph.prototype.resize = function (width, height) {
 */
 HitGraph.prototype.show = function () {
 	this.graphMenuItem.addClass(Active);	
-	this.graphView.removeClass(Hide).addClass(Show);	
+	this.graphView.css('display', 'inline');
 	this.visible = true;
 }
 
@@ -187,7 +195,7 @@ HitGraph.prototype.show = function () {
 */
 HitGraph.prototype.hide = function () {
 	this.graphMenuItem.removeClass(Active);			
-	this.graphView.removeClass(Show).addClass(Hide);
+	this.graphView.css('display', 'none');
 	this.visible = false;
 	HitGraph.hideTooltip();
 }

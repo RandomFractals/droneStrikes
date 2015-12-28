@@ -113,6 +113,11 @@ span {
 	overflow-x: scroll;
 }
 
+.y-axis {
+	overflow: hidden;
+	float: left;
+}
+
 /* menu link styles */
 a {
 	color: #06f;
