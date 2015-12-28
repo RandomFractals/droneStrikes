@@ -93,8 +93,12 @@ Hit.prototype.tooltip = function(barTip) {
 		}
 		
 		if (barTip || this.minKills > 0 || this.maxKills > 0) { 
+			var killedCount = this.minKills + '-' + this.maxKills;
+			if (this.minKills == this.maxKills) {
+				killedCount = this.maxKills;
+			}
 			html += '<div class="legend"><div class="legend-box blue-box"></div><span> ' +
-				this.minKills + '-' + this.maxKills + ' killed</span></div>';
+				 killedCount + ' killed</span></div>';
 		}
 		
 		if (barTip) {
