@@ -169,6 +169,10 @@ Hit.toNumber = function(dirtyData) {
 		//console.log(minMax);
 		
 		number = parseInt(minMax[0]); // use min known for all stats
+		if (minMax.length === 2) {
+			// use max known instead
+			number = parseInt(minMax[1]);
+		}
 		if ( isNaN(number) ) {
 			// log and reset
 			console.log('NaN: "' + dirtyData + '"');
