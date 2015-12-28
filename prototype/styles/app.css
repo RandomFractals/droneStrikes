@@ -113,8 +113,13 @@ span {
 	overflow-x: scroll;
 }
 
-.y-axis {
+.graph-container, .y-axis {
+	margin: 0px;
+	padding: 0px;
 	overflow: hidden;
+}
+
+.y-axis {
 	float: left;
 }
 

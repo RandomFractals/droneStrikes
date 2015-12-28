@@ -1,14 +1,15 @@
 /**
 * Hit graph view component.
 */
-function HitGraph(viewWidth, viewHeight, hitList) {	
+function HitGraph(viewWidth, viewHeight) {	
 	// graph menu and view vars
 	this.graphMenuItem = $('#graphMenuItem');
 	this.graphView = $('#graphView');
-	this.margin = {left: 40, top: 10, right: 180, bottom: 10};
+	this.margin = {left: 40, top: 5, right: 180, bottom: 5};
   this.width = viewWidth;
   this.height = viewHeight;
 	this.visible = false;
+	this.dataList = null;
 }
 
 
@@ -20,6 +21,7 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
 	// update graph width and height
   this.width = windowWidth - this.margin.left - this.margin.right;
   this.height = windowHeight - this.margin.top - this.margin.bottom - 20;
+	this.dataList = dataList;
 	
 	// bar vars
 	var barWidth = 24;	
