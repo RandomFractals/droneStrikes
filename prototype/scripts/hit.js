@@ -86,19 +86,47 @@ Hit.prototype.toHtml = function() {
 
 
 /**
-* Generates hit html tooltip for the bar graph.
+* Generates hit html tooltip for bar graph, list item, and map marker.
 */
-Hit.prototype.tooltip = function() {
-	var html = this.dateString() + '<br/>----------------------<br/>' +
-		'<div class="legend"><div class="legend-box blue-box"></div><span> ' +
-		this.minKills + '-' + this.maxKills + ' killed</span></div><br/>' +
-		'<div class="legend"><div class="legend-box orange-box"></div><span> ' +		
-		this.civilians + ' civilians</span></div><br/>' +
-		'<div class="legend"><div class="legend-box red-box"></div><span> ' +		
-		this.children + ' children</span></div><br/>' +
-		'<div class="legend"><div class="legend-box yellow-box"></div><span> ' +		
-		this.injuries + ' injuries</span></div><br/>';
-	
+Hit.prototype.tooltip = function(barTip) {
+	var html = '<br/>';
+		if (barTip) {
+			// show date for the bar tip
+			html = this.dateString() + '<br/>----------------------<br/>';
+		}
+		
+		if (barTip || this.minKills > 0 || this.maxKills > 0) { 
+			html += '<div class="legend"><div class="legend-box blue-box"></div><span> ' +
+				this.minKills + '-' + this.maxKills + ' killed</span></div>';
+		}
+		
+		if (barTip) {
+			html += '<br/>';
+		}
+		
+		if (barTip || this.civilians > 0) {
+			html += '<div class="legend"><div class="legend-box orange-box"></div><span> ' +		
+				this.civilians + ' civilians</span></div>';
+		}
+		
+		if (barTip) {
+			html += '<br/>';
+		}
+		
+		if (barTip || this.children > 0) {
+			html += '<div class="legend"><div class="legend-box red-box"></div><span> ' +		
+				this.children + ' children</span></div>';
+		}
+		
+		if (barTip) {
+			html += '<br/>';
+		}
+		
+		if (barTip || this.injuries > 0) {
+			html += '<div class="legend"><div class="legend-box yellow-box"></div><span> ' +		
+				this.injuries + ' injuries</span></div>';
+		}
+		
 	return html;
 }
 

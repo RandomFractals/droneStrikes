@@ -70,29 +70,32 @@ HitList.prototype.loadHits = function () {
 			.attr('onclick', 'zoomToHit(' + (hit.number) + ')')
 			.appendTo(header);
 			
-		var mapImage = $('<img/>')
+		$('<img/>')
 			.attr('src', 'images/map.png')
 			.attr('width', 32)
 			.attr('height', 32)
 			.appendTo(mapLink);
 		
-		var storyLink = $('<a/>')
+		$('<a/>')
 			.addClass('list-item-link')
 			.attr('href', hit.link)
 			.attr('target', '_blank')
 			.text(hit.narrative)
-			.appendTo(header).after('<br/>').after('<br/>');
+			.appendTo(header)
+			.after('<br/>')//.after('<br/>');
+			.after( hit.tooltip(false) ); // not bar tip
 		
-		var dateSpan = $('<span/>')
+		$('<span/>')
 			.addClass('date')
 			.text(hit.dateString() + ': ')
 			.appendTo(header);
 
-		var locationLink = $('<a/>')
+		$('<a/>')
 			.attr('href', '#')
 			.attr('onclick', 'zoomToHit(' + (hit.number) + ')')
 			.text(hit.location + ' > ' + hit.town) 
-			.appendTo(header);
+			.appendTo(header)
+			.after('<br/>');
 			
 		if ( hit.summary.length > 0 ) {		
 			var story = $('<p/>')

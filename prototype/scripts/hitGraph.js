@@ -143,7 +143,7 @@ HitGraph.showTooltip = function(x, y, hitData) {
           .duration(100)      
           .style('opacity', .9);
   HitGraph.tooltip.html(
-					hitData.tooltip() )
+					hitData.tooltip(true) ) // bar tip
           .style('left', (d3.event.pageX + 20) + 'px')
           .style('top', (d3.event.pageY - 80) + 'px');
 	
