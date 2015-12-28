@@ -311,6 +311,10 @@ a {
 }
 
 /* graph styles */
+.scroll {
+	cursor: ew-resize;
+}
+
 .axis path,
 .axis line {
   fill: none;

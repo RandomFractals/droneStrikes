@@ -54,13 +54,14 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
     .attr("height", this.height + this.margin.top + this.margin.bottom)
 		.append("g")
     .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
-
+		
 	var svg = d3.select("#graph").append("svg")
+		//.attr("class", "scroll")
     .attr("width", maxWidth + this.margin.left + this.margin.right)
     .attr("height", this.height + this.margin.top + this.margin.bottom)
 		.append("g")
     .attr("transform", "translate(0," + this.margin.top + ")");
-
+	
 	// create x axis group
   svg.append("g")
       .attr("class", "x axis")
