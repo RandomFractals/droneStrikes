@@ -87,7 +87,11 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
 				zoomToHit(d.number);
 			})
 			.on("click", function(d) {      
-				HitGraph.showTooltip(d3.event.pageX, d3.event.pageY, d);
+				//HitGraph.showTooltip(d3.event.pageX, d3.event.pageY, d);
+				HitGraph.hideTooltip();
+				HitGraph.tooltip
+          .style('left', '40px')
+          .style('top', '80px');				
 				zoomToHit(d.number);
       })			
 			.on("mouseover", function(d) {      
@@ -142,11 +146,9 @@ HitGraph.showTooltip = function(x, y, hitData) {
   HitGraph.tooltip.transition()        
           .duration(100)      
           .style('opacity', .9);
-  HitGraph.tooltip.html(
-					hitData.tooltip(true) ) // bar tip
+  HitGraph.tooltip.html( hitData.tooltip(true) ) // bar tip
           .style('left', (d3.event.pageX + 20) + 'px')
-          .style('top', (d3.event.pageY - 80) + 'px');
-	
+          .style('top', (d3.event.pageY - 80) + 'px');	
 }
 
 
