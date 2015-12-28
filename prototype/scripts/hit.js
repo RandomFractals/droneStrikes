@@ -18,8 +18,9 @@ function Hit(hitData) {
 	// hit location
 	this.latitude = hitData.lat;	
 	this.longitude = hitData.lon;
+	this.country = hitData.country;
+	this.location = hitData.location;	
 	this.town = hitData.town;
-	this.location = hitData.location;
 	
 	// hit stats
 	this.killsRange = hitData.deaths;
@@ -73,7 +74,9 @@ Hit.prototype.toHtml = function() {
 			this.narrative +
 		'</a><br />' +
 		'<span class="date">' + 
-			this.dateString() + ': ' + this.location + ' > ' + this.town +
+			this.dateString() + '<br/>' + 
+			this.country + ' > ' +
+			this.location + ' > ' + this.town +
 		'</span>' +
 			this.tooltip(false) + // not bar tip
 		'</div>';
