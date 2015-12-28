@@ -54,11 +54,31 @@ HitGraph.prototype.showHits = function(dataList, windowWidth, windowHeight) {
     .attr("height", this.height + this.margin.top + this.margin.bottom)
 		.append("g")
     .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
-		
+	
+	var dragging = false;
+	var graphContainer = $("#graph");
+	var lastX = 0;
 	var svg = d3.select("#graph").append("svg")
-		//.attr("class", "scroll")
+		.attr("class", "scroll")
     .attr("width", maxWidth + this.margin.left + this.margin.right)
     .attr("height", this.height + this.margin.top + this.margin.bottom)
+		.on("mousedown", function(d) {
+			//console.log('start dragging');
+			lastX = d3.mouse(this)[0];
+			dragging = true;
+    })		
+		.on("mousemove", function(d) {
+			if (dragging) {
+				var dragX = d3.mouse(this)[0];
+				var delta = (lastX - dragX > 0) ? -20:20; 
+				graphContainer.scrollLeft( graphContainer.scrollLeft() + delta);
+				lastX = dragX;
+			}
+    })						
+		.on("mouseup", function(d) {
+			//console.log('stop dragging');
+			dragging = false;
+    })				
 		.append("g")
     .attr("transform", "translate(0," + this.margin.top + ")");
 	

@@ -313,6 +313,7 @@ a {
 /* graph styles */
 .scroll {
 	cursor: ew-resize;
+	fill: #eee;
 }
 
 .axis path,
@@ -337,6 +338,7 @@ a {
 .bar:hover {
 	stroke-width: 1px;
 	stroke: #000;
+	cursor: pointer;
 }
 
 div.tooltip {   
