@@ -74,11 +74,8 @@ Hit.prototype.toHtml = function() {
 		'</a><br />' +
 		'<span class="date">' + 
 			this.dateString() + ': ' + this.location + ' > ' + this.town +
-		'</span> ' +
-		// new HitBars(this).toHtml(false) + // don't break
-		//'<p>' + 
-		//this.summary + 
-		//'</p>
+		'</span>' +
+			this.tooltip(false) + // not bar tip
 		'</div>';
 	
 	return html;
