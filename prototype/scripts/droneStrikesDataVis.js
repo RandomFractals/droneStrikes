@@ -72,6 +72,7 @@ $(function() {
 	
 		// parse data
 		var hitYearsDataMap = droneStrikes.addHits(hitData.strike);
+		hitStats.updateYearFilter(hitYearsDataMap);		
 		console.log('hit years: ' + Object.keys(hitYearsDataMap) );
 		
 		// reset view size
@@ -80,14 +81,13 @@ $(function() {
 		// hide msg and show drone strikes stats
 		message.addClass(Hide);
 		statsBar.css('display', 'inline');
-		hitStats.updateYearFilter(hitYearsDataMap);
 
 		// add year filter handler
 		yearFilter.change(function() {
 			selectedYear = yearFilter.val();
 			console.log('selected year: ' + selectedYear);
 			var hitList = droneStrikes.getHits(selectedYear);
-			reloadData(hitList);
+			reloadData(hitList, selectedYear);
 			console.log('selected year hit list: ' + hitList.length);
 		});
 

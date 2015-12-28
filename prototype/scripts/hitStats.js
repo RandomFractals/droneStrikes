@@ -18,7 +18,7 @@ function HitStats(year) {
 	this.targets = [];
 	this.names = [];
 	this.hitYearMapList;
-	this.hitYearStats = [];	
+	this.hitYearStats = {};	
 	this.statusBar = $('#statsBar');	
 }
 
@@ -86,14 +86,27 @@ HitStats.prototype.getYears = function() {
 * Updates top level stats bar display.
 */
 HitStats.prototype.showStats = function(year) {
-	this.toHtml();
+	if (year === 'all') {
+		this.toHtml();
+	} else {
+		// get selected year stats
+		var stats = this.hitYearStats[year];
+		if (stats.totalHits <= 0) {
+			//update year stats
+			var hitList = this.hitYearMapList[year];
+			for (var i=0; i<hitList.length; i++) {
+				stats.updateStats(hitList[i]);
+			}
+		}
+		stats.toHtml(year);
+	}
 }
 
 
 /**
 * Displays stats hit bars and legends.
 */
-HitStats.prototype.toHtml = function() {
+HitStats.prototype.toHtml = function(year) {
 	
 	// clear old stats
 	this.statusBar.empty();
@@ -102,29 +115,34 @@ HitStats.prototype.toHtml = function() {
 		.addClass('legend')
 		.appendTo(this.statusBar);
 	
-	var hitLegend = $('<div/>')
+	if (year !== 'all' && year !== undefined) {
+		$('<span/>').text(year + ': ')
+		.appendTo(hitBar);
+	}
+	
+	$('<div/>')
 		.addClass('legend-box green-box')
 		.appendTo(hitBar);
 		
-	var hitCount = $('<span/>')
-			.text(' ' + this.targets.length + ' strikes  ')
-			.appendTo(hitBar);
+	$('<span/>')
+		.text(' ' + this.targets.length + ' strikes  ')
+		.appendTo(hitBar);
 			
-	var civiliansLegend = $('<div/>')
+	$('<div/>')
 		.addClass('legend-box orange-box')
 		.appendTo(hitBar);
 		
-	var civiliansCount = $('<span/>')
-			.text(' ' + this.civilians + ' civilians  ')
-			.appendTo(hitBar);
+	$('<span/>')
+		.text(' ' + this.civilians + ' civilians  ')
+		.appendTo(hitBar);
 
-	var childrenLegend = $('<div/>')
+	$('<div/>')
 		.addClass('legend-box red-box')
 		.appendTo(hitBar);
 		
-	var childrenCount = $('<span/>')
-			.text(' ' + this.children + ' children  ')
-			.appendTo(hitBar);	
+	$('<span/>')
+		.text(' ' + this.children + ' children  ')
+		.appendTo(hitBar);	
 }
 
 
