@@ -49,6 +49,11 @@ DroneStrikes.prototype.addHits = function(strikesData) {
 	// sort by time
 	this.hitList.sort(function (a, b) {return a.time - b.time});
 	
+	// update hit index for linking and mapping
+	this.hitList.forEach( function (data, index) {
+		data.number = index;
+	});
+	
 	return this.hitDateMap;
 }
 
