@@ -74,9 +74,9 @@ Hit.prototype.toHtml = function() {
 			this.narrative +
 		'</a><br />' +
 		'<span class="date">' + 
-			this.dateString() + '<br/>' + 
+			this.dateString() + ': ' + 
 			this.country + ' > ' +
-			this.location + ' > ' + this.town +
+			this.location + //' > ' + this.town +
 		'</span>' +
 			this.tooltip(false) + // not bar tip
 		'</div>';

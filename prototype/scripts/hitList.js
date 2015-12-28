@@ -93,7 +93,7 @@ HitList.prototype.loadHits = function () {
 		$('<a/>')
 			.attr('href', '#')
 			.attr('onclick', 'zoomToHit(' + (hit.number) + ')')
-			.text(hit.location + ' > ' + hit.town) 
+			.text(hit.country + ' > ' + hit.location) //+ ' > ' + hit.town) 
 			.appendTo(header)
 			.after('<br/>');
 			
