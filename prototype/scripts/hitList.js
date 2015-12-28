@@ -66,6 +66,7 @@ HitList.prototype.loadHits = function () {
 			
 		var mapLink = $('<a/>')
 			.addClass('map-link')
+			.attr('href', '#')
 			.attr('onclick', 'zoomToHit(' + (hit.number) + ')')
 			.appendTo(header);
 			
@@ -84,7 +85,7 @@ HitList.prototype.loadHits = function () {
 		
 		var dateSpan = $('<span/>')
 			.addClass('date')
-			.text(hit.dateString() + ' ')
+			.text(hit.dateString() + ': ')
 			.appendTo(header);
 
 		var locationLink = $('<a/>')
