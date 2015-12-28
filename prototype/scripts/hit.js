@@ -128,7 +128,7 @@ Hit.prototype.tooltip = function(barTip) {
 		
 		if (barTip || this.injuries > 0) {
 			html += '<div class="legend"><div class="legend-box yellow-box"></div><span> ' +		
-				this.injuries + ' injuries</span></div>';
+				this.injuries + ' injured</span></div>';
 		}
 		
 	return html;
