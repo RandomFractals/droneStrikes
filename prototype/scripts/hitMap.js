@@ -75,6 +75,7 @@ HitMap.prototype.showHits = function () {
 	var marker;
 	var hit;
 	var heatPoints = [];
+	var bounds = new L.LatLngBounds();
 	for (var i=0; i < this.dataList.length; i++) {
 		hit = this.dataList[i];
 		marker = L.marker([hit.latitude, hit.longitude]);
@@ -82,6 +83,7 @@ HitMap.prototype.showHits = function () {
 		this.markers.addLayer(marker);
 		this.markerList.push(marker);
 		heatPoints.push([hit.latitude, hit.longitude, 1.0]); // intensity
+		bounds.extend(marker.getLatLng());
 	}		
 	
 	// add map markers
@@ -92,7 +94,8 @@ HitMap.prototype.showHits = function () {
 	this.map.addLayer(this.heatMapLayer);	
 	
 	// center on middle east
-	this.resetMapView();	
+	//this.resetMapView();	
+	this.map.fitBounds(bounds);
 }
 
 
