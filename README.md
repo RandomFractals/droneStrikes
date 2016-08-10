@@ -1,5 +1,5 @@
 # droneStrikes
-Data vis of US drone strikes
+Spatial Data Viz of U.S. drone strikes in the Middle East
 
 http://dronehits.herokuapp.com/
 
