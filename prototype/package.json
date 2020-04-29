@@ -17,7 +17,7 @@
     //"bootstrap": "^3.3.6",
     //"bootstrap-material-design": "^0.3.0",
     "d3": "^3.5.10",
-    "jquery": "^2.1.4",
+    "jquery": "^3.5.0",
     "leaflet": "^0.7.7",
     "leaflet.heat": "^0.2.0",
     "leaflet.markercluster": "^0.4.0"
